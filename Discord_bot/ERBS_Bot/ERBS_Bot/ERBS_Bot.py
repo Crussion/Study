@@ -27,5 +27,6 @@ class MyClient(discord.Client):
                 await message.channel.send(n)
 
 client = MyClient()
-torken = 'ODU3MDkzODcyNjQ3OTI5ODc2.YNKk3w.ao1ijqeqJBkKBmORwnlSU3YOZME'
+data = Data()
+torken = data.Discord_torken
 client.run(torken)
