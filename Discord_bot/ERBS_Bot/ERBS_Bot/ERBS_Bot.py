@@ -1,4 +1,5 @@
-import discord
+import discord, requests
+from Data import *
 
 class MyClient(discord.Client):
 
@@ -11,24 +12,20 @@ class MyClient(discord.Client):
         if message.author == self.user:
             return
 
-        if message.content.startswith('resend'):
-            await message.channel.send('```' + message.content.replace('resend','').lstrip() + '```')
-        elif message.content.startswith('list'):
-            s = ""
-            cnt = 0
-            for n in self.get_all_members():
-                cnt = cnt + 1
-                s += '{0}. {1}\n'.format(cnt, n)
-            await message.channel.send('```'+ s + '```')
-        elif message.content.startswith('get'):
-            for n in self.get_all_members():
+        if message.content.lower().startswith('!nomal') | message.content.lower().startswith('!n'):
+            nickname = message.content.split(' ')[1]
+            teamMod = message.content.split(' ')[2]
+            data = Data(nickname)
+            for n in data.get_Normal_Game(teamMod):
                 await message.channel.send(n)
 
-    async def on_disconnect(self):
-        print('Disconnect ', self.user)
-        await self.get_channel(857109283790520352).send('```' + "봇이 꺼졌습니다." + '```')
-
-
+        if message.content.lower().startswith('!rank') | message.content.lower().startswith('!r'):
+            nickname = message.content.split(' ')[1]
+            teamMod = message.content.split(' ')[2]
+            data = Data(nickname)
+            for n in data.get_Rank_Game(teamMod):
+                await message.channel.send(n)
 
 client = MyClient()
-client.run('ODU3MDkzODcyNjQ3OTI5ODc2.YNKk3w.ao1ijqeqJBkKBmORwnlSU3YOZME')
+torken = 'ODU3MDkzODcyNjQ3OTI5ODc2.YNKk3w.ao1ijqeqJBkKBmORwnlSU3YOZME'
+client.run(torken)
