@@ -48,7 +48,7 @@ class ERBS(discord.Client):
                 await message.channel.send('```존재하지 않는 닉네임입니다.```')
                 return
             embed=discord.Embed(title="Crussion", description="솔로")
-            embed.set_thumbnail(url="./res/Character_icon/03. Hyunwoo - 현우.png")
+            embed.set_thumbnail(url="https://github.com/Crussion/Study/blob/main/Discord_bot/ERBS_Bot/ERBS_Bot/res/Character_icon/03.%20Hyunwoo%20-%20%ED%98%84%EC%9A%B0.png?raw=true")
             await wait_message.delete()
             await message.channel.send(embed=embed)
 
