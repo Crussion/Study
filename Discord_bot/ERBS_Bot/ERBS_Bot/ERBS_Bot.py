@@ -198,20 +198,11 @@ class ERBS(discord.Client):
                                                                                                                        present_mmr,
                                                                                                                        rate_of_change),
                             value=tm_str,inline = False)
-
-        '''
-        s = ''
-        
-        if(len(game_list) != 0):
-            for n in game_list:
-                s = s + str(n) + '\n'
-        else:
-            s = '매치가 존재하지 않습니다.'
-        '''
         await msg.channel.send(embed=embed)
 
-client = ERBS()
-data = Data()
+if __name__ == "__main__":
+    client = ERBS()
+    data = Data()
 
-torken = data.Discord_torken
-client.run(torken)
+    torken = data.Discord_torken
+    client.run(torken)
