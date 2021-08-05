@@ -1,0 +1,25 @@
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.OutputStream;
+import java.io.UnsupportedEncodingException;
+
+public class Exam3 {
+	public static void main(String[] args) {
+		String str = "가나다라마바사abcdefg";
+		String path = "text3.txt";
+		
+		byte[] buf = null;
+		try {
+			buf = str.getBytes("utf-8");
+		} catch (UnsupportedEncodingException e) {
+			e.printStackTrace();
+		}
+		
+		OutputStream out = null;
+		try {
+			out = new FileOutputStream(path);
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}
+	}
+}

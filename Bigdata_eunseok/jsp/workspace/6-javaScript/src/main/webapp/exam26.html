@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript">
+	function doSubmit(){
+		// document.(form name) <- form객체를 얻어옴
+		//var frm = document.frm;
+		
+		if(!frm.name.value){
+			alert('이름을 입력해 주세요.');
+			frm.name.focus(); //input 태그 안에 커서이동
+			return false;
+		}
+		
+		if(!frm.gender[0].checked && !frm.gender[1].checked){
+			alert("성별을 선택해 주세요.");
+			frm.gender[0].focus();
+			return false;
+		}
+		
+		if(frm.job.selectedIndex < 1){
+			alert("직업을 선택해 주세요.");
+			frm.job.focus();
+			return false;
+		}
+		
+		var chk = false;
+		for(var i = 0; i < frm.sports.length; i++){
+			if(frm.sports[i].checked){
+				chk = true;
+				break;
+			}
+		}
+		
+		if(!chk){
+			alert("취미를 선택해 주세요.");
+			frm.sports[0].focus();
+			return false;
+		}
+		
+		if(confirm("입력하신 내용이 맞습니까?")){
+			frm.submit();
+		}else
+			return false;
+	}
+	
+	function onReset(){
+		alert("리셋 함수 작동");
+	}
+</script>
+</head>
+<body>
+	<form method="get" action="" name="frm" onsubmit="return doSubmit();" onreset="onReset();">
+		<fieldset style="width: 400px; margin: 0 auto;">
+			<legend>회원가입</legend>
+			<label>이름</label>
+			<input type="text" name="name"><br>
+			<label>성별</label>
+			<input type="radio" name="gender" value="male"> 남자
+			<input type="radio" name="gender" value="female"> 여자<br>
+			<label>직업</label>
+			<select name="job">
+				<option value="">------선택하세요------</option>
+				<option value="programer">프로그래머</option>
+				<option value="CEO">CEO</option>
+				<option value="engeneer">엔지니어</option>
+			</select><br>
+			<label>취미</label>
+			<input type="checkbox" name="sports" value="sccor"> 축구
+			<input type="checkbox" name="sports" value="basketball"> 농구
+			<input type="checkbox" name="sports" value="baseball"> 야구<br>
+			<input type="submit" value="제출">
+			<input type="reset" value="리셋">
+		</fieldset>
+	</form>
+</body>
+</html>

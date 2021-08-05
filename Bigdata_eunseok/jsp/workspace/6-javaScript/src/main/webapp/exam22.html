@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript">
+	function printTime(){
+		var days = ["일", "월", "화", "수", "목", "금", "토"];
+		var mydate = new Date();
+		
+		var yy = mydate.getFullYear();
+		var mm = mydate.getMonth() + 1;
+		var dd = mydate.getDate();
+		var i = mydate.getDay();
+		var day = days[i];
+		var hh = mydate.getHours();
+		var mi = mydate.getMinutes();
+		var ss = mydate.getSeconds();
+		
+		var result = yy + "-" + mm + "-" + dd + " " + day + " " + hh + ":" + mi + ":" + ss;
+		document.write(result);
+	}
+	
+	printTime();
+</script>
+</head>
+<body>
+
+</body>
+</html>

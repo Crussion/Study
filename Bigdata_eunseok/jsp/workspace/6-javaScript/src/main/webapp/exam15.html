@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript">
+	function sum(x, y){
+		return x + y;
+	}
+	function printResult(){
+		var span = document.getElementById("result");
+		// innerHtml : 태그의 데이터 영역을 참조하는 변수
+		span.innerHTML = sum(10, 50);
+	}
+</script>
+</head>
+<body>
+	<h1>10 + 50 = <span id="result">?</span></h1>
+	<input type="button" value="결과보기" onclick="printResult()">
+	<!-- onclick = 자바스크립트 명령어(일반적으로 함수 호출) -->
+</body>
+</html>

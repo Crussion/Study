@@ -1,0 +1,15 @@
+@charset "UTF-8";
+body{
+	background: mistyrose;
+	margin: 0 180px;
+}
+h2{
+	color: red;
+	text-align: center;
+}
+hr{
+	color: gray;
+}
+p{
+	color: purple;
+}

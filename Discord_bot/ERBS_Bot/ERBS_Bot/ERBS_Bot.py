@@ -166,39 +166,42 @@ class ERBS(discord.Client):
         if(m_mode == 'normal'): m = '일반'
         else: m = '랭크'
         embed=discord.Embed(title=" ", color=0x44ff00)
-        embed.set_author(name="최근 {0} 10판".format(m), icon_url=self.bot_icon)
-        for i in range(len(game_list)):
-            lst = game_list[i]
+        embed.set_author(name="최근 시즌 {0} 10판".format(m), icon_url=self.bot_icon)
+        if((game_list != None) & (len(game_list) != 0)):
+            for i in range(len(game_list)):
+                lst = game_list[i]
 
-            game_time = datetime.strptime(lst['startDtm'], '%Y-%m-%dT%H:%M:%S.%f%z')
-            time_diff = datetime.now(timezone.utc) - game_time
-            tm_d = int(time_diff.days)
-            tm_h = int((time_diff.seconds / 3600) % 24)
-            tm_m = int((time_diff.seconds / 60) % 60)
-            tm_s = int(time_diff.seconds % 60)
-            tm_str = ''
-            if(tm_d != 0): tm_str = tm_str + '{0}일 '.format(tm_d)
-            if(tm_h != 0): tm_str = tm_str + '{0}시간 '.format(tm_h)
-            if(tm_m != 0): tm_str = tm_str + '{0}분 '.format(tm_m)
-            if(tm_s != 0): tm_str = tm_str + '{0}초'.format(tm_s)
-            tm_str = tm_str + '전에 플레이 함'
-            
-            if(i == 0):
-                present_mmr = stat_json['mmr']
-                rate_of_change = stat_json['mmr'] - lst['mmrBefore']
-            else:
-                present_mmr = game_list[i-1]['mmrBefore']
-                rate_of_change = game_list[i-1]['mmrBefore'] - game_list[i]['mmrBefore']
+                game_time = datetime.strptime(lst['startDtm'], '%Y-%m-%dT%H:%M:%S.%f%z')
+                time_diff = datetime.now(timezone.utc) - game_time
+                tm_d = int(time_diff.days)
+                tm_h = int((time_diff.seconds / 3600) % 24)
+                tm_m = int((time_diff.seconds / 60) % 60)
+                tm_s = int(time_diff.seconds % 60)
+                tm_str = ''
+                if(tm_d != 0): tm_str = tm_str + '{0}일 '.format(tm_d)
+                if(tm_h != 0): tm_str = tm_str + '{0}시간 '.format(tm_h)
+                if(tm_m != 0): tm_str = tm_str + '{0}분 '.format(tm_m)
+                if(tm_s != 0): tm_str = tm_str + '{0}초'.format(tm_s)
+                tm_str = tm_str + '전에 플레이 함'
+                
+                if(i == 0):
+                    present_mmr = stat_json['mmr']
+                    rate_of_change = stat_json['mmr'] - lst['mmrBefore']
+                else:
+                    present_mmr = game_list[i-1]['mmrBefore']
+                    rate_of_change = game_list[i-1]['mmrBefore'] - game_list[i]['mmrBefore']
 
-            embed.add_field(name='{0:<2}.\t캐릭터 : {1:8}\n등 수 : {2:> 2}\t 킬 수 : {3:> 2}킬\t어시스트 : {4:> 2}\tMMR : {5: }   {6:+}'.format((i + 1), 
-                                                                                                                       data.icon_dict[lst['characterNum']], 
-                                                                                                                       lst['gameRank'], 
-                                                                                                                       lst['playerKill'],
-                                                                                                                       lst['playerAssistant'], 
-                                                                                                                       present_mmr,
-                                                                                                                       rate_of_change),
-                            value=tm_str,inline = False)
-        await msg.channel.send(embed=embed)
+                embed.add_field(name='{0:<2}.\t캐릭터 : {1:8}\n등 수 : {2:> 2}\t 킬 수 : {3:> 2}킬\t어시스트 : {4:> 2}\tMMR : {5: }   {6:+}'.format((i + 1), 
+                                                                                                                           data.icon_dict[lst['characterNum']], 
+                                                                                                                           lst['gameRank'], 
+                                                                                                                           lst['playerKill'],
+                                                                                                                           lst['playerAssistant'], 
+                                                                                                                           present_mmr,
+                                                                                                                           rate_of_change),
+                                value=tm_str,inline = False)
+            await msg.channel.send(embed=embed)
+        else:
+            await msg.channel.send('매치가 존재하지 않습니다.')
 
 if __name__ == "__main__":
     client = ERBS()

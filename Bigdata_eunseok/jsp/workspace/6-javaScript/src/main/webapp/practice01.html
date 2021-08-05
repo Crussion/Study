@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript">
+	function setImage(image){
+		document.getElementById("img").src = image;
+	}
+</script>
+</head>
+<body>
+	<h2>라디오 버튼을 클릭하면 이미지를 출력합니다.</h2>
+	<hr>
+	<form>
+		<label><input type="radio" name="fruit" onclick="setImage('media/banana.png')" checked>바나나</label>
+		<label><input type="radio" name="fruit" onclick="setImage('media/mango.png')">망고</label>
+		<label><input type="radio" name="fruit" onclick="setImage('media/apple.png')">사과</label>
+	</form>
+	<img id="img" src="media/banana.png">
+</body>
+</html>

@@ -1,0 +1,19 @@
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.InputStream;
+
+public class Exam4 {
+	public static void main(String[] args) {
+		String path = "text3.txt";
+		byte[] data = null;
+		String result = null;
+		
+		InputStream in = null;
+		try {
+			in = new FileInputStream(path);
+			data = in.readAllBytes();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+}

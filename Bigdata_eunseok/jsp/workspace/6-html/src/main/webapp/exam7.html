@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>07-파일첨부하기</title>
+</head>
+<body>			<!-- method - get : 문자열만 사용, post : 문자열과 파일을 사용 -->
+	<form enctype="multipart/form-data" method="post">
+		<fieldset>
+			<legend>파일첨부</legend>
+			<div>
+				<label>사진선택</label>
+				<input type="file" name="photo">
+			</div>
+		</fieldset>
+		<div>
+			<input type="submit" value="전송">
+			<input type="reset" value="취소">
+		</div>
+	</form>
+</body>
+</html>

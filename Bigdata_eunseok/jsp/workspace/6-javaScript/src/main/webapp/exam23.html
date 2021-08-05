@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript">
+	function open1(){
+		window.open('open.html');
+	}
+	function open2() {
+		window.open('open.html', '', 'width=300, height=500, scrollbars=no, toolbar=no, menubar=no, status=no, location=no');
+	}
+	function open3(url) {
+		window.open(url);
+	}
+</script>
+</head>
+<body>
+	<h2>window 객체</h2>
+	<h3>open 메소드 확인</h3>
+	<!-- return false - href에 설정된 동작을 무효화 -->
+	<div>
+		<a href="#" onclick="open1(); return false;">새창 열기</a><br>
+		<a href="#" onclick="open2(); return false;">팝업창 열기(1)</a><br>
+		<a href="#" onclick="open3('https://www.naver.com'); return false;">팝업창 열기(2-1)</a><br>
+		<a href="#" onclick="open3('http://www.daum.net'); return false;">팝업창 열기(2-2)</a><br>
+	</div>
+</body>
+</html>

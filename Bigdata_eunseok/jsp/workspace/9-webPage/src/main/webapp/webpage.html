@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Company Info</title>
+<style type="text/css">
+html, body {width: 100%; height: 100%; margin: 0px;}
+#headertop{
+	display: flex;
+	justify-content: space-between;
+}
+#headertop h2 {color: blue; margin-left: 50px;}
+hr {margin: 0px;}
+#span{
+	text-align: center;
+	line-height: 70px;
+	margin-right: 50px;
+}
+#span #s {
+	border-left: 2px solid lightgray;
+	border-right: 2px solid lightgray;
+	padding: 0px 5px;
+}
+#headerbottom {
+	background: blue;
+	color: white;
+	padding-left: 50px;
+	height: 50px;
+	line-height: 50px;
+}
+#headerbottom span{
+	margin: 10px;
+	font-size: 18px;
+}
+#body {
+	height: 562px; 
+	border-bottom: 2px solid lightgray;
+}
+#catalog {
+	position: absolute;
+	top: 226px;
+	display: inline-block;
+	width: 150px; height: 60px;
+	border-right: 2px solid lightgray;
+	border-bottom: 2px solid lightgray;
+}
+#catalog span{
+	position: relative;
+	left: 90px; top: 25px;
+	color: blue;
+	font: 18px;
+}
+#list {
+	position: absolute;
+	top: 288px;
+	display: inline-block;
+	width: 150px; height: 500px;
+	border-right: 2px solid lightgray;
+	border-bottom: 2px solid lightgray;
+	margin: 0px;
+}
+#list ul {padding-left: 20px; padding-right: 10px; margin: 0px;}
+#list li{
+	list-style-type: none;
+	padding: 5px 0px;
+	color: blue;
+	text-align: right;
+}
+#content{
+	position: relative;
+	left: 170px; top: 20px;
+	display: inline-block;
+	width: 75%; height: 552px;
+}
+#content #content_top{
+	display: flex;
+	justify-content: space-between;
+}
+#content #content_top h3 {
+	font-size: 24px;
+	color: blue;
+	margin: 0px;
+}
+#content #content_top span {
+	text-align: center;
+	line-height: 20px;
+	font-size: 12px;
+}
+#content #content_middle {
+	display: inline-block;
+	height: 85%;
+	margin-top: 20px; margin-left: 20px;
+}
+#content #content_middle p{
+	position: relative;
+	left: 240px; top: -170px;
+	width: 90%; height: 100%;
+}
+</style>
+</head>
+<body>
+	<div id="header">
+		<div id="headertop">
+			<h2>LOGO</h2>
+			<div id="span">
+				<span>Login</span>
+				<span id="s">Member join</span>
+				<span>Sitemap</span>
+			</div>
+		</div>
+		<div id="headerbottom">
+			<span>ABOUT</span>
+			<span>SERVICES</span>
+			<span>PORTFOLIO</span>
+			<span>CONTACT US</span>
+		</div>
+		<img src="img/bg_header.png">
+		<hr>
+	</div>
+	<div id="body">
+		<div id="catalog">
+			<span id="s1"><strong>About</strong></span>
+		</div>
+		<div id="content">
+			<div id="content_top">
+				<h3>Company Info</h3>
+				<span>Home > About > Company Info</span>
+			</div>
+			<div id="content_middle">
+				<img src="img/treethum.png">
+				<p>Contrary to popular belief, Lorem Ipsum is not simply random 
+				text. It has roots in a piece of classical Latin literature from 
+				45 BC, making it over 2000 years old. Richard McClintock,
+				a Latin professor at Hampden-Sydney College in Virginia, 
+				looked up one of the more obscure Latin words, consectetur, 
+				from a Lorem Ipsum passage, and going through the cites of the 
+				word in classical literature, discovered the undoubtable source. 
+				Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of "de 
+				Finibus Bonorum et Malorum" (The Extremes of Good and Evil) 
+				by Cicero, written in 45 BC. This book is a treatise on the 
+				theory of ethics, very popular during the Renaissance. 
+				The first line of Lorem Ipsum, "Lorem ipsum dolor sit amet..", 
+				comes from a line in section 1.10.32.
+				<br><br>
+				The standard chunk of Lorem Ipsum used since the 1500s is 
+				reproduced below for those interested. Sections 1.10.32 and 
+				1.10.33 from "de Finibus Bonorum et Malorum" by Cicero are 
+				also reproduced in their exact original form, accompanied 
+				by English versions from the 1914 translation by H. Rackham.
+				</p>
+			</div>
+		</div>
+		<br>
+		<div id="list">
+			<ul>
+				<li><strong>Company Info</strong></li>
+				<li><strong>History</strong></li>
+				<li><strong>Location</strong></li>
+			</ul>
+		</div>
+	</div>
+	<div id="footer">
+		<p>Copyrightⓒ COMPANYDesign <span style="float: right">About | Services | Portfolio | Contact us | Location</span></p>
+		<p>Powered by Webazit, e-mail: webmaster@company.com</p>
+	</div>
+</body>
+</html>

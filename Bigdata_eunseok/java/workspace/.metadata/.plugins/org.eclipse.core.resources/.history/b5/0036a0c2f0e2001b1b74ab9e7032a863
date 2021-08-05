@@ -1,0 +1,7 @@
+package exam6;
+
+public class StudentVO {
+	String name;
+	int age;
+	String place;
+}

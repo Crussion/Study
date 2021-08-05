@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>폼 스타일 주기</title>
+<style type="text/css">
+.row{
+	text-align: right;
+	font: bold;
+}
+td {padding: 10px 5px;}
+#name {color: red;}
+#name::placeholder {color: red;}
+#email {background: aliceblue; border: 2px inset;}
+#comment {overflow: scroll;}
+</style>
+</head>
+<body>
+	<h3>CONTACT US</h3>
+	<hr>
+	<form>
+		<table>
+			<tr>
+				<td class="row">Name</td>
+				<td><input type="text" name="name" id="name" placeholder="Elvis"></td>
+			</tr>
+			<tr>
+				<td class="row">Email</td>
+				<td><input type="email" name="email" id="email" placeholder="elvis@graceland.com"></td>
+			</tr>
+			<tr>
+				<td class="row">Comment</td>
+				<td>
+					<textarea placeholder="메시지를 남겨주세요" name="comment" id="comment"></textarea>
+				</td>
+			</tr>
+			<tr>
+				<td></td>
+				<td id="submit"><input type="submit" value="submit"></td>
+			</tr>
+		</table>
+	</form>
+</body>
+</html>

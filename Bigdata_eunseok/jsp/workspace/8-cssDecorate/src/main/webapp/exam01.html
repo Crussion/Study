@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style type="text/css">
+td:hover {background: violet;}
+table a {color: white; text-decoration: none;}
+#menubar {background: olive;}
+#menubar ul {
+	margin: 0; padding: 0;
+	width: 500px;
+}
+#menubar ul li {
+	display: inline-block;
+	list-style-type: none; /* 마커 삭제 */
+	padding: 10px 15px; /* top, bottom = 0px, left, right = 15px */
+}
+#menubar ul li a{
+	color: white;
+	text-decoration: none;
+}
+#menubar ul li a:hover{
+	color: violet;
+}
+</style>
+</head>
+<body>
+	<table style="background: olive;" width="600">
+		<tr>
+			<td><a href="#">Home</a></td>
+			<td><a href="#">Espresso</a></td>
+			<td><a href="#">Capuuccino</a></td>
+			<td><a href="#">Cafe Latte</a></td>
+			<td><a href="#">F.A.Q.</a></td>
+		</tr>
+	</table>
+	<br><br>
+	
+	<div id="menubar">
+		<ul>
+			<li><a href="#">Home</a></li>
+			<li><a href="#">Espresso</a></li>
+			<li><a href="#">Capuuccino</a></li>
+			<li><a href="#">Cafe Latte</a></li>
+			<li><a href="#">F.A.Q.</a></li>
+		</ul>
+	</div>
+</body>
+</html>

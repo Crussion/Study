@@ -1,0 +1,12 @@
+package exam6;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class Exam6 {
+	public static void main(String[] args) {
+		List<StudentVO> list = new ArrayList<StudentVO>();
+		
+		list.add(new StudentVO("È«±æµ¿", 25, "¼ö¿ø"));
+	}
+}

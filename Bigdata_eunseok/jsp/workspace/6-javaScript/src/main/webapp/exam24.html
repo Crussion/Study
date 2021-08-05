@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript">
+	function random(min, max){
+		return parseInt((Math.random() * (max - min + 1) + min));
+	}
+	function authNo(){
+		var value = "";
+		for(var i = 0; i < 5; i++){
+			value += random(0, 9);	//0~9사이
+		}
+		
+		document.getElementById('auth').innerHTML = value;
+	}
+	function refresh(){
+		//reload() : 새로고침
+		location.reload();
+	}
+	
+	function goNaver(){
+		//location : 서버에 새로운 파일을 요청하는데 사용
+		//href값을 수정하면 해당하는 값을 서버에 요청하게 된다.
+		location.href = 'http://naver.com';
+	}
+</script>
+</head>
+<body onload="authNo()">
+	<p>고객님의 인증번호는 <strong id="auth">00000</strong>입니다.</p>
+	<input type="button" value="인증번호 새로받기" onclick="refresh()"><br>
+	<input type="button" value="네이버로 이동하기" onclick="goNaver()"><br>
+</body>
+</html>

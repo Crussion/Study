@@ -1,0 +1,56 @@
+@charset "UTF-8";
+
+html, body { width: 100%; height: 100%; margin: 0; }
+#header { background: yellow; }
+#header > h1 {
+	text-align: center;
+	margin-top: 0;
+}
+#header > p { 
+	margin-bottom: 0;
+	padding-bottom: 16px;
+}
+
+#body { 
+	height: 630px;
+	background: skyblue;
+}
+#nav { 
+	width: 210px;
+	height: 100%;
+	float: left;
+	background: orange;
+}
+#nav > form { 
+	width: 200px; 
+	margin-top: 10px;
+}
+#nav fieldset { border: 1px solid white; }
+#nav #btn { width: 100%; }
+
+#content { 
+	position: absolute;
+	left: 210px;
+	height: 630px;
+	display: inline-block;
+	background: skyblue;
+	overflow: auto;
+}
+#sample { margin-bottom: 0; }
+#sam { 
+	display: inline-block;
+	width: 550px;
+}
+#sam > p { text-align: center; }
+#phone p { margin-bottom: 0; }
+#phone span { margin: 0 23px; }
+.image { width: 100px; }
+
+#footer { 
+	clear: both;
+	background: #F479DF; 
+}
+#footer p { 
+	margin: 0;
+	padding: 10px; 
+}

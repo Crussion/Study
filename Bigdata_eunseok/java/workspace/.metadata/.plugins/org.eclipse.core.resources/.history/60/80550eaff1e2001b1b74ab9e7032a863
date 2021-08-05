@@ -1,0 +1,13 @@
+package exam6;
+
+import java.util.List;
+
+public class ObjectInOut {
+	public boolean write(String fileName, List<StudentVO> list) {
+		
+	}
+	
+	public List<StudentVO> read(String fileName){
+		
+	}
+}

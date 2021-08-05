@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style type="text/css">
+
+/*태그 이름 셀렉터*/
+h3, li{color:brown;}
+
+/*자식 셀렉터*/
+div > div > strong{background: yellow;}
+
+/*자손 셀렉터*/
+ul strong {color: dodgerblue;}
+
+/*class 셀렉터*/
+.warning {color: red;}
+
+/*class 셀렉터 : 구체적으로 태그명부터 표시*/
+body.main {background: aliceblue;}
+
+/*id 셀렉터 - # 앞에 태그를 명시해줘도 된다. ex) ul#list*/
+#list {background: mistyrose;}
+
+/*id + 자손 셀렉터*/
+#list span {color: forestgreen;}
+
+/*가상 클래스 셀렉터*/
+h3:first-letter {color: red;} 			/*first-letter - 첫 글자*/
+li:hover {background: yellowgreen;} 	/*커서가 올라간 상태*/
+
+</style>
+</head>
+<body class="main">
+	<h3>Web Programming</h3>
+	<hr>
+	<div>
+		<div>2학기 <strong>학습 내용</strong> 입니다.</div>
+		<ul id="list">
+			<li><span>HTML5</span></li>
+			<li><strong>CSS</strong></li>
+			<li>JAVASCRIPT</li>
+		</ul>
+		<div class="warning">60점 이하는 F</div>
+	</div>
+</body>
+</html>

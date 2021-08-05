@@ -1,0 +1,18 @@
+import java.io.FileWriter;
+
+public class Exam2 {
+	public static void main(String[] args) {
+		String str = "가나다라마바사abcdefg";
+		String path = "text2.txt";
+		
+		try {
+			FileWriter fw = new FileWriter(path);
+			fw.write(str);
+			fw.close();
+			System.out.println("파일 생성");
+		}catch(Exception e) {
+			System.out.println("파일 생성 실패");
+			e.printStackTrace();
+		}
+	}
+}

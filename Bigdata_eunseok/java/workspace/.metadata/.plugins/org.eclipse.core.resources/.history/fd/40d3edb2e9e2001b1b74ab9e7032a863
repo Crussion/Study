@@ -1,0 +1,36 @@
+package helper;
+
+import java.io.FileOutputStream;
+import java.io.OutputStream;
+import java.io.UnsupportedEncodingException;
+
+public class FileHelper {
+	private static FileHelper instance;
+	public static FileHelper getInstance() {
+		if(instance == null) instance = new FileHelper();
+		return instance;
+	}
+	static void writeFile(String path, String str) {
+		byte[] buf = null;
+		try {
+			buf = str.getBytes("utf-8");
+		} catch (UnsupportedEncodingException e) {
+			e.printStackTrace();
+		}
+		
+		OutputStream out = null;
+		try {
+			out = new FileOutputStream(path);
+			out.write(buf);
+			System.out.println("ÆÄÀÏ ÀúÀåµÊ >> " + path);
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if(out != null) out.close();
+			}catch(Exception e) {
+				e.printStackTrace();
+			}
+		}
+	}
+}
