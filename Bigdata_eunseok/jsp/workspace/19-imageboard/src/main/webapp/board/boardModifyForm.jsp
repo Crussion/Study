@@ -15,7 +15,7 @@
 <script type="text/javascript" src="../script/boardScript.js"></script>
 </head>
 <body>
-	<form name="modify_frm" action="boardModify.jsp" method="post"
+	<form name="modify_frm" action="../board/boardModify.jsp" method="post"
 			onsubmit="return boardModify();">
 		<table border="1">
 			<tr>

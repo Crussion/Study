@@ -1,0 +1,17 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<h3>** MVC 패턴의 기본 동작</h3>
+	<a href="MessageController2">none</a><br>
+	<a href="MessageController2?message=host">host</a><br>
+	<a href="MessageController2?message=guest">guest</a><br>
+	<a href="MessageController2?message=passenger">passenger</a><br>
+</body>
+</html>

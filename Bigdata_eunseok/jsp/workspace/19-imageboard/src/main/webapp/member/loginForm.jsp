@@ -5,7 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<script type="text/javascript" src="../script/memberScript.js"></script>
+<script type="text/javascript" src="../script/memberScript.js?v=new"></script>
 <style type="text/css">
 .col {text-align: center}
 </style>

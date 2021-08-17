@@ -5,7 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<script type="text/javascript" src="../script/memberScript.js?ver=new">
+<script type="text/javascript" src="../script/memberScript.js?v=new">
 </script>
 <style type="text/css">
 .col {text-align: center}
@@ -37,7 +37,7 @@
 				<td class="col">성별</td>
 				<td>
 					<input type="radio" name="gender" value="male" checked>남
-					<input type="radio" name="gender" value="female">여
+					<input type="radio" name="gender" value="femal">여
 				</td>
 			</tr>
 			<tr>

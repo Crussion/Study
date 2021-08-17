@@ -21,10 +21,10 @@
 <script type="text/javascript">
 	if(<%=result > 0%>){
 		alert("글을 수정했습니다.");
-		location.href = "boardView.jsp?seq=" + <%=seq%> + "&pg=" + <%=pg%>;
+		location.href = "../main/index.jsp?req=boardView&seq=" + <%=seq%> + "&pg=" + <%=pg%>;
 	}else{
 		alert("글을 수정하는데 실패했습니다.");
-		location.href = "boardView.jsp?seq=" + <%=seq%> + "&pg=" + <%=pg%>;
+		location.href = "../main/index.jsp?req=boardView&seq=" + <%=seq%> + "&pg=" + <%=pg%>;
 	}
 </script>
 </head>

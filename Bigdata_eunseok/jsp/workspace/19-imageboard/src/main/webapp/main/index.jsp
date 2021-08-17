@@ -127,8 +127,16 @@ body{
 				<jsp:include page="../board/boardWriteForm.jsp"/>
 			</c:if>
 			
+			<c:if test="${param.req == 'boardModifyForm' }">
+				<jsp:include page="../board/boardModifyForm.jsp"/>
+			</c:if>
+			
 			<c:if test="${param.req == 'modifyForm' }">
 				<jsp:include page="../member/modifyForm.jsp"/>
+			</c:if>
+			
+			<c:if test="${param.req == 'modifyResult' }">
+				<jsp:include page="../member/modifyResult.jsp"/>
 			</c:if>
 			
 			<c:if test="${param.req == 'memberList' }">
@@ -142,6 +150,7 @@ body{
 			<c:if test="${param.req == 'boardView' }">
 				<jsp:include page="../board/boardView.jsp"/>
 			</c:if>
+
 		</div>
 	</div>
 	

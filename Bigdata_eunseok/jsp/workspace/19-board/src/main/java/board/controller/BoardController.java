@@ -1,0 +1,71 @@
+package board.controller;
+
+import java.io.IOException;
+
+import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import board.action.Action;
+import board.action.BoardListAction;
+import board.action.BoardWriteProAction;
+
+/**
+ * Servlet implementation class BoardController
+ */
+@WebServlet("*.do")
+public class BoardController extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+       
+    /**
+     * @see HttpServlet#HttpServlet()
+     */
+    public BoardController() {
+        super();
+        // TODO Auto-generated constructor stub
+    }
+
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		doRequest(request, response);
+	}
+
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		doRequest(request, response);
+	}
+	
+	protected void doRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		request.setCharacterEncoding("utf-8");
+		String command = request.getServletPath();
+		System.out.println(command);
+		String view = null;
+		Action action = null;
+		try {
+			if(command.equals("/boardWriteForm.do")) {
+				view = "board/boardWriteForm.jsp";
+			}else if(command.equals("/boardList.do")){
+				action = new BoardListAction();
+			}else if(command.equals("/boardWritePro.do")) {
+				action = new BoardWriteProAction();
+			}
+			
+			if(action != null) {
+				view = action.process(request, response);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		RequestDispatcher dispatcher = request.getRequestDispatcher(view);
+		dispatcher.forward(request, response);
+	}
+
+}

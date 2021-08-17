@@ -52,13 +52,13 @@
 				<td>
 				<%if(gender.equals("male")) {%>
 					<input type="radio" name="gender" value="male" checked>남
-					<input type="radio" name="gender" value="female">여
-				<%} else if(gender.equals("female")) {%>
+					<input type="radio" name="gender" value="femal">여
+				<%} else if(gender.equals("femal")) {%>
 					<input type="radio" name="gender" value="male">남
-					<input type="radio" name="gender" value="female" checked>여
+					<input type="radio" name="gender" value="femal" checked>여
 				<%} else {%>
 					<input type="radio" name="gender" value="male">남
-					<input type="radio" name="gender" value="female">여
+					<input type="radio" name="gender" value="femal">여
 				<%} %>
 				</td>
 			</tr>

@@ -29,23 +29,9 @@
 	dto.setAddr(addr);
 	
 	int result = dao.member_modify(dto);
+	
+	request.setAttribute("result",result);
+	
+	RequestDispatcher dispatcher = request.getRequestDispatcher("../main/index.jsp?req=modifyResult");
+	dispatcher.forward(request, response);
 %>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-<script type="text/javascript">
-	if(<%=result > 0%>){
-		alert("회원정보가 수정되었습니다.");
-		location.href = "../main/index.jsp";
-	} else{
-		alert("회원정보 수정이 실패하였습니다.");
-		history.back();
-	}
-</script>
-</head>
-<body>
-
-</body>
-</html>

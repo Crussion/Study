@@ -9,15 +9,10 @@
 	MemberDAO dao = new MemberDAO();
 	String name = dao.login(id, pwd);
 	
-	boolean result = false;
-	
 	if(name != null){
 		session.setAttribute("memName", name);
 		session.setAttribute("memId", id);
-		result = true;
 	}
-	
-	request.setAttribute("result", result);
 	
 	RequestDispatcher dispatcher = request.getRequestDispatcher("../main/index.jsp?req=loginResult");
 	dispatcher.forward(request, response);

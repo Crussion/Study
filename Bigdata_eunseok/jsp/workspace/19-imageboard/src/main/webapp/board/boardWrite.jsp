@@ -25,7 +25,7 @@
 		<%} else {%>
 			alert("작성하신 글을 저장하는데 실패하였습니다.")
 		<%} %>
-		location.href="boardList.jsp?pg=1";
+		location.href="../main/index.jsp?req=boardList&pg=1";
 	}
 </script>
 </head>

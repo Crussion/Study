@@ -36,7 +36,6 @@ function doSubmit(){
 		frm.pwd_chk.focus();
 		return false;
 	}
-	
 	return true;
 }
 
@@ -53,7 +52,7 @@ function login(){
 		return false;
 	}
 	
-	return true;
+	login_frm.submit();
 }
 
 function checkId(){
@@ -63,7 +62,7 @@ function checkId(){
 		alert("먼저 아이디를 입력하세요.");
 		frm.id.focus();
 	} else {
-		window.open("checkId.jsp?id=" + sId, "", "width=400 height=150 left=500 top=200");
+		window.open("../member/checkId.jsp?id=" + sId, "", "width=400 height=150 left=500 top=200");
 	}
 	return false;
 }
