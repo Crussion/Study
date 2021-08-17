@@ -10,8 +10,13 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import board.action.Action;
+import board.action.BoardDeleteProAction;
 import board.action.BoardListAction;
 import board.action.BoardWriteProAction;
+import board.action.FileDownAction;
+import board.action.BoardModifyAction;
+import board.action.BoardModifyFormAction;
+import board.action.BoardDetailAction;
 
 /**
  * Servlet implementation class BoardController
@@ -55,6 +60,16 @@ public class BoardController extends HttpServlet {
 				action = new BoardListAction();
 			}else if(command.equals("/boardWritePro.do")) {
 				action = new BoardWriteProAction();
+			}else if(command.equals("/boardDetail.do")) {
+				action = new BoardDetailAction();
+			}else if(command.equals("/boardDelete.do")) {
+				action = new BoardDeleteProAction();
+			}else if(command.equals("/boardModifyForm.do")) {
+				action = new BoardModifyFormAction();
+			}else if(command.equals("/boardModifyPro.do")) {
+				action = new BoardModifyAction();
+			}else if(command.equals("/fileDown.do")) {
+				action = new FileDownAction();
 			}
 			
 			if(action != null) {

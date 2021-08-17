@@ -43,5 +43,8 @@ select * from
 (select * from board2 order by board_num desc) tt)
 where rn>=1 and rn<=5;
 
+-- 데이터 수정
+update board2 set board_readcount=board_readcount+1 where board_num=1;
+
 -- db저장
 commit;

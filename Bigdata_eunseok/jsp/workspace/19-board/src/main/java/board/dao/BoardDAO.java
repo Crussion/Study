@@ -122,4 +122,88 @@ public class BoardDAO {
 		}
 		return result;
 	}
+	
+	public BoardBean boardDetail(int board_num) {
+		BoardBean bean = new BoardBean();
+		String sql = "select * from board2 where board_num=?";
+		try {
+			conn = ds.getConnection();
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, board_num);
+			
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				bean.setBoard_num(rs.getInt("board_num"));
+				bean.setBoard_name(rs.getString("board_name"));
+				bean.setBoard_pwd(rs.getString("board_pwd"));
+				bean.setBoard_subject(rs.getString("board_subject"));
+				bean.setBoard_content(rs.getString("board_content"));
+				bean.setBoard_file(rs.getString("board_file"));
+				bean.setBoard_re_ref(rs.getInt("board_re_ref"));
+				bean.setBoard_re_lev(rs.getInt("board_re_lev"));
+				bean.setBoard_re_seq(rs.getInt("board_re_seq"));
+				bean.setBoard_readcount(rs.getInt("board_readcount"));
+				bean.setBoard_date(rs.getString("board_date"));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close();
+		}
+		return bean;
+	}
+	
+	public int read_count(int board_num) {
+		int result = 0;
+		String sql = "update board2 set board_readcount=board_readcount+1 where board_num=?";
+		try {
+			conn = ds.getConnection();
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, board_num);
+			
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close();
+		}
+		return result;
+	}
+	
+	public int boardDelete(int board_num, String pwd) {
+		int result = 0;
+		String sql = "delete board2 where board_num=? and board_pwd=?";
+		try {
+			conn = ds.getConnection();
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, board_num);
+			pstmt.setString(2, pwd);
+			
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close();
+		}
+		return result;
+	}
+	
+	public int boardModify(int board_num, String pwd, String modify_content) {
+		int result = 0;
+		String sql = "update board2 set board_content=? where board_num=? and board_pwd=?";
+		try {
+			conn = ds.getConnection();
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, modify_content);
+			pstmt.setInt(2, board_num);
+			pstmt.setString(3, pwd);
+			
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close();
+		}
+		return result;
+	}
 }

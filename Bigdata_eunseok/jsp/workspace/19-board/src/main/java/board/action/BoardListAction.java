@@ -30,6 +30,7 @@ public class BoardListAction implements Action{
 		
 		List<BoardBean> list = dao.boardList(startNum, endNum);
 		
+		request.setAttribute("pg", pg);
 		request.setAttribute("list", list);
 		request.setAttribute("startPage", startPage);
 		request.setAttribute("endPage", endPage);

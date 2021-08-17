@@ -7,7 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<form action="boardWrite.do" method="post" enctype="multipart/form-data">
+	<form action="boardWritePro.do" method="post" enctype="multipart/form-data">
 		<table width="550" height="500">
 			<tr>
 				<td colspan="2" align="center" width="100">
