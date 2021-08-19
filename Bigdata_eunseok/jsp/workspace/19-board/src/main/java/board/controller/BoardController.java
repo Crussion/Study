@@ -16,6 +16,7 @@ import board.action.BoardWriteProAction;
 import board.action.FileDownAction;
 import board.action.BoardModifyAction;
 import board.action.BoardModifyFormAction;
+import board.action.BoardReplyFormAction;
 import board.action.BoardDetailAction;
 
 /**
@@ -70,6 +71,8 @@ public class BoardController extends HttpServlet {
 				action = new BoardModifyAction();
 			}else if(command.equals("/fileDown.do")) {
 				action = new FileDownAction();
+			}else if(command.equals("/boardReplyForm")) {
+				action = new BoardReplyFormAction();
 			}
 			
 			if(action != null) {
