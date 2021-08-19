@@ -17,6 +17,7 @@ import board.action.FileDownAction;
 import board.action.BoardModifyAction;
 import board.action.BoardModifyFormAction;
 import board.action.BoardReplyFormAction;
+import board.action.BoardReplyProAction;
 import board.action.BoardDetailAction;
 
 /**
@@ -54,6 +55,8 @@ public class BoardController extends HttpServlet {
 		System.out.println(command);
 		String view = null;
 		Action action = null;
+		
+		
 		try {
 			if(command.equals("/boardWriteForm.do")) {
 				view = "board/boardWriteForm.jsp";
@@ -71,8 +74,10 @@ public class BoardController extends HttpServlet {
 				action = new BoardModifyAction();
 			}else if(command.equals("/fileDown.do")) {
 				action = new FileDownAction();
-			}else if(command.equals("/boardReplyForm")) {
+			}else if(command.equals("/boardReplyForm.do")) {
 				action = new BoardReplyFormAction();
+			}else if(command.equals("/boardReplyPro.do")) {
+				action = new BoardReplyProAction();
 			}
 			
 			if(action != null) {

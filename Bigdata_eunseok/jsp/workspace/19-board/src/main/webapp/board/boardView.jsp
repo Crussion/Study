@@ -35,7 +35,7 @@
 		</tr>
 		<tr>
 			<td colspan="2" align="center">
-				<a href="#">[답변]</a>
+				<a href="boardReplyForm.do?pg=${pg }&board_num=${bean.board_num }">[답변]</a>
 				<a href="boardModifyForm.do?pg=${pg }&board_num=${bean.board_num }">[수정]</a>
 				<a href="board/boardDelete.jsp?pg=${pg }&board_num=${bean.board_num }">[삭제]</a>
 				<a href="boardList.do?pg=${pg }">[목록]</a>
