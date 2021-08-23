@@ -38,6 +38,9 @@ select count(*) as cnt from board2;
 -- 데이터 삭제
 delete board2 where board_num=1;
 
+delete board2 where board_re_ref=10
+
+-- 리스트
 select * from
 (select rownum rn, tt.* from
 (select * from board2 order by board_num desc) tt)

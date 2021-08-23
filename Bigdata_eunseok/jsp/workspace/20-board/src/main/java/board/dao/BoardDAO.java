@@ -124,7 +124,7 @@ public class BoardDAO {
 	}
 	
 	public BoardBean boardDetail(int board_num) {
-		BoardBean bean = new BoardBean();
+		BoardBean bean = null;
 		String sql = "select * from board2 where board_num=?";
 		try {
 			conn = ds.getConnection();
@@ -133,6 +133,7 @@ public class BoardDAO {
 			
 			rs = pstmt.executeQuery();
 			if(rs.next()) {
+				bean = new BoardBean();
 				bean.setBoard_num(rs.getInt("board_num"));
 				bean.setBoard_name(rs.getString("board_name"));
 				bean.setBoard_pwd(rs.getString("board_pwd"));
@@ -188,6 +189,25 @@ public class BoardDAO {
 		return result;
 	}
 	
+	public int boardReplyDelete(int board_re_ref, int board_re_lev, int board_re_seq) {
+		int result = 0;
+		String sql = "delete board2 where board_re_ref=? and board_re_lev=? and board_re_seq=?";
+		try {
+			conn = ds.getConnection();
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, board_re_ref);
+			pstmt.setInt(2, board_re_lev);
+			pstmt.setInt(3, board_re_seq);
+			
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close();
+		}
+		return result;
+	}
+	
 	public int boardModify(int board_num, String pwd, String modify_content) {
 		int result = 0;
 		String sql = "update board2 set board_content=? where board_num=? and board_pwd=?";
@@ -232,7 +252,7 @@ public class BoardDAO {
 			re_lev += 1;
 			sql = "insert into board2 values "
 				+ "(seq_num.nextval, ?, ?, ?, ?, ?, ?, ?, ?, 0, sysdate)";
-			
+			 
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, bean.getBoard_name());
 			pstmt.setString(2, bean.getBoard_pwd());

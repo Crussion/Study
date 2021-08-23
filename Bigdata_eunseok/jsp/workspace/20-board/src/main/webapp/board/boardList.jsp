@@ -42,7 +42,7 @@
 		</tr>
 		<c:forEach var="bean" items="${list }">
 			<tr>
-				<td width="60">${bean.board_num }</td>
+				<td width="80">${bean.board_num }</td>
 				<td width="200">
 					<c:if test="${bean.board_re_lev != 0 }">
 						<c:forEach var="i" begin="0" end="${bean.board_re_lev * 2 }">
