@@ -220,4 +220,22 @@ public class MemberDAO {
 		}
 		return result;
 	}
+	
+	public int memberDelete(String memId) {
+		int result = 0;
+		String sql="delete member where id=?";
+		try {
+			conn = ds.getConnection();
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, memId);
+			
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			close();
+		}
+		return result;
+	}
 }

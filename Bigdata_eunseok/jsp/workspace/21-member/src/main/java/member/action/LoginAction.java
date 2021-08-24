@@ -5,6 +5,7 @@ import java.io.PrintWriter;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import javax.websocket.Session;
 
 import member.dao.MemberDAO;
 
@@ -23,9 +24,6 @@ public class LoginAction implements Action{
 			HttpSession session = request.getSession();
 			session.setAttribute("memName", name);
 			session.setAttribute("memId", id);
-			out.println("<script>");
-			out.println("alert('로그인 성공')");
-			out.println("</script>");
 			return "index.jsp";
 		}else{
 			out.println("<script>");

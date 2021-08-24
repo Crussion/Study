@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<!-- MessageBeanEn messageBean = new MessageBeanEn(); 객체 생성 설정 
+		=> 스프링 컨테이너가 구동될 때, 이 설정대로 객체를 생성함 
+		=> bean 객체 : <bean> 태그에 설정된대로 만들어진 객체
+	-->
+	<bean id="messageBean" class="sample4.MessageBeanEn"/>
+</beans>

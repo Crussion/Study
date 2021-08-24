@@ -28,26 +28,16 @@ body { margin: 0; }
 			<a href="logout.do">로그아웃</a><br>
 			<a href="index.jsp?req=modifyForm">회원정보수정</a><br>
 			<a href="index.jsp?req=memberList">회원목록</a><br>
+			<a href="index.jsp?req=memberDelete">회원탈퇴</a><br>
 		</c:if>
 	</div>
 	<div id="content">
-		<c:choose>
-			<c:when test="${param.req == 'loginForm' }">
-				<c:import url="loginForm.do" charEncoding="utf-8"/>
-			</c:when>
-			<c:when test="${param.req == 'writeForm' }">
-				<c:import url="writeForm.do" charEncoding="utf-8"/>
-			</c:when>
-			<c:when test="${param.req == 'modifyForm' }">
-				<c:import url="modifyForm.do" charEncoding="utf-8"/>
-			</c:when>
-			<c:when test="${param.req == 'memberList' }">
-				<c:import url="memberList.do" charEncoding="utf-8"/>
-			</c:when>
-			<c:otherwise>
-				<img alt="그림" src="image/lion.jpg">
-			</c:otherwise>
-		</c:choose>
+		<c:if test="${param.req == null }">
+			<img alt="그림" src="image/lion.jpg">
+		</c:if>
+		<c:if test="${param.req != null }">
+			<c:import url="${param.req }.do" charEncoding="utf-8"/>
+		</c:if>
 	</div>
 	<div id="footer" align="center">
 		EZEN Academy
