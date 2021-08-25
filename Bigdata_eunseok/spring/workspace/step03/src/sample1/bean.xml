@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<!-- 
+		MessageBeanImpl bean1 = new MessageBeanImpl("딸기");
+		bean1.setCost(5000);
+		위 코드와 동일한 코드
+	 -->
+	<bean id="messageBean" class="sample1.MessageBeanImpl">
+		<!-- 생성자로 초기화 설정 -->
+		<constructor-arg>
+			<value>딸기</value>
+		</constructor-arg>
+		
+		<!-- setter로 초기화 설정 -->
+		<property name="cost">
+			<value>5000</value>
+		</property>
+	</bean>
+	
+	<bean id="messageBean1" class="sample1.MessageBeanImpl">
+		<constructor-arg value="딸기"/>
+		<property name="cost" value="4000"/>
+	</bean>
+</beans>

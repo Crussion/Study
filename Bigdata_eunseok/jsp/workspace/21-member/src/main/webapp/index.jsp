@@ -33,7 +33,7 @@ body { margin: 0; }
 	</div>
 	<div id="content">
 		<c:if test="${param.req == null }">
-			<img alt="그림" src="image/lion.jpg">
+			<img alt="그림" src="image/lion.jpg">g
 		</c:if>
 		<c:if test="${param.req != null }">
 			<c:import url="${param.req }.do" charEncoding="utf-8"/>
