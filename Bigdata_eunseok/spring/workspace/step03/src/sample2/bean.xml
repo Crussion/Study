@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<!-- 1. 디폴트 생성자 사용 -->
+	<bean id="foo1" class="sample2.Foo"/>
+	<!-- 2. 매개변수 1개 생성자 사용 -->
+	<bean id="foo2" class="sample2.Foo">
+		<constructor-arg>
+			<value>테스트</value>
+		</constructor-arg>
+	</bean>
+	<bean id="foo2-1" class="sample2.Foo">
+		<constructor-arg value="테스트1"/>
+	</bean>
+	
+	<bean id="foo2-2" class="sample2.Foo">
+		<constructor-arg type="int" value="5"/>
+	</bean>
+	<!-- 3. 매개변수 2개 생성자 사용 -->
+	<bean id="foo3" class="sample2.Foo">
+		<constructor-arg value="10"/>
+		<constructor-arg value="Hello"/>
+	</bean>
+	
+	<bean id="foo3-1" class="sample2.Foo">
+		<constructor-arg value="10" index="0"/>
+		<constructor-arg value="Hello" index="1"/>
+	</bean>
+	<!-- 4. 매개변수 3개 생성자 사용 -->
+	<bean id="foo4" class="sample2.Foo">
+		<constructor-arg value="30"/>
+		<constructor-arg value="안녕"/>
+		<constructor-arg value="true"/>
+	</bean>
+	
+	<bean id="foo4-1" class="sample2.Foo">
+		<constructor-arg value="안녕1" index="1"/>
+		<constructor-arg value="40" index="0"/>
+		<constructor-arg value="false" index="2"/>
+	</bean>
+	
+	<bean id="foo4-2" class="sample2.Foo">
+		<constructor-arg value="안녕2" type="String"/>
+		<constructor-arg value="50" type="int"/>
+		<constructor-arg value="true" type="boolean"/>
+	</bean>
+	<!-- 5. 매개변수 객체로 생성자 사용 -->
+	<bean id="bar" class="sample2.Bar"/>
+	<bean id="foo5" class="sample2.Foo">
+		<constructor-arg>
+			<ref bean="bar"></ref>
+		</constructor-arg>
+	</bean>
+	<bean id="foo5-1" class="sample2.Foo">
+		<constructor-arg ref="bar"/>
+	</bean>
+</beans>

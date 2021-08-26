@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
+
+	<!-- 1. bean 태그 이용 -->
+	<!-- 
+	<bean id="tire" class="anno1.KoreaTire"/>
+	<bean id="car" class="anno1.Car">
+		<property name="tire" ref="tire"/>
+	</bean>
+	-->
+	
+	<!-- 2. 어노테이션 이용 -->
+	<context:component-scan base-package="anno1"/>
+	
+</beans>

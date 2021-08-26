@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<bean id="hong" class="sample5.DateVo">
+		<property name="name" value="홍길동"/>
+		<property name="birth" value="1997-10-21"/>
+	</bean>
+	<bean id="lee" class="sample5.DateVo">
+		<property name="name" value="이영희"/>
+		<property name="birth" value="2000-05-31"/>
+	</bean>
+</beans>
