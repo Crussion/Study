@@ -4,8 +4,6 @@ import java.util.List;
 
 import org.springframework.context.support.GenericXmlApplicationContext;
 
-import test.bean.GoodsVO;
-import test.service.GoodsService;
 
 public class jdbcExample1 {
 	public static void main(String[] args) {

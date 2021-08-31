@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mybatis.scoreMapper">
+	<insert id="insertData" parameterType="test.bean.ScoreVO">
+		insert into score values (#{studNo}, #{name}, #{kor}, #{eng}, #{mat}, #{tot}, #{avg}, sysdate)
+	</insert>
+	
+	<update id="updateData" parameterType="test.bean.ScoreVO">
+		update score set kor=#{kor}, eng=#{eng}, mat=#{mat}, tot=#{tot}, avg=#{avg} 
+		where studNo=#{studNo}
+	</update>
+	
+	<delete id="deleteData" parameterType="test.bean.ScoreVO">
+		delete score where studNo=#{studNo}
+	</delete>
+	
+	<select id="getData" parameterType="test.bean.ScoreVO" resultType="test.bean.ScoreVO">
+		select * from score where studNo=#{studNo}
+	</select>
+	
+	<select id="getList" resultType="test.bean.ScoreVO">
+		select * from score order by studNo asc
+	</select>
+</mapper>

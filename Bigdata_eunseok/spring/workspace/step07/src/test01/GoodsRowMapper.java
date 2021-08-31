@@ -13,6 +13,6 @@ public class GoodsRowMapper implements RowMapper<GoodsVO>{
 		vo.setName(rs.getString("name"));
 		vo.setPrice(rs.getInt("price"));
 		vo.setMaker(rs.getString("maker"));
-		return null;
+		return vo;
 	}
 }

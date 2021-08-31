@@ -2,8 +2,6 @@ package test01;
 
 import org.springframework.context.support.GenericXmlApplicationContext;
 
-import test.bean.GoodsVO;
-import test.service.GoodsService;
 
 public class jdbcExample2 {
 	public static void main(String[] args) {
