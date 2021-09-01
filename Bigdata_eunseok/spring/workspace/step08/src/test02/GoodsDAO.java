@@ -6,10 +6,14 @@ import org.apache.ibatis.session.SqlSession;
 public class GoodsDAO {
 	private SqlSession sqlSession;
 	
-	public GoodsDAO() {
-		sqlSession = SqlMapClientFactory.getSqlMapClientInstance();
+	public SqlSession getSqlSession() {
+		return sqlSession;
 	}
-	
+
+	public void setSqlSession(SqlSession sqlSession) {
+		this.sqlSession = sqlSession;
+	}
+
 	public int insertGoods(GoodsVO vo) {
 		return sqlSession.insert("mybatis.goodsMapper.insertGoods", vo);
 	}

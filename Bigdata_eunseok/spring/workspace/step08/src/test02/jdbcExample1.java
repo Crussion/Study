@@ -6,7 +6,7 @@ import org.springframework.context.support.GenericXmlApplicationContext;
 
 public class jdbcExample1 {
 	public static void main(String[] args) {
-		GenericXmlApplicationContext context = new GenericXmlApplicationContext("bean.xml");
+		GenericXmlApplicationContext context = new GenericXmlApplicationContext("bean2.xml");
 		
 		GoodsService service = (GoodsService) context.getBean("goodsService");
 		
