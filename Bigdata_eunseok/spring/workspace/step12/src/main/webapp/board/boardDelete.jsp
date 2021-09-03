@@ -6,8 +6,7 @@
 	int seq = Integer.parseInt(request.getParameter("seq"));
 	int pg = Integer.parseInt(request.getParameter("pg"));
 	// DB
-	BoardDAO dao = new BoardDAO();
-	int su = dao.delete(seq); 
+	int su = Integer.parseInt(request.getAttribute("su").toString());
 %>
 <!DOCTYPE html>
 <html>
@@ -18,7 +17,7 @@
 	window.onload = function() {
 		if(<%=su > 0%>) {
 			alert("게시글이 삭제되었습니다.");
-			location.href="boardList.jsp?pg=<%=pg%>";
+			location.href="boardList.do?pg=<%=pg%>";
 		} else {
 			alert("게시글을 삭제하지 못하였습니다.");
 			history.back();

@@ -6,12 +6,7 @@
 	// 데이터
 	int seq = Integer.parseInt(request.getParameter("seq"));
 	int pg = Integer.parseInt(request.getParameter("pg"));
-	// DB
-	BoardDAO dao = new BoardDAO();
-	
-	// 조회수 증가
-	dao.updateHit(seq);
-	BoardDTO dto = dao.boardView(seq); 
+	BoardDTO dto = (BoardDTO) request.getAttribute("dto"); 
 
 %>
 <!DOCTYPE html>
@@ -43,7 +38,7 @@
 	<input type="button" value="글수정"
 		onclick="location.href='#'">
 	<input type="button" value="글삭제"
-		onclick="location.href='boardDelete.jsp?seq=<%=seq%>&pg=<%=pg%>'">
+		onclick="location.href='boardDelete.do?seq=<%=seq%>&pg=<%=pg%>'">
 <% } %>		
 </body>
 </html>
