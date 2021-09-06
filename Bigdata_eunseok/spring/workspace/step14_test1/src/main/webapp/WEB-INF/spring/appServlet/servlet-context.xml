@@ -26,8 +26,6 @@
 	
 	<resources location="/script/" mapping="/script/**"/>
 	
-	<context:component-scan base-package="com.exam.step14"/>
-	
 	<!-- Controller 등록 : bean 객체 등록 -->
 	<beans:bean id="loginController" class="board.controller.LoginController"/>
 	<beans:bean id="boardDeleteController" class="board.controller.BoardDeleteController"/>
