@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mybatis.Mapper">
+	<insert id="boardWrite" parameterType="boardDTO">
+		insert into board values (seq_board.nextval, #{id}, #{name}, #{subject}, #{content}, 0, sysdate)
+	</insert>
+	
+	<select id="boardList" parameterType="java.util.Map" resultType="boardDTO">
+		<![CDATA[
+			select seq, id, name, subject, content, hit, 
+			to_char(logtime, 'YYYY.MM.DD') as logtime from 
+			(select rownum rn, tt.* from 
+			(select * from board order by seq desc) tt) 
+			where rn>=#{startNum} and rn<=#{endNum}
+		]]>
+	</select>
+	
+	<select id="boardView" parameterType="int">
+		select * from board where seq=#{seq}
+	</select>
+	
+	<update id="updateHit" parameterType="int">
+		update board set hit=hit+1 where seq=#{seq}
+	</update>
+	
+	<select id="getTotalA">
+		select count(*) as cnt from board
+	</select>
+	
+	<delete id="boardDelete" parameterType="int">
+		delete board where seq=#{seq}
+	</delete>
+	
+	<update id="boardModify" parameterType="boardDTO">
+		update board set subject=#{subject}, content=#{content} where seq=#{seq}
+	</update>
+	
+	<insert id="memberWrite" parameterType="memberDTO">
+		insert into member values (#{name}, #{id}, #{pwd}, #{gender}, 
+		#{email1}, #{email2}, #{tel1}, #{tel2}, #{tel3}, #{addr}, sysdate)
+	</insert>
+	
+	<select id="login" parameterType="java.util.Map" resultType="memberDTO">
+		select * from member where id=#{id} and pwd=#{pwd}
+	</select>
+	
+	<select id="isExistId" parameterType="java.lang.String" resultType="memberDTO">
+		select * from member where id=#{id}
+	</select>
+	
+	<select id="memberView" parameterType="java.lang.String" resultType="memberDTO">
+		select * from member where id=#{id}
+	</select>
+	
+	<update id="memberModify" parameterType="memberDTO">
+		update member set pwd=#{pwd}, gender=#{gender}, email1=#{email1}, 
+		email2=#{email2}, tel1=#{tel1}, tel2=#{tel2}, tel3=#{tel3}, addr=#{addr} 
+		where id=#{id}
+	</update>
+	
+	<select id="getTotalMember">
+		select count(*) as cnt from member
+	</select>
+	
+	<select id="memberList" parameterType="java.util.Map" resultType="memberDTO">
+		<![CDATA[
+		select * from 
+		(select rownum rn, tt.* from 
+		(select * from member order by name asc) tt) 
+		where rn>=#{startNum} and rn<=#{endNum}
+		]]>
+	</select>
+</mapper>

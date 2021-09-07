@@ -26,4 +26,6 @@
 	
 	<context:component-scan base-package="score"/>
 	
+	<resources location="/script/" mapping="/script/**"/>
+	
 </beans:beans>

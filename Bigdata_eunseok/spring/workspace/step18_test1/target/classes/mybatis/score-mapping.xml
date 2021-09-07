@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mybatis.scoreMapper">
+	<select id="scoreList" parameterType="java.util.Map" resultType="dto">
+		<!-- 부등호 등의 특수문자가 있을때 <![CDATA[문자열]]을 사용해준다 -->
+		<![CDATA[
+		select * from 
+		(select rownum rn, tt.* from 
+		(select * from score order by studNo asc) tt) 
+		where rn>=#{startNum} and rn<=#{endNum}
+		]]>
+	</select>
+	
+	<select id="tot_content" resultType="int">
+		select count(*) as cnt from score
+	</select>
+	
+	<insert id="scoreWrite" parameterType="dto">
+		insert into score values (#{studNo}, #{name}, #{kor}, #{eng}, #{mat}, #{tot}, #{avg}, sysdate)
+	</insert>
+	
+	<select id="scoreView" parameterType="dto" resultType="dto">
+		select * from score where studNo=#{studNo}
+	</select>
+	
+	<delete id="scoreDelete" parameterType="dto">
+		delete score where studNo=#{studNo}
+	</delete>
+</mapper>
