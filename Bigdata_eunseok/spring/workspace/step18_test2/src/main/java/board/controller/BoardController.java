@@ -19,7 +19,7 @@ public class BoardController {
 	@Autowired
 	private BoardService service;
 
-	@RequestMapping("/board/boardDelete.do")
+	@RequestMapping("/main/boardDelete.do")
 	public ModelAndView boardDelete(HttpServletRequest request, HttpServletResponse response) {
 		int seq = Integer.parseInt(request.getParameter("seq"));
 		int pg = Integer.parseInt(request.getParameter("pg"));
@@ -29,15 +29,17 @@ public class BoardController {
 		ModelAndView modelAndView = new ModelAndView();
 		modelAndView.addObject("pg", pg);
 		modelAndView.addObject("su", su);
-		modelAndView.setViewName("boardList.jsp");
+		modelAndView.setViewName("/board/boardDelete.jsp");
 
 		return modelAndView;
 	}
 
-	@RequestMapping("/board/boardList.do")
+	@RequestMapping("/main/boardList.do")
 	public ModelAndView boardList(HttpServletRequest request, HttpServletResponse response) {
 		// 데이터
-		int pg = Integer.parseInt(request.getParameter("pg"));
+		int pg = 1;
+		if(request.getParameter("pg") != null)
+			pg = Integer.parseInt(request.getParameter("pg"));
 
 		/* 페이징 */
 		// => 한페이지당 목록 5개인 경우 : 총페이지수 = (총글수+4)/5
@@ -86,12 +88,12 @@ public class BoardController {
 		modelAndView.addObject("totalP", totalP);
 		modelAndView.addObject("pg", pg);
 		modelAndView.addObject("list", list);
-		modelAndView.setViewName("boardList.jsp");
+		modelAndView.setViewName("/board/boardList.jsp");
 
 		return modelAndView;
 	}
 
-	@RequestMapping("/board/boardModify.do")
+	@RequestMapping("/main/boardModify.do")
 	public ModelAndView boardModify(HttpServletRequest request, HttpServletResponse response) {
 		try {
 			request.setCharacterEncoding("utf-8");
@@ -117,12 +119,12 @@ public class BoardController {
 		modelAndView.addObject("seq", seq);
 		modelAndView.addObject("pg", pg);
 		modelAndView.addObject("su", su);
-		modelAndView.setViewName("boardModify.jsp");
+		modelAndView.setViewName("/board/boardModify.jsp");
 
 		return modelAndView;
 	}
 
-	@RequestMapping("/board/boardModifyForm.do")
+	@RequestMapping("/main/boardModifyForm.do")
 	public ModelAndView boardModifyForm(HttpServletRequest request, HttpServletResponse response) {
 
 		int seq = Integer.parseInt(request.getParameter("seq"));
@@ -134,12 +136,12 @@ public class BoardController {
 		modelAndView.addObject("seq", seq);
 		modelAndView.addObject("pg", pg);
 		modelAndView.addObject("dto", dto);
-		modelAndView.setViewName("boardModifyForm.jsp");
+		modelAndView.setViewName("/board/boardModifyForm.jsp");
 
 		return modelAndView;
 	}
 
-	@RequestMapping("/board/boardView.do")
+	@RequestMapping("/main/boardView.do")
 	public ModelAndView boardView(HttpServletRequest request, HttpServletResponse response) {
 		// 데이터
 		int seq = Integer.parseInt(request.getParameter("seq"));
@@ -153,12 +155,12 @@ public class BoardController {
 		modelAndView.addObject("seq", seq);
 		modelAndView.addObject("pg", pg);
 		modelAndView.addObject("dto", dto);
-		modelAndView.setViewName("boardView.jsp");
+		modelAndView.setViewName("/board/boardView.jsp");
 
 		return modelAndView;
 	}
 
-	@RequestMapping("/board/boardWrite.do")
+	@RequestMapping("/main/boardWrite.do")
 	public ModelAndView boardWrite(HttpServletRequest request, HttpServletResponse response) {
 		try {
 			request.setCharacterEncoding("utf-8");
@@ -183,15 +185,15 @@ public class BoardController {
 
 		ModelAndView modelAndView = new ModelAndView();
 		modelAndView.addObject("su", su);
-		modelAndView.setViewName("boardWrite.jsp");
+		modelAndView.setViewName("/board/boardWrite.jsp");
 
 		return modelAndView;
 	}
 
-	@RequestMapping("/board/boardWriteForm.do")
+	@RequestMapping("/main/boardWriteForm.do")
 	public ModelAndView boardWriteForm(HttpServletRequest request, HttpServletResponse response) {
 		ModelAndView modelAndView = new ModelAndView();
-		modelAndView.setViewName("boardWriteForm.jsp");
+		modelAndView.setViewName("/board/boardWriteForm.jsp");
 		
 		return modelAndView;
 	}

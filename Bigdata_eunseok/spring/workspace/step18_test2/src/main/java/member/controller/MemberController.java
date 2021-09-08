@@ -19,7 +19,7 @@ public class MemberController {
 	@Autowired
 	private MemberService service;
 
-	@RequestMapping("/member/login.do")
+	@RequestMapping("/main/login.do")
 	public ModelAndView login(HttpServletRequest request, HttpServletResponse response) {
 		// 데이터 읽기
 		String id = request.getParameter("id");
@@ -35,7 +35,7 @@ public class MemberController {
 			session.setAttribute("memName", name);
 			session.setAttribute("memId", id);
 
-			modelAndView.setViewName("redirect:loginOk.jsp");
+			modelAndView.setViewName("/member/loginOk.jsp");
 
 			/*
 			 * // 1) 페이지 이동시 데이터 전송을 get방식으로 전송하면 // 주소창에 표시되기 때문에 보안에 취약하다. // 그래서, 보안에 관련된
@@ -44,20 +44,20 @@ public class MemberController {
 			 * URLEncoder.encode(name, "utf-8") + "&id=" + id);
 			 */
 		} else { // 로그인 실패
-			modelAndView.setViewName("redirect:loginFail.jsp");
+			modelAndView.setViewName("/member/loginFail.jsp");
 		}
 
 		return modelAndView;
 	}
 
-	@RequestMapping("/member/loginForm.do")
+	@RequestMapping("/main/loginForm.do")
 	public ModelAndView loginForm(HttpServletRequest request, HttpServletResponse response) {
 		ModelAndView modelAndView = new ModelAndView();
-		modelAndView.setViewName("loginForm.jsp");
+		modelAndView.setViewName("/member/loginForm.jsp");
 		return modelAndView;
 	}
 
-	@RequestMapping("/member/logout.do")
+	@RequestMapping("/main/logout.do")
 	public ModelAndView logout(HttpServletRequest request, HttpServletResponse response) {
 		HttpSession session = request.getSession();
 		// 세션 삭제
@@ -68,14 +68,16 @@ public class MemberController {
 		session.invalidate();
 
 		ModelAndView modelAndView = new ModelAndView();
-		modelAndView.setViewName("logout.jsp");
+		modelAndView.setViewName("/member/logout.jsp");
 
 		return modelAndView;
 	}
 
-	@RequestMapping("/member/memberList.do")
+	@RequestMapping("/main/memberList.do")
 	public ModelAndView memberList(HttpServletRequest request, HttpServletResponse response) {
-		int pg = Integer.parseInt(request.getParameter("pg"));
+		int pg = 1;
+		if(request.getParameter("pg") != null)
+			pg = Integer.parseInt(request.getParameter("pg"));
 		// 목록 보기 : 5개씩 목록 출력
 		int endNum = pg * 5;
 		int startNum = endNum - 4;
@@ -97,12 +99,12 @@ public class MemberController {
 		modelAndView.addObject("totalP", totalP);
 		modelAndView.addObject("list", list);
 		modelAndView.addObject("pg", pg);
-		modelAndView.setViewName("memberList.jsp");
+		modelAndView.setViewName("/member/memberList.jsp");
 
 		return modelAndView;
 	}
 
-	@RequestMapping("/member/memberModify.do")
+	@RequestMapping("/main/memberModify.do")
 	public ModelAndView memberModify(HttpServletRequest request, HttpServletResponse response) {
 		// 데이터
 		try {
@@ -138,12 +140,12 @@ public class MemberController {
 
 		ModelAndView modelAndView = new ModelAndView();
 		modelAndView.addObject("su", su);
-		modelAndView.setViewName("modify.jsp");
+		modelAndView.setViewName("/member/modify.jsp");
 
 		return modelAndView;
 	}
 
-	@RequestMapping("/member/memberModifyForm.do")
+	@RequestMapping("/main/memberModifyForm.do")
 	public ModelAndView memberModifyForm(HttpServletRequest request, HttpServletResponse response) {
 		HttpSession session = request.getSession();
 		// 데이터
@@ -154,12 +156,12 @@ public class MemberController {
 		
 		ModelAndView modelAndView = new ModelAndView();
 		modelAndView.addObject("dto", dto);
-		modelAndView.setViewName("modifyForm.jsp");
+		modelAndView.setViewName("/member/modifyForm.jsp");
 		
 		return modelAndView;
 	}
 	
-	@RequestMapping("/member/memberWrite.do")
+	@RequestMapping("/main/memberWrite.do")
 	public ModelAndView memberWrite(HttpServletRequest request, HttpServletResponse response) {
 		// 데이터 읽기
 		try {
@@ -203,19 +205,21 @@ public class MemberController {
 		
 		ModelAndView modelAndView = new ModelAndView();
 		modelAndView.addObject("result", result);
-		modelAndView.setViewName("write.jsp");
+		modelAndView.setViewName("/member/write.jsp");
 		
 		return modelAndView;
 	}
 	
-	@RequestMapping("/member/memberWriteForm.do")
+	@RequestMapping("/main/memberWriteForm.do")
 	public ModelAndView memberWriteForm(HttpServletRequest request, HttpServletResponse response) {
 		ModelAndView modelAndView = new ModelAndView();
-		modelAndView.setViewName("writeForm.jsp");
+		if(request.getParameter("id") != null)
+			modelAndView.addObject("id", request.getParameter("id"));
+		modelAndView.setViewName("/member/writeForm.jsp");
 		return modelAndView;
 	}
 	
-	@RequestMapping("/member/checkId.do")
+	@RequestMapping("/main/checkId.do")
 	public ModelAndView checkId(HttpServletRequest request, HttpServletResponse response) {
 		String id = request.getParameter("id");
 
@@ -225,7 +229,7 @@ public class MemberController {
 		ModelAndView modelAndView = new ModelAndView();
 		modelAndView.addObject("exist", exist);
 		modelAndView.addObject("id", id);
-		modelAndView.setViewName("checkId.jsp");
+		modelAndView.setViewName("/member/checkId.jsp");
 		
 		return modelAndView;
 	}

@@ -17,7 +17,7 @@
 		]]>
 	</select>
 	
-	<select id="boardView" parameterType="int">
+	<select id="boardView" parameterType="int" resultType="boardDTO">
 		select * from board where seq=#{seq}
 	</select>
 	
@@ -25,7 +25,7 @@
 		update board set hit=hit+1 where seq=#{seq}
 	</update>
 	
-	<select id="getTotalA">
+	<select id="getTotalA" resultType="int">
 		select count(*) as cnt from board
 	</select>
 	
@@ -42,8 +42,8 @@
 		#{email1}, #{email2}, #{tel1}, #{tel2}, #{tel3}, #{addr}, sysdate)
 	</insert>
 	
-	<select id="login" parameterType="java.util.Map" resultType="memberDTO">
-		select * from member where id=#{id} and pwd=#{pwd}
+	<select id="login" parameterType="java.util.Map" resultType="java.lang.String">
+		select name from member where id=#{id} and pwd=#{pwd}
 	</select>
 	
 	<select id="isExistId" parameterType="java.lang.String" resultType="memberDTO">
@@ -60,7 +60,7 @@
 		where id=#{id}
 	</update>
 	
-	<select id="getTotalMember">
+	<select id="getTotalMember" resultType="int">
 		select count(*) as cnt from member
 	</select>
 	
