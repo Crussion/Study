@@ -46,7 +46,7 @@
 					</c:if>
 				</c:forEach>
 				
-				<c:if test="${endPage < totalP }">
+				<c:if test="${endPage < total_page }">
 					[<a class="paging" href="imageboardList?pg=${endPage+1}">다음</a>]
 				</c:if>
 				</td>

@@ -55,8 +55,11 @@ public class ImageboardController {
 		dto.setImageContent(request.getParameter("imageContent"));
 		dto.setImage1(fileName);
 		
+		int result = dao.imageWrite(dto);
+		
 		ModelAndView modelAndView = new ModelAndView();
 		modelAndView.addObject("dto", dto);
+		modelAndView.addObject("result", result);
 		modelAndView.setViewName("imageboardWrite");
 		
 		return modelAndView;
@@ -84,7 +87,7 @@ public class ImageboardController {
 		ModelAndView modelAndView = new ModelAndView();
 		modelAndView.addObject("startPage", startPage);
 		modelAndView.addObject("endPage", endPage);
-		modelAndView.addObject("totalP", total_page);
+		modelAndView.addObject("total_page", total_page);
 		modelAndView.addObject("list", list);
 		modelAndView.addObject("pg", pg);
 		modelAndView.setViewName("imageboardList");

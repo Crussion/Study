@@ -26,11 +26,11 @@
 			<td>${dto.imagePrice * dto.imageQty }</td>
 		</tr>
 		<tr valign="top">
-			<td colspan="3" height="300">${dto.imageContent }</td>
+			<td colspan="3" height="300"><pre>${dto.imageContent }</pre></td>
 		</tr>
 		<tr align="center">
 			<td colspan="3">
-				<input type="button" value="목록">
+				<input type="button" value="목록" onclick="location.href = 'imageboardList?pg=${pg}'">
 				<input type="button" value="수정">
 				<input type="button" value="삭제">
 			</td>
