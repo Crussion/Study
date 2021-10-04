@@ -14,6 +14,7 @@ api_key = '909f25dde2b2eab558d0adcd8df14d77'
 
 df = DataFrame()
 
+print('진행중', end='')
 for i in range(-7, 0):
     today = dt.datetime.now()
     delta = dt.timedelta(days = i)
@@ -30,29 +31,33 @@ for i in range(-7, 0):
         
     daily_boxoffice_df = DataFrame(r.json()['boxOfficeResult']['dailyBoxOfficeList'])
     #print(daily_boxoffice_df)
-    print('-' * 20)
     
     tmp_df = daily_boxoffice_df.filter(['movieNm', 'audiCnt']).\
         rename(index=daily_boxoffice_df['movieNm'], columns={'audiCnt':date_str}).\
         drop('movieNm', axis=1)
     #print(tmp_df)
-    print('-' * 20)
     
     df = pd.concat([df, tmp_df], axis=1)
-    print(df)
     
     df = df.fillna(0)
-    print(df)
-    print('-' * 20)
+    print('=', end='')
     
+print()
 df = df.astype(int)
 print(df.dtypes)
 print('-' * 20)
 
-df = df.sort_values('20210930')
+print(df.sort_values('20211003'))
+print('-' * 20)
+
+df = df.sort_values('20211003').tail(5)
 print(df)
 print('-' * 20)
     
 df.plot.bar()
+plt.grid()
+plt.show()
+
+df.T.plot()
 plt.grid()
 plt.show()
