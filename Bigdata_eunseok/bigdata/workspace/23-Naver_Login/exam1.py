@@ -1,6 +1,7 @@
 import time
 from selenium import webdriver # 크롬 브라우저 제어를 위한 모듈
 from bs4 import BeautifulSoup
+import account
 
 driver = webdriver.Chrome('data/chromedriver.exe')
 
@@ -13,8 +14,8 @@ driver.get(url)
 time.sleep(3)
 
 # 아이디 비밀번호 입력
-myid='eunseok1996'
-mypwd='~Jang18291595'
+myid=account.getId()
+mypwd=account.getPassword()
 
 script = 'frmNIDLogin.id.value = "%s"' %myid
 #script = 'document.getElementById("id").value = "%s"' %myid
