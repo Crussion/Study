@@ -4,6 +4,7 @@ from tensorflow.keras.models import Sequential
 from tensorflow.keras.layers import Dense
 import matplotlib.pyplot as plt
 import numpy as np
+from tensorflow.keras.callbacks import TensorBoard
 
 np.random.seed(3)
 
@@ -34,9 +35,14 @@ model.compile(loss='categorical_crossentropy', optimizer='sgd',
               metrics=['accuracy'])
 
 # 모델 학습
-hist = model.fit(x_train, y_train, epochs=10, batch_size=32,
-                 validation_data=(x_val, y_val))
+tb_hist = TensorBoard(log_dir='graph', histogram_freq=0,
+                      write_graph=True, write_images=True)
 
+#hist = 
+model.fit(x_train, y_train, epochs=5, batch_size=32,
+                 validation_data=(x_val, y_val), callbacks=[tb_hist])
+
+'''
 print('loss :', hist.history['loss'])
 print('accuracy :', hist.history['accuracy'])
 print('val_loss :', hist.history['val_loss'])
@@ -64,3 +70,4 @@ loss_ax.legend()
 acc_ax.legend()
 
 plt.show()
+'''

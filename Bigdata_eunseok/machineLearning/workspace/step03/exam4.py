@@ -19,6 +19,14 @@ x_val = x_val.reshape(10000, 28*28).astype('float32') / 255.0
 x_train = x_train.reshape(50000, 28*28).astype('float32') / 255.0
 x_test = x_test.reshape(10000, 28*28).astype('float32') / 255.0
 
+x_train_r_idx = np.random.choice(50000, 700)
+x_val_r_idx = np.random.choice(10000, 300)
+
+x_train = x_train[x_train_r_idx]
+y_train = y_train[x_train_r_idx]
+x_val = x_val[x_val_r_idx]
+y_val = y_val[x_val_r_idx]
+
 # 라벨링 전환 : on hot encoding
 y_train = utils.to_categorical(y_train)
 y_val = utils.to_categorical(y_val)
@@ -34,14 +42,8 @@ model.compile(loss='categorical_crossentropy', optimizer='sgd',
               metrics=['accuracy'])
 
 # 모델 학습
-hist = model.fit(x_train, y_train, epochs=10, batch_size=32,
+hist = model.fit(x_train, y_train, epochs=500, batch_size=10,
                  validation_data=(x_val, y_val))
-
-print('loss :', hist.history['loss'])
-print('accuracy :', hist.history['accuracy'])
-print('val_loss :', hist.history['val_loss'])
-print('val_accuracy :', hist.history['val_accuracy'])
-print('-' * 40)
 
 plt.rcParams['figure.figsize'] = (12, 8)
 
