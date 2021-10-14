@@ -4,6 +4,7 @@ from tensorflow.keras.models import Sequential
 from tensorflow.keras.layers import Dense
 import matplotlib.pyplot as plt
 import numpy as np
+from tensorflow.keras.callbacks import EarlyStopping
 
 np.random.seed(3)
 
@@ -34,7 +35,7 @@ y_test = utils.to_categorical(y_test)
 
 # 모델 구성
 model = Sequential()
-model.add(Dense(units=2, input_dim=28*28, activation='relu'))
+model.add(Dense(units=64, input_dim=28*28, activation='relu'))
 model.add(Dense(units=10, activation='softmax'))
 
 # 모델 학습과정 설정
@@ -42,8 +43,10 @@ model.compile(loss='categorical_crossentropy', optimizer='sgd',
               metrics=['accuracy'])
 
 # 모델 학습
-hist = model.fit(x_train, y_train, epochs=500, batch_size=10,
-                 validation_data=(x_val, y_val))
+early_stopping = EarlyStopping(patience=20)
+
+hist = model.fit(x_train, y_train, epochs=300, batch_size=10,
+                 validation_data=(x_val, y_val), callbacks=[early_stopping])
 
 plt.rcParams['figure.figsize'] = (12, 8)
 
