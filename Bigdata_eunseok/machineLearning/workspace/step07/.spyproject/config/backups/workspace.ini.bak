@@ -6,5 +6,5 @@ save_non_project_files = False
 
 [main]
 version = 0.2.0
-recent_files = []
+recent_files = ['..\\..\\..\\..\\..\\..\\.spyder-py3\\temp.py', '..\\..\\..\\..\\temp\\cyphers_login.py', '..\\..\\..\\bigdata\\workspace\\23-Naver_Login\\exam1.py', '..\\..\\..\\bigdata\\workspace\\22-Naver_News_List\\exam3.py']
 
