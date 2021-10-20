@@ -59,12 +59,17 @@ y_hat_test = model.predict(x_test, batch_size=32)
 plt.rcParams['figure.figsize'] = (12, 12)
 fig, axarr = plt.subplots(5, 5)
 
+n = 0
+
 for i in range(25) :
+    while np.argmax(y_test[n]) == np.argmax(y_hat_test[n]):
+        n += 1
     sub_plt = axarr[i//5, i%5]
     sub_plt.axis('off')
-    sub_plt.imshow(x_test[i].reshape(width, height))
+    sub_plt.imshow(x_test[n].reshape(width, height))
     
-    sub_plt_title = 'R: ' + str(np.argmax(y_test[i])) + ', P: ' + str(np.argmax(y_hat_test[i]))
+    sub_plt_title = 'R: ' + str(np.argmax(y_test[n])) + ', P: ' + str(np.argmax(y_hat_test[n]))
     sub_plt.set_title(sub_plt_title)
+    n += 1
     
 plt.show()
