@@ -66,12 +66,14 @@ acc.set_ylabel('accuracy')
 loss.legend(loc='lower right')
 acc.legend(loc='upper right')
 
+plt.show()
+
 scores = model.evaluate(x_test, y_test, batch_size=32)
 print(scores)
 
 y_hat_test = model.predict(x_test, batch_size=32)
 
-plt.rcParams['figure.figsize'] = (10, 5)
+plt.rcParams['figure.figsize'] = (10, 4)
 fig, axarr = plt.subplots(2, 5)
 
 for i in range(10) :

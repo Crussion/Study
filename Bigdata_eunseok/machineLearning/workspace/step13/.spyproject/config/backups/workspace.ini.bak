@@ -6,5 +6,5 @@ save_non_project_files = False
 
 [main]
 version = 0.2.0
-recent_files = ['..\\..\\..\\..\\..\\..\\.spyder-py3\\temp.py', 'exam1.py', 'exam2.py', '..\\step12\\exam4.py']
+recent_files = ['prac2.py', 'prac3_1.py', 'prac3_2.py', '..\\step10\\exam7.py']
 

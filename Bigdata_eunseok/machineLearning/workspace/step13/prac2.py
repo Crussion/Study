@@ -4,6 +4,7 @@ import ssl
 import numpy as np
 import matplotlib.pyplot as plt
 
+import tensorflow
 from tensorflow.keras import utils
 from tensorflow.keras.models import Sequential
 from tensorflow.keras.layers import Conv2D
@@ -11,6 +12,8 @@ from tensorflow.keras.layers import MaxPooling2D
 from tensorflow.keras.layers import Flatten
 from tensorflow.keras.layers import Dense
 from tensorflow.keras.layers import Dropout
+
+tensorflow.device("/cpu:0")
 
 ssl._create_default_https_context = ssl._create_unverified_context
 
