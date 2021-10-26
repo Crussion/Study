@@ -6,5 +6,5 @@ save_non_project_files = False
 
 [main]
 version = 0.2.0
-recent_files = ['exam9.py', 'exam10.py', 'exam11.py', 'exam12.py', 'exam13.py', 'exam14.py', 'exam15.py', 'exam16.py']
+recent_files = ['exam1.py', 'exam2.py', 'exam3.py', 'exam4.py', 'exam5.py', 'exam6.py', 'exam7.py', 'exam8.py', 'exam9.py']
 

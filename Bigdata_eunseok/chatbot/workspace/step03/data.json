@@ -1,0 +1,13 @@
+{
+    "id": 1,
+    "username": "\ud64d\uae38\ub3d9",
+    "email": "hong@april.biz",
+    "address": {
+        "street": "\uac15\ub0a8\ub300\ub85c",
+        "suite": "Apt.556",
+        "city": "\uc11c\uc6b8\ud2b9\ubcc4\uc2dc",
+        "zipcode": "12345"
+    },
+    "admin": false,
+    "hobbies": null
+}
