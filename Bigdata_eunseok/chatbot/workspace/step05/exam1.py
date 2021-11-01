@@ -7,10 +7,12 @@ app = Flask(__name__)
 # @app.route('요청값')
 @app.route('/')
 def hello():
-    return 'Hello Flask'
+    return '<font color="red">Hello Flask</font>'
 
 @app.route('/home')
 def home():
-    return 'Homepage'
+    return '<font color="red">Homepage</font>'
 
-app.run()
+
+if __name__ == '__main__':
+    app.run()

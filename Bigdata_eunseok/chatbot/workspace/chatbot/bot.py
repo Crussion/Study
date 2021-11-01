@@ -76,7 +76,7 @@ def to_client(client, addr, params):
         if db != None: db.close()
         client.close()
         
-if '__name__' != '__main__':
+if __name__ == '__main__':
     db = Database('C##pythonexam', 'm1234', 'localhost:1521/xe')
     
     port = 5050
