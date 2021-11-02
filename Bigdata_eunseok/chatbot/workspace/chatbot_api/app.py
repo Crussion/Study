@@ -37,15 +37,16 @@ def index():
     print('hello')
     return 'hello'
     
-@app.route('/query/<bot_type>', methods=['POST'])
+@app.route('/query/<bot_type>', methods=['GET'])
 def query(bot_type):
-    body = {}
-    body['query'] = request.form['query']
+    req_dict = request.args.to_dict()
+    # body = {}
+    # body['query'] = request.form['query']
     
     try:
         if bot_type == 'TEST':
             print('TEST')
-            ret = get_anser_from_engine(bottype=bot_type, query=body['query'])
+            ret = get_anser_from_engine(bottype=bot_type, query=req_dict['query'])
             print('ret:', ret)
             return jsonify(ret)
         else:

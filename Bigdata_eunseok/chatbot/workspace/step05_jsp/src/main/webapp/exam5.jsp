@@ -7,7 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<form action='http://localhost:5000/query/TEST' method='post'>
+	<form action='chat_json.jsp' method='post'>
 		<table>
 			<tr>
 				<th>내용</th>
