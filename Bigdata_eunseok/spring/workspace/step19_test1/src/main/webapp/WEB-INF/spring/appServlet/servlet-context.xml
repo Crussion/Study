@@ -24,7 +24,7 @@
 	-->
 	<context:component-scan base-package="com.exam.step19_test1" />
 	
-		<!-- storage 폴더 등록 -->
+	<!-- storage 폴더 등록 -->
 	<resources location="/storage/" mapping="/storage/**"/>
 	
 	<!-- 어노테이션 설정 -->
