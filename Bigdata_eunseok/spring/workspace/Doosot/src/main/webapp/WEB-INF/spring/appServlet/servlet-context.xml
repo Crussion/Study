@@ -27,6 +27,7 @@
 	
 	<resources location="/script/" mapping="/script/**"/>
 	<resources location="/css/" mapping="/css/**"/>
+	<resources location="/image/" mapping="/image/**"/>
 	
 	<!-- 나중에 작성 어노테이션
 	<context:component-scan base-package="board"/>

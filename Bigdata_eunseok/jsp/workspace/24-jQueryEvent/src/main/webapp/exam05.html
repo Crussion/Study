@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" type="text/css" href="/css/event.css">
+<script type="text/javascript" src="/js/jquery-3.6.0.min.js"></script>
+<script type="text/javascript">
+	$(function(){
+		var down_cnt = 0
+		var up_cnt = 0
+		
+		$("#input > input[name='input']").keydown(function(){
+			down_cnt++
+			$("#result").html("down count: " + down_cnt + " / up count: ")
+		})
+		$("#input > input[name='input']").keyup(function(){
+			up_cnt++
+			$("#result").html(up_cnt)
+		})
+	})
+</script>
+</head>
+<body>
+	<h1>Key 이벤트 확인하기</h1>
+	<div id="input">
+		<input type="text" name="input">
+	</div>
+	<h2>결과</h2>
+	<div id="result"></div>
+</body>
+</html>

@@ -82,3 +82,15 @@
 	position: relative;
 	top: 1px;
 }
+
+
+#input, #result{
+	border: 5px solid #d5d5d5;
+	text-align: center;
+	width: auto;
+	font-weight: bold;
+}
+
+#result{
+	
+}

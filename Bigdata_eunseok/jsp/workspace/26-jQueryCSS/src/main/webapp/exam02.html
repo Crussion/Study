@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style type="text/css">
+*{padding: 0; margin: 0;}
+#container {width: 500px; margin: 20px auto;}
+ul.tab{
+	list-style: none;
+	position: relative;
+	z-index: 100;
+}
+ul.tab li{
+	width: 100px;
+	height: 40px;
+	float: left;
+}
+ul:after{
+	content:"";
+	display: block;
+	float: none;
+	clear: both;
+}
+ul.tab li a{
+	background: url('img/tab.jpg');
+	display: block;
+	color: #222;
+	line-height: 40px;
+	text-align: center;
+	text-decoration: none;
+}
+
+ul.tab li a.selected{
+	background: url('img/tab_selected.jpg');
+}
+
+p.panel{
+	border: 1px solid #9fb7d4;
+	position: relative;
+	padding: 10px;
+	margin: 0;
+	top: -1px;
+}
+</style>
+<script type="text/javascript" src="js/jquery-3.6.0.min.js"></script>
+<script type="text/javascript">
+	$(function(){
+		$("p.panel").load($("ul.tab li a.selected").attr("href"))
+		
+		$("ul.tab li a").click(function(){
+			$("ul.tab li a").not(this).removeClass("selected")
+			$(this).addClass("selected")
+			$("p.panel").load($(this).attr("href"))
+			
+			return false;
+		})
+	})
+</script>
+</head>
+<body>
+	<div id="container">
+		<ul class="tab">
+			<li><a href="txt/html5.txt" class="selected">html5</a></li>
+			<li><a href="txt/jquery.txt" class="selected">jquery</a></li>
+			<li><a href="txt/bootstrap.txt" class="selected">bootstrap</a></li>
+		</ul>
+		
+		<p class="panel"></p>
+	</div>
+</body>
+</html>
