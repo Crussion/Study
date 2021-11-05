@@ -79,6 +79,12 @@
 	height: 60x;
 	background-color: orange;
 	line-height: 60px;
+	cursor: pointer;
+	user-select: none;
+}
+
+.bar_btn:hover{
+	background-color: #f0b400;
 }
 
 .outline{

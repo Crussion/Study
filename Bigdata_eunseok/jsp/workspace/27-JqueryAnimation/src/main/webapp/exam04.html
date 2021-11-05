@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript" src="js/jquery-3.6.0.min.js"></script>
+<script type="text/javascript">
+$(function(){
+	$(".item:eq(0)").click(function(){
+		var image = $(this).attr("href")
+		$("#view").hide(500, function(){
+			$("#view img").attr("src", image)
+			$(this).show(500)
+		})
+		return false
+	})
+	$(".item:eq(1)").click(function(){
+		var image = $(this).attr("href")
+		$("#view").fadeOut(500, function(){
+			$("#view img").attr("src", image)
+			$(this).fadeIn(500)
+		})
+		return false
+	})
+	$(".item:eq(2)").click(function(){
+		var image = $(this).attr("href")
+		$("#view").slideUp(500, function(){
+			$("#view img").attr("src", image)
+			$(this).slideDown(500)
+		})
+		return false
+	})
+})
+</script>
+<style type="text/css">
+#thumb{
+	padding: 0; margin: 0;
+	list-style: none;
+	float: left;
+	width: 100px;
+}
+#thumb img{
+	width: 100px;
+}
+#thumb li{
+	padding: 5px 10px;
+}
+#view{
+	padding: 5px 20px;
+	width: 360px; height: 270px;
+	float: left;
+}
+#view img{
+	width: 100%; height: 100%;
+}
+
+</style>
+</head>
+<body>
+	<ul id="thumb">
+		<li><a href="img/1.jpg" class="item"><img src="img/1.jpg"></a></li>
+		<li><a href="img/2.jpg" class="item"><img src="img/2.jpg"></a></li>
+		<li><a href="img/3.jpg" class="item"><img src="img/3.jpg"></a></li>
+	</ul>
+	
+	<div id="view">
+		<img src="img/1.jpg">
+	</div>
+</body>
+</html>

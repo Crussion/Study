@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript" src="js/jquery-3.6.0.min.js"></script>
+<script type="text/javascript">
+	$(function(){
+		$(".collapsible:eq(0) > .content").load($(".collapsible:eq(0) .title a").attr("href"))
+		$(".collapsible:eq(0) .title a").addClass("selected")
+		$(".collapsible").not(":eq(0)").find(".content").hide()
+		
+		
+		$(".collapsible .title a").click(function(){
+			$(this).toggleClass('selected')
+			$(".collapsible .title a").not(this).removeClass("selected")
+			var target = $(this).parents('.collapsible').find('.content')
+			var other = $('.collapsible .title a').not(this).parents('.collapsible').find('.content')
+			
+			target.slideToggle(200);
+			other.slideUp(200);
+			
+			if(target.css('display') != 'none'){
+				target.load($(this).attr('href'))
+			}
+			
+			return false
+		})
+	})
+</script>
+<style type="text/css">
+body{
+	background: #252422;
+}
+ul{
+	padding: 0;
+	margin: 50px auto;
+	list-style: none;
+	width: 800px;
+}
+.title{
+	padding: 0;
+	margin: 0;
+}
+.title > a{
+	display: block;
+	padding-top: 12px;
+	font-size: 14px;
+	text-indent: 12px;
+	text-decoration: none;
+	font-weight: bold;
+	color: white;
+	height: 23px;
+	background: url("img/background.jpg");
+}
+.selected{
+	background: url("img/background-selected.jpg") !important;
+}
+.content{
+	margin: 0;
+	background: #d4d0c9;
+	padding: 10px;
+	height: 200px;
+}
+</style>
+</head>
+<body>
+	<ul>
+		<li class="collapsible">
+			<h2 class="title"><a href="txt/html5.txt">html5</a></h2>
+			<p class="content"></p>
+		</li>
+		<li class="collapsible">
+			<h2 class="title"><a href="txt/jquery.txt">jquery</a></h2>
+			<p class="content"></p>
+		</li>
+		<li class="collapsible">
+			<h2 class="title"><a href="txt/bootstrap.txt">bootstrap</a></h2>
+			<p class="content"></p>
+		</li>
+	</ul>
+</body>
+</html>

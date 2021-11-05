@@ -6,8 +6,8 @@
 <head>
 <meta charset="UTF-8">
 <title>두솥</title>
-<link rel="stylesheet" type="text/css" href="../css/main.css?v=1">
-<link rel="stylesheet" type="text/css" href="../css/menuList.css?v=1">
+<link rel="stylesheet" type="text/css" href="../css/main.css">
+<link rel="stylesheet" type="text/css" href="../css/menuList.css">
 </head>
 <body>
 	<header>
@@ -43,7 +43,7 @@
 		<div id="con">
 			<span>전체</span>
 			<table id="menu_table">
-				<c:forEach begin="0" end="0" step="1">
+				<c:forEach begin="0" end="2" step="1">
 				<tr>
 					<c:forEach begin="0" end="2" step="1">
 						<td>
