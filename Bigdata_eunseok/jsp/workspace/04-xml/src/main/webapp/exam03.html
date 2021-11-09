@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" type="text/css" href="css/reset.css">
+<link rel="stylesheet" type="text/css" href="css/common.css">
+<script type="text/javascript" src="js/jquery-3.6.0.min.js"></script>
+<script type="text/javascript">
+$(function(){
+	$("#checkId").click(function(){
+		var input_value = $("input[name='user_id']").val()
+		if(!input_value){
+			alert("아이디를 입력하세요")
+			$("input[name='user_id']").focus()
+			return false
+		}
+		
+		var url = "ajax/idcheck/idcheck.jsp"
+		$.get(url, {"user_id": input_value}, function(data){
+			var result_text = $(data).find("result").text()
+			var result = eval(result_text)
+			
+			if(result){
+				alert(input_value + "는 사용할 수 없는 아이디 입니다.")
+				$("input[name='user_id']").val("")
+			} else{
+				alert(input_value + "는 사용 가능한 아이디 입니다.")
+			}
+		})
+	})
+})
+</script>
+</head>
+<body>
+	<h1 class="title">아이디 중복검사</h1>
+	<div class="exec">
+		<form action="">
+			<input type="text" name="user_id">
+			<input type="button" id="checkId" value="중복검사">
+		</form>
+	</div>
+	
+	<div class="console" id="result"></div>
+</body>
+</html>

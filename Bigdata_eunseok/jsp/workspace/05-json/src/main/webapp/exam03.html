@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" type="text/css" href="css/reset.css">
+<link rel="stylesheet" type="text/css" href="css/common.css">
+<script type="text/javascript" src="js/jquery-3.6.0.min.js"></script>
+<script type="text/javascript" src="plugins/tmpl/jquery.tmpl.min.js"></script>
+
+<style type="text/css">
+table{
+	display: block;
+	width: 100%;
+	font-size: 14px;
+	text-align: center;
+}
+
+table .left{
+	text-align: left;
+}
+
+table thead{
+	border-bottom: 2px solid #285e8e;
+	font-weight: bold;
+}
+
+table tbody tr{
+	border-bottom: 1px dotted #ccc;
+}
+
+.example table .no{
+	width: 10%;
+}
+.example table .subject{
+	width: 60%;
+}
+.example table .hit{
+	width: 10%;
+}
+.example table .date{
+	width: 20%;
+}
+
+td, th{
+	padding: 10px 0;
+}
+</style>
+
+<script type="text/x-jquery-tmpl" id="itemTemplate">
+	<tr>
+		<td class="no">${no}</td>
+		<td class="left subject">${subject}</td>
+		<td class="hit">${hit}</td>
+		<td class="date">${date}</td>
+	</tr>
+</script>
+
+<script type="text/javascript">
+	$(function(){
+		$.get("ajax/json/bbs.jsp", {}, function(json){
+			$("h1.title").html(json.title)
+			$("div.exec:eq(0)").html(json.description)
+			$("div.exec:eq(1) > span").html(json.total)
+			
+			var tmpl = $("#itemTemplate").tmpl(json.item)
+			
+			$("div.example > table > tbody").append(tmpl)
+		})
+	})
+</script>
+</head>
+<body>
+	<h1 class="title"></h1>
+	<div class="exec"></div>
+	<div class="exec">
+		총 게시물 수 : <span></span>개
+	</div>
+	
+	<div class="example">
+		<table>
+			<thead>
+				<tr>
+					<th class="no">번호</th>
+					<th class="subject">제목</th>
+					<th class="hit">조회수</th>
+					<th class="date">작성일시</th>
+				</tr>
+			</thead>
+			<tbody>
+			
+			</tbody>
+		</table>
+	</div>
+</body>
+</html>

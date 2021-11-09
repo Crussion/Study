@@ -6,16 +6,23 @@
 <meta charset="UTF-8">
 <title>두솥</title>
 <link rel="stylesheet" type="text/css" href="../css/main.css">
-<link rel="stylesheet" type="text/css" href="../css/menuModify.css?v=1">
+<link rel="stylesheet" type="text/css" href="../css/menuModifyForm.css?v=1">
 </head>
 <body>
 	<header>
-		<div class="flex"></div>
-		<div class="top">
-			<div class="main_top_list">
-				<span>두솥</span>
+		<div class="flex">
+			<a href="member/member_login.jsp">로그인 </a>|
+			<a href="member/member_join.jsp"> 회원가입 </a>|
+			<a href="#"> 인스타</a>
+			<a href="#">페이스북</a>
+		</div>
+		<div class="main_top_list">
+			<div class="logo">
+				<a href="main.jsp"><img src="img/DS2.png"></a>
+			</div>
+			<div class="top_list">
 				<ul>
-					<li class="mtl"><a href="#">BRAND</a></li>
+					<li class="mtl"><a href="*">BRAND</a></li>
 					<li class="mtl"><a href="#">MENU</a></li>
 					<li class="mtl"><a href="#">STORE</a></li>
 					<li class="mtl"><a href="#">EVENT</a></li>
@@ -23,8 +30,8 @@
 					<li class="mtl"><a href="#">QnA</a></li>
 				</ul>
 			</div>
-			<div class="main_photo"></div>
 		</div>
+		<div class="main_photo"></div>
 	</header>
 	<div class="container">
 		<div class="subject" align="center">
@@ -113,10 +120,6 @@
 						<label for="ingre">조개류</label>
 						<input type="checkbox" name="ingre" value="조개류">
 					</td>
-				</tr>
-				<tr>
-					<td><span>상품 출시일</span></td>
-					<td><input type="date" class="input"></td>
 				</tr>
 				<tr>
 					<td><span>상품 이미지</span></td>

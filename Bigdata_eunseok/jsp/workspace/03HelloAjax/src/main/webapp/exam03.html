@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" type="text/css" href="css/reset.css">
+<link rel="stylesheet" type="text/css" href="css/common.css">
+<script type="text/javascript" src="js/jquery-3.6.0.min.js"></script>
+<script type="text/javascript">
+	$(function(){
+		$("#category1").load("ajax/text/category-data.html #category1-1", function(){
+			$(this).show()
+		})
+		
+		$(document).on("change", "#category1 > select", function(){
+			$("#category2").empty().hide()
+			$("#category3").empty().hide()
+			
+			var target = $(this).find("option:selected").attr("data-target")
+			var selector = "ajax/text/category-data.html " + target
+			
+			$("#category2").load(selector, function(){
+				$(this).show()
+			})
+		})
+		
+		$(document).on("change", "#category2 > select", function(){
+			$("#category3").empty().hide()
+			
+			var target = $(this).find("option:selected").attr("data-target")
+			var selector = "ajax/text/category-data.html " + target
+			
+			$("#category3").load(selector, function(){
+				$(this).show()
+			})
+		})
+		
+		$(document).on("change", "#category3 > select", function(){
+			var data1 = $("#category1 > select > option:selected").val()
+			var data2 = $("#category2 > select > option:selected").val()
+			var data3 = $($(this).find("option:selected")).val()
+			
+			$(".console").html(data1 + " > " + data2 + " > " + data3)
+		})
+	})
+</script>
+</head>
+<body>
+	<h1 class="title">동적 드롭다운</h1>
+	<div class="exec">
+		<form action="">
+			<span id="category1"></span>
+			<span id="category2"></span>
+			<span id="category3"></span>
+		</form>
+	</div>
+	
+	<div class="console"></div>
+</body>
+</html>

@@ -2,26 +2,27 @@
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
- <!-- 
+
 <mapper namespace="mybatis.Mapper">
-	<select id="imageboardList" parameterType="java.util.Map" resultType="dto">
-		<![CDATA[
-			select * from 
-			(select rownum rn, tt.* from 
-			(select * from imageboard order by seq desc) tt) 
-			where rn>=#{startNum} and rn<=#{endNum}
-		]]>
-	</select>
-	<insert id="imageboardWrite" parameterType="dto">
-		insert into imageboard values 
-		(seq_imageboard.nextval, #{imageId}, #{imageName}, #{imagePrice}, #{imageQty}, 
-		#{imageContent}, #{image1}, sysdate)
+	<insert id="menuWrite" parameterType="menuDTO">
+		insert into menu 
+		values(#{menu_num}, #{menu_name}, #{menu_img}, 
+		#{menu_price}, #{menu_content}, sysdate, 
+		#{menu_ingre}, #{menu_kcal}, #{menu_category})
 	</insert>
-	<select id="total_content" resultType="int">
-		select count(*) as cnt from imageboard
+	<select id="menuListAll" resultType="menuDTO">
+		select * from menu order by menu_date desc
 	</select>
-	<select id="imageboardView" parameterType="int" resultType="dto">
-		select * from imageboard where seq=#{seq}
+	<select id="menuList" parameterType="java.lang.String" resultType="menuDTO">
+		select * from menu where menu_category=#{menu_category} order by menu_date desc
+	</select>
+	<select id="total_content" parameterType="java.lang.String" resultType="int">
+		select count(*) as cnt from menu
+	</select>
+	<select id="category_content" parameterType="java.lang.String" resultType="int">
+		select count(*) as cnt from menu where menu_category=#{menu_category}
+	</select>
+	<select id="menuDetail" parameterType="int" resultType="menuDTO">
+		select * from menu where menu_num=#{menu_num}
 	</select>
 </mapper>
--->

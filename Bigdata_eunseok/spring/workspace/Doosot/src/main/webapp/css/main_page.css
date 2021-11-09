@@ -19,12 +19,12 @@ body {
 	width: 1200px;
 	height: 30px;
 	text-align: right;
-	color: white;
+	color: dimgray;
 	z-index: 2;
 }
 .flex a{text-decoration: none;}
-.flex a:link { color: white; }
-.flex a:visited { color: white; }
+.flex a:link { color: dimgray; }
+.flex a:visited { color: dimgray; }
 
 .main_top_list {
 	position: relative;

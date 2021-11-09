@@ -7,16 +7,82 @@
 <meta charset="UTF-8">
 <title>두솥</title>
 <link rel="stylesheet" type="text/css" href="../css/main.css">
-<link rel="stylesheet" type="text/css" href="../css/menuList.css">
+<link rel="stylesheet" type="text/css" href="../css/menuList.css?v=1">
+<script type="text/javascript" src="../script/jquery-3.6.0.min.js"></script>
+<script type="text/javascript">
+	function goDetail(num){
+		location.href = "menuDetail.do?menu_num=" + num + "&category=" + cat
+	}
+
+	$(function(){
+		cat = $(".filter > select > option:selected").val()
+		
+		$.ajax({
+			url: "menuList.do",
+			type: "post",
+			dateType: "html",
+			data:{
+				menu_category: cat
+			},
+			cache: false,
+			timeout: 30000,
+			success: function(html){
+				var page = $(html)
+				var con = page.find("#con")
+				con.find("#category").html($(".filter > select > option:selected").html())
+				$("#con").html(con.html())
+			},
+			fail: function(xhr, textStatus, errorThrown){
+				alert(xhr.status)
+			}
+		})
+		
+		$(".filter > select").change(function(){
+			cat = $(".filter > select > option:selected").val()
+			
+			$.ajax({
+				url: "menuList.do",
+				type: "post",
+				dateType: "html",
+				data:{
+					menu_category: cat
+				},
+				cache: false,
+				timeout: 30000,
+				success: function(html){
+					var page = $(html)
+					var con = page.find("#con")
+					con.find("#category").html($(".filter > select > option:selected").html())
+					$("#con").html(con.html())
+				},
+				fail: function(xhr, textStatus, errorThrown){
+					alert(xhr.status)
+				}
+			})
+			return false
+		})
+		
+		$("#menuWriteForm").click(function(){
+			location.href = "menuWriteForm.do"
+		})
+	})
+</script>
 </head>
 <body>
 	<header>
-		<div class="flex"></div>
-		<div class="top">
-			<div class="main_top_list">
-				<span>두솥</span>
+		<div class="flex">
+			<a href="member/member_login.jsp">로그인 </a>|
+			<a href="member/member_join.jsp"> 회원가입 </a>|
+			<a href="#"> 인스타</a>
+			<a href="#">페이스북</a>
+		</div>
+		<div class="main_top_list">
+			<div class="logo">
+				<a href="main.jsp"><img src="img/DS2.png"></a>
+			</div>
+			<div class="top_list">
 				<ul>
-					<li class="mtl"><a href="#">BRAND</a></li>
+					<li class="mtl"><a href="*">BRAND</a></li>
 					<li class="mtl"><a href="#">MENU</a></li>
 					<li class="mtl"><a href="#">STORE</a></li>
 					<li class="mtl"><a href="#">EVENT</a></li>
@@ -24,8 +90,8 @@
 					<li class="mtl"><a href="#">QnA</a></li>
 				</ul>
 			</div>
-			<div class="main_photo"></div>
 		</div>
+		<div class="main_photo"></div>
 	</header>
 	<div class="container">
 		<div class="subject" align="center">
@@ -33,53 +99,39 @@
 			<span class="filter">
 				<select>
 					<option value="total">전체</option>
-					<option value="gogigogi">고기고기</option>
-					<option value="mayo">마요</option>
+					<option value="고기고기">고기고기</option>
+					<option value="마요">마요</option>
 				</select>
 			</span>
 		</div>
 	</div>
 	<div class="content">
 		<div id="con">
-			<span>전체</span>
-			<table id="menu_table">
-				<c:forEach begin="0" end="2" step="1">
-				<tr>
-					<c:forEach begin="0" end="2" step="1">
-						<td>
-							<table id="food" onclick="location.href='#'">
-								<tr>
-									<td id="img">이미지</td>
-								</tr>
-								<tr>
-									<td>음식이름</td>
-								</tr>
-								<tr>
-									<td>가격</td>
-								</tr>
-							</table>
-						</td>
-					</c:forEach>
-				</tr>
+			<span id="category">전체</span>
+			<div id="menu_table">
+				<c:forEach var="dto" items="${list }">
+					<table class="food" onclick="goDetail(${dto.menu_num })">
+						<tr>
+							<td width="300px" height="250px"><img alt="음식 사진" src="../menu_image/${dto.menu_img }" class="img"></td>
+						</tr>
+						<tr>
+							<td>${dto.menu_name }</td>
+						</tr>
+						<tr>
+							<td>${dto.menu_price }</td>
+						</tr>
+					</table>
 				</c:forEach>
-			</table>
+			</div>
 		</div>
 	</div>
 	<c:if test="True">
 		<div class="admin_bar">
 			<div class="admin_bar_list">
-				<div class="bar_btn" onclick="">신규 등록</div>
+				<div class="bar_btn" id="menuWriteForm">신규 등록</div>
 			</div>
 		</div>
 	</c:if>
-	<div class="outline">
-		<span>더 많은 이야기</span> <hr>
-		<div id="outlink">
-			<div id="store">지점포</div>
-			<div id="event">이벤트</div>
-			<div id="pranchise">프랜차이즈</div>
-		</div>
-	</div>
 	<footer>
 	
 	</footer>

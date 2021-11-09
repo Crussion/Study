@@ -28,9 +28,13 @@
 	<resources location="/script/" mapping="/script/**"/>
 	<resources location="/css/" mapping="/css/**"/>
 	<resources location="/image/" mapping="/image/**"/>
+	<resources location="/menu_img/" mapping="/menu_img/**"/>
 	
-	<!-- 나중에 작성 어노테이션
-	<context:component-scan base-package="board"/>
-	 -->
+	<context:component-scan base-package="menu"/>
+
+	<beans:bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<beans:property name="maxUploadSize" value="5000000"/>
+		<beans:property name="defaultEncoding" value="UTF-8"/>
+	</beans:bean>
 	
 </beans:beans>
