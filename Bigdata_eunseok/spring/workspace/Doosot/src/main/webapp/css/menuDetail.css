@@ -4,9 +4,11 @@
 	border-bottom: 2px solid #ececec;
 }
 
-.title a{
+.title{
 	text-decoration: none;
 	color: black;
+	user-select: none;
+	cursor: pointer;
 }
 
 .content{

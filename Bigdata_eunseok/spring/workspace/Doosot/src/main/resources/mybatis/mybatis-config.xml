@@ -6,6 +6,8 @@
 	<!-- 클래스 별명 설정 -->
 	<typeAliases>
 		<typeAlias type="menu.dto.MenuDTO" alias="menuDTO"/>
+		<typeAlias type="cart.dto.CartDTO" alias="cartDTO"/>
+		<typeAlias type="order.dto.OrderDTO" alias="orderDTO"/>
 	</typeAliases>
 	
 	<!-- SQL Mapper 설정 -->

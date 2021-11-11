@@ -42,10 +42,10 @@
 	margin-top: 50px;
 	padding-bottom: 30px;
 	width: 1100px;
-	justify-content: space-between;
-	align-content: space-between;
-	display: flex;
+	/justify-content: space-between;
 	flex-wrap: wrap;
+	align-content: flex-start;
+	display: flex;
 }
 
 #menu_table td{
@@ -60,6 +60,11 @@
 	margin-bottom: 30px;
 	cursor: pointer;
 	user-select: none;
+}
+
+.list_mid{
+	margin-left: 100px;
+	margin-right: 100px;
 }
 
 .img{

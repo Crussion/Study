@@ -1,13 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %> <%-- jstl 함수 --%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>두솥</title>
 <link rel="stylesheet" type="text/css" href="../css/main.css">
-<link rel="stylesheet" type="text/css" href="../css/menuDetail.css">
+<link rel="stylesheet" type="text/css" href="../css/menuDetail.css?v=2">
 <script type="text/javascript" src="../script/jquery-3.6.0.min.js"></script>
 <script type="text/javascript">
 	function qty_plus(price){
@@ -34,6 +35,35 @@
 		},function(){
 			$(this).css("background-color", "orange")
 		})
+		$("#menuModify").click(function(){
+			location.href = "menuModifyForm.do?menu_num=" + ${dto.menu_num } + "&menu_category=" + "${category }"
+		})
+		$("#menuDelete").click(function(){
+			location.href = "menuDelete.do?menu_num=" + ${dto.menu_num } + "&menu_category=" + "${category }"
+		})
+		$(".title").click(function(){
+			location.href = "menuList.do?menu_category=" + "${category }"
+		})
+		$("#put_cart").click(function(){
+			if("${login_id }" == ""){
+				alert("로그인이 필요합니다.")
+			}else{
+				$.post("add_cart.do", {
+					cart_qty: $("#food_qty").html(),
+					mem_id: "${login_id }",
+					menu_num: ${dto.menu_num }
+				},function(result){
+					if(result != null){
+						alert("장바구니에 추가 했습니다.")
+					}else{
+						alert("장바구니에 담지 못했습니다.")
+					}
+				}).fail(function(result){
+					alert("잠시 후 시도해 주세요.")
+				})
+				return false
+			}
+		})
 	})
 </script>
 </head>
@@ -52,7 +82,7 @@
 			<div class="top_list">
 				<ul>
 					<li class="mtl"><a href="*">BRAND</a></li>
-					<li class="mtl"><a href="#">MENU</a></li>
+					<li class="mtl"><a href="../menu/menuList.do">MENU</a></li>
 					<li class="mtl"><a href="#">STORE</a></li>
 					<li class="mtl"><a href="#">EVENT</a></li>
 					<li class="mtl"><a href="#">FRANCHISE</a></li>
@@ -64,7 +94,7 @@
 	</header>
 	<div class="container">
 		<div class="subject" align="center">
-			<span class="title"><a href="javascript: history.back()">← 전체 메뉴</a></span>
+			<span class="title">← 전체 메뉴</span>
 		</div>
 	</div>
 	<div class="content">
@@ -86,10 +116,8 @@
 					<div class="qty_btn" id="qty_plus" onclick="qty_plus(${dto.menu_price })">&gt;</div>
 				</div>
 				<div class="btn_list">
-					<div class="btn" id="put_cart"
-					onclick="">장바구니</div>
-					<div class="btn" id="set_order"
-					onclick="">주문하기</div>
+					<div class="btn" id="put_cart">장바구니</div>
+					<div class="btn" id="set_order">주문하기</div>
 				</div>
 			</div>
 		</div>
@@ -106,23 +134,31 @@
 			<span class="detail_text">알레르기</span><br>
 			<table>
 				<tr id="category">
-					<c:forEach begin="0" end="17" step="1">
-						<td>우유</td>
+					<c:forEach var="ingre" items="${ingre_list }">
+						<td width="66.67" style="font-size: 0.8em;">${ingre }</td>
 					</c:forEach>
 				</tr>
 				<tr id="alg_have">
-					<c:forEach begin="0" end="17" step="1">
-						<td>O</td>
+					<c:forEach var="i" begin="0" end="17" step="1">
+						<c:if test="${fn:indexOf(dto.menu_ingre, ingre_list[i]) != -1 }">
+							<td>○</td>
+						</c:if>
+						<c:if test="${fn:indexOf(dto.menu_ingre, ingre_list[i]) == -1}">
+							<td>△</td>
+						</c:if>
 					</c:forEach>
 				</tr>
 			</table>
+			<p><span style="font-size: 1.5em; margin: 15px 12px;">○</span>해당 알레르기 성분이 포함되어 있음</p>
+			<p><span style="font-size: 1.7em; margin: 10px 10px;">△</span>해당 알레르기 성분이 직접적으로 포함되어 있지 않지만, 해당 성분을 가공하는 시설에서 가공/제조 하였음</p>
+			<p><span style="font-size: 2.4em; margin: 10px 10px;">×</span>해당 알레르기 성분이 포함되어 있지 않음</p>
 		</div>
 	</div>
 	<c:if test="True">
 		<div class="admin_bar">
 			<div class="admin_bar_list">
-				<div class="bar_btn" onclick="">음식 수정</div>
-				<div class="bar_btn" onclick="">음식 삭제</div>
+				<div class="bar_btn" id="menuModify">음식 수정</div>
+				<div class="bar_btn" id="menuDelete">음식 삭제</div>
 			</div>
 		</div>
 	</c:if>

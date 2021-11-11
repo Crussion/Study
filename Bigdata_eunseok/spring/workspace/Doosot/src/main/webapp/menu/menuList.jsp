@@ -7,22 +7,20 @@
 <meta charset="UTF-8">
 <title>두솥</title>
 <link rel="stylesheet" type="text/css" href="../css/main.css">
-<link rel="stylesheet" type="text/css" href="../css/menuList.css?v=1">
+<link rel="stylesheet" type="text/css" href="../css/menuList.css">
 <script type="text/javascript" src="../script/jquery-3.6.0.min.js"></script>
 <script type="text/javascript">
 	function goDetail(num){
 		location.href = "menuDetail.do?menu_num=" + num + "&category=" + cat
 	}
-
-	$(function(){
-		cat = $(".filter > select > option:selected").val()
-		
+	
+	function loadCategory(category){
 		$.ajax({
 			url: "menuList.do",
 			type: "post",
 			dateType: "html",
 			data:{
-				menu_category: cat
+				menu_category: category
 			},
 			cache: false,
 			timeout: 30000,
@@ -31,34 +29,37 @@
 				var con = page.find("#con")
 				con.find("#category").html($(".filter > select > option:selected").html())
 				$("#con").html(con.html())
+				$.each($(".food"), function(index){
+					if(index % 3 == 1){
+						$(this).addClass("list_mid")
+					}
+				})
 			},
 			fail: function(xhr, textStatus, errorThrown){
 				alert(xhr.status)
 			}
 		})
+	}
+
+	$(function(){
+		if("${category }" == ""){
+			cat = $(".filter > select > option:selected").val()
+		}else{
+			cat = "${category }"
+			$.each($(".filter > select > option"), function(){
+				if($(this).attr("value") == cat){
+					$(this).attr("selected", "selected")
+				}
+			})
+		}
+		
+		loadCategory(cat)
 		
 		$(".filter > select").change(function(){
 			cat = $(".filter > select > option:selected").val()
 			
-			$.ajax({
-				url: "menuList.do",
-				type: "post",
-				dateType: "html",
-				data:{
-					menu_category: cat
-				},
-				cache: false,
-				timeout: 30000,
-				success: function(html){
-					var page = $(html)
-					var con = page.find("#con")
-					con.find("#category").html($(".filter > select > option:selected").html())
-					$("#con").html(con.html())
-				},
-				fail: function(xhr, textStatus, errorThrown){
-					alert(xhr.status)
-				}
-			})
+			loadCategory(cat)
+			
 			return false
 		})
 		
@@ -83,7 +84,7 @@
 			<div class="top_list">
 				<ul>
 					<li class="mtl"><a href="*">BRAND</a></li>
-					<li class="mtl"><a href="#">MENU</a></li>
+					<li class="mtl"><a href="../menu/menuList.do">MENU</a></li>
 					<li class="mtl"><a href="#">STORE</a></li>
 					<li class="mtl"><a href="#">EVENT</a></li>
 					<li class="mtl"><a href="#">FRANCHISE</a></li>

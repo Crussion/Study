@@ -14,26 +14,26 @@ public class MenuDAO {
 	SqlSessionTemplate sqlSession;
 	
 	public int menuWrite(MenuDTO dto) {
-		return sqlSession.insert("mybatis.Mapper.menuWrite", dto);
+		return sqlSession.insert("mybatis.DooSotMapper.menuWrite", dto);
 	}
 	
 	public List<MenuDTO> menuList(){
-		return sqlSession.selectList("mybatis.Mapper.menuListAll");
+		return sqlSession.selectList("mybatis.DooSotMapper.menuListAll");
 	}
 	
 	public List<MenuDTO> menuList(String menu_category){
-		return sqlSession.selectList("mybatis.Mapper.menuList", menu_category);
-	}
-	
-	public int total_content() {
-		return sqlSession.selectOne("mybatis.Mapper.total_content");
-	}
-	
-	public int category_content(String menu_category) {
-		return sqlSession.selectOne("mybatis.Mapper.category_content", menu_category);
+		return sqlSession.selectList("mybatis.DooSotMapper.menuList", menu_category);
 	}
 	
 	public MenuDTO menuDetail(int menu_num) {
-		return sqlSession.selectOne("mybatis.Mapper.menuDetail", menu_num);
+		return sqlSession.selectOne("mybatis.DooSotMapper.menuDetail", menu_num);
+	}
+	
+	public int menuModify(MenuDTO dto) {
+		return sqlSession.update("mybatis.DooSotMapper.menuModify", dto);
+	}
+	
+	public int menuDelete(int menu_num) {
+		return sqlSession.delete("mybatis.DooSotMapper.menuDelete", menu_num);
 	}
 }

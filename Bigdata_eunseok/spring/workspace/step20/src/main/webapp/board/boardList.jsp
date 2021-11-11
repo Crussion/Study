@@ -17,6 +17,44 @@
 .paging {color: blue; text-decoration: none;}
 .currentPaging {color: red; text-decoration: underline;}
 </style>
+<script type="text/javascript" src="../script/jquery-3.6.0.min.js"></script>
+<script type="text/javascript">
+	$(function(){
+		$.ajax({
+			url: "boardListJson.do",
+			type: "post",
+			data: { "pg": "${pg }" },
+			dataType: "json",
+			success: function(json){
+				$.each(json.items, function(index, item){
+					var tr = $("<tr>", {align: "center"})
+					var td1 = $("<td>").html(item.seq)
+					var td2 = $("<td>").append($("<a>",{
+						id: "subjectA",
+						href: "#",
+						click: function(){
+							if(${memId == null }){
+								alert("먼저 로그인 하세요")
+							}else{
+								location.href="boardView.do?seq=" + item.seq + "&pg=" + ${pg }
+							}
+						},
+						text: item.subject
+					}))
+					var td3 = $("<td>").html(item.id)
+					var td4 = $("<td>").html(item.logtime)
+					var td5 = $("<td>").html(item.hit)
+					
+					tr.append(td1).append(td2).append(td3).append(td4).append(td5)
+					$("#boardList").append(tr)
+				})
+			},
+			error: function(xhr, textStatus, errorThrown){
+				alert("[ERROR]" + xhr.status)
+			}
+		})
+	})
+</script>
 </head>
 <body>
 	<table border="1" width="550" style="margin:auto;">
@@ -27,16 +65,10 @@
 			<th width="100">작성일</th>
 			<th width="70">조회수</th>
 		</tr>
-	<c:forEach var="dto" items="${list }">
-		<tr align="center">
-			<td>${dto.seq }</td>
-			<td><a id="subjectA" href="boardView.do?seq=${dto.seq }&pg=${pg }">
-					${dto.subject }</a></td>
-			<td>${dto.id }</td>
-			<td>${dto.logtime }</td>
-			<td>${dto.hit }</td>
-		</tr>
-	</c:forEach>
+	
+		<tbody id="boardList">
+			
+		</tbody>
 <%--		
 	<% for(int i=0; i<list.size(); i++) {
 			BoardDTO dto = list.get(i); %>

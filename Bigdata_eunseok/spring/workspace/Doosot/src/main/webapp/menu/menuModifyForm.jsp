@@ -6,7 +6,29 @@
 <meta charset="UTF-8">
 <title>두솥</title>
 <link rel="stylesheet" type="text/css" href="../css/main.css">
-<link rel="stylesheet" type="text/css" href="../css/menuModifyForm.css?v=1">
+<link rel="stylesheet" type="text/css" href="../css/menuModifyForm.css">
+<script type="text/javascript" src="../script/jquery-3.6.0.min.js"></script>
+<script type="text/javascript">
+	$(function(){
+		var cat = "${dto.menu_category }"
+		$.each($("select > option"), function(){
+			if($(this).val() == cat){
+				$(this).attr("selected", "selected")
+			}
+		})
+		
+		var ingres = "${dto.menu_ingre }"
+		var ingre = ingres.split(' ')
+		
+		$.each($("input[name='menu_ingre']"), function(menu_ingre){
+			for(var i = 0; i < ingre.length; i++){
+				if($(this).attr("value") == ingre[i]){
+					$(this).attr("checked", "checked")
+				}
+			}
+		})
+	})
+</script>
 </head>
 <body>
 	<header>
@@ -23,7 +45,7 @@
 			<div class="top_list">
 				<ul>
 					<li class="mtl"><a href="*">BRAND</a></li>
-					<li class="mtl"><a href="#">MENU</a></li>
+					<li class="mtl"><a href="../menu/menuList.do">MENU</a></li>
 					<li class="mtl"><a href="#">STORE</a></li>
 					<li class="mtl"><a href="#">EVENT</a></li>
 					<li class="mtl"><a href="#">FRANCHISE</a></li>
@@ -39,99 +61,108 @@
 		</div>
 	</div>
 	<div class="content">
-		<form action="" id="frm">
+		<form action="menuModify.do" id="frm" name="menu_frm" method="post" enctype="multipart/form-data">
 			<table>
 				<tr>
-					<td width="120"><span>상품 번호</span></td>
-					<td><input type="text" class="input"></td>
+					<td width="120"><span class="need">*</span><span>상품 번호</span></td>
+					<td><input type="text" class="input" name="menu_num" value="${dto.menu_num }" readonly="readonly"></td>
 				</tr>
 				<tr>
-					<td><span>상품 이름</span></td>
-					<td><input type="text" class="input"></td>
+					<td><span class="need">*</span><span>상품 종류</span></td>
+					<td><select class="input" name="menu_category">
+						<option value="">-----선택하세요-----</option>
+						<option value="고기고기">고기고기</option>
+						<option value="마요">마요</option>
+					</select></td>
 				</tr>
 				<tr>
-					<td><span>상품 가격</span></td>
-					<td><input type="number" class="input"></td>
+					<td><span class="need">*</span><span>상품 이름</span></td>
+					<td><input type="text" class="input" name="menu_name" value="${dto.menu_name }"></td>
 				</tr>
 				<tr>
-					<td><span>상품 칼로리</span></td>
-					<td><input type="number" placeholder="Kcal" class="input"></td>
+					<td><span class="need">*</span><span>상품 가격</span></td>
+					<td><input type="number" class="input" name="menu_price" value="${dto.menu_price }"></td>
+				</tr>
+				<tr>
+					<td><span class="need">*</span><span>상품 칼로리</span></td>
+					<td><input type="number" placeholder="Kcal" class="input" name="menu_kcal" value="${dto.menu_kcal }"></td>
 				</tr>
 				<tr>
 					<td><span>상품 설명</span></td>
-					<td><textarea class="input"></textarea></td>
+					<td><textarea class="input" name="menu_content">${dto.menu_content }</textarea></td>
 				</tr>
 				<tr>
-					<td><span>상품 재료</span></td>
+					<td><span class="need">*</span><span>상품 재료</span></td>
 					<td id="category">
-						<label for="ingre">난류(계란)</label>
-						<input type="checkbox" name="ingre" value="난류(계란)">
+						<label for="chk1">난류(계란)</label>
+						<input type="checkbox" id="chk1" name="menu_ingre" value="난류(계란)" class="checkbox">
 						
-						<label for="ingre">우유</label>
-						<input type="checkbox" name="ingre" value="우유">
+						<label for="chk2">우유</label>
+						<input type="checkbox" id="chk2" name="menu_ingre" value="우유" class="checkbox">
 						
-						<label for="ingre">메밀</label>
-						<input type="checkbox" name="ingre" value="메밀">
+						<label for="chk3">메밀</label>
+						<input type="checkbox" id="chk3" name="menu_ingre" value="메밀" class="checkbox">
 						
-						<label for="ingre">땅콩</label>
-						<input type="checkbox" name="ingre" value="땅콩">
+						<label for="chk4">땅콩</label>
+						<input type="checkbox" id="chk4" name="menu_ingre" value="땅콩" class="checkbox">
 						
-						<label for="ingre">대두</label>
-						<input type="checkbox" name="ingre" value="대두">
+						<label for="chk5">대두</label>
+						<input type="checkbox" id="chk5" name="menu_ingre" value="대두" class="checkbox">
 						
-						<label for="ingre">밀</label>
-						<input type="checkbox" name="ingre" value="밀">
+						<label for="chk6">밀</label>
+						<input type="checkbox" id="chk6" name="menu_ingre" value="밀" class="checkbox">
 						
-						<label for="ingre">고등어</label>
-						<input type="checkbox" name="ingre" value="고등어">
+						<label for="chk7">고등어</label>
+						<input type="checkbox" id="chk7" name="menu_ingre" value="고등어" class="checkbox">
 						
-						<label for="ingre">게</label>
-						<input type="checkbox" name="ingre" value="게">
+						<label for="chk8">게</label>
+						<input type="checkbox" id="chk8" name="menu_ingre" value="게" class="checkbox">
 						
-						<label for="ingre">돼지고기</label>
-						<input type="checkbox" name="ingre" value="돼지고기">
+						<label for="chk9">돼지고기</label>
+						<input type="checkbox" id="chk9" name="menu_ingre" value="돼지고기" class="checkbox">
 						
 						<br>
 						
-						<label for="ingre">복숭아</label>
-						<input type="checkbox" name="ingre" value="복숭아">
+						<label for="chk10">복숭아</label>
+						<input type="checkbox" id="chk10" name="menu_ingre" value="복숭아" class="checkbox">
 						
-						<label for="ingre">토마토</label>
-						<input type="checkbox" name="ingre" value="토마토">
+						<label for="chk11">토마토</label>
+						<input type="checkbox" id="chk11" name="menu_ingre" value="토마토" class="checkbox">
 						
-						<label for="ingre">새우</label>
-						<input type="checkbox" name="ingre" value="새우">
+						<label for="chk12">새우</label>
+						<input type="checkbox" id="chk12" name="menu_ingre" value="새우" class="checkbox">
 						
-						<label for="ingre">아황산류</label>
-						<input type="checkbox" name="ingre" value="아황산류">
+						<label for="chk13">아황산류</label>
+						<input type="checkbox" id="chk13" name="menu_ingre" value="아황산류" class="checkbox">
 						
-						<label for="ingre">호두</label>
-						<input type="checkbox" name="ingre" value="호두">
+						<label for="chk14">호두</label>
+						<input type="checkbox" id="chk14" name="menu_ingre" value="호두" class="checkbox">
 						
-						<label for="ingre">닭고기</label>
-						<input type="checkbox" name="ingre" value="닭고기">
+						<label for="chk15">닭고기</label>
+						<input type="checkbox" id="chk15" name="menu_ingre" value="닭고기" class="checkbox">
 						
-						<label for="ingre">쇠고기</label>
-						<input type="checkbox" name="ingre" value="쇠고기">
+						<label for="chk16">쇠고기</label>
+						<input type="checkbox" id="chk16" name="menu_ingre" value="쇠고기" class="checkbox">
 						
-						<label for="ingre">오징어</label>
-						<input type="checkbox" name="ingre" value="오징어">
+						<label for="chk17">오징어</label>
+						<input type="checkbox" id="chk17" name="menu_ingre" value="오징어" class="checkbox">
 						
-						<label for="ingre">조개류</label>
-						<input type="checkbox" name="ingre" value="조개류">
+						<label for="chk18">조개류</label>
+						<input type="checkbox" id="chk18" name="menu_ingre" value="조개류" class="checkbox">
 					</td>
 				</tr>
 				<tr>
-					<td><span>상품 이미지</span></td>
-					<td><input type="file" class="input" id="file"></td>
+					<td><span class="need">*</span><span>상품 이미지</span></td>
+					<td><input type="file" class="input" id="file" name="menu_img"></td>
 				</tr>
 				<tr>
 					<td colspan="2" align="center">
-						<input type="submit" value="등록" class="btn">
-						<input type="button" value="취소" class="btn">
+						<input type="submit" value="수정" class="btn">
+						<input type="reset" value="취소" class="btn">
 					</td>
 				</tr>
 			</table>
+			<input type="hidden" name="category" value="${category }"> 
 		</form>
 	</div>
 	<footer>

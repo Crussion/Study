@@ -3,7 +3,8 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="mybatis.Mapper">
+<mapper namespace="mybatis.DooSotMapper">
+	<!-- 메뉴 -->
 	<insert id="menuWrite" parameterType="menuDTO">
 		insert into menu 
 		values(#{menu_num}, #{menu_name}, #{menu_img}, 
@@ -16,13 +17,33 @@
 	<select id="menuList" parameterType="java.lang.String" resultType="menuDTO">
 		select * from menu where menu_category=#{menu_category} order by menu_date desc
 	</select>
-	<select id="total_content" parameterType="java.lang.String" resultType="int">
-		select count(*) as cnt from menu
-	</select>
-	<select id="category_content" parameterType="java.lang.String" resultType="int">
-		select count(*) as cnt from menu where menu_category=#{menu_category}
-	</select>
 	<select id="menuDetail" parameterType="int" resultType="menuDTO">
 		select * from menu where menu_num=#{menu_num}
 	</select>
+	<update id="menuModify" parameterType="menuDTO">
+		update menu set menu_name=#{menu_name}, menu_img=#{menu_img}, 
+		menu_price=#{menu_price}, menu_content=#{menu_content}, 
+		menu_ingre=#{menu_ingre}, menu_kcal=#{menu_kcal}, 
+		menu_category=#{menu_category} where menu_num=#{menu_num}
+	</update>
+	<delete id="menuDelete" parameterType="int">
+		delete menu where menu_num=#{menu_num}
+	</delete>
+	
+	<!-- 카트-->
+	<select id="check_contents" parameterType="java.lang.String" resultType="int">
+		select count(*) from cart where mem_id=#{mem_id}
+	</select>
+	<select id="create_cart" resultType="int">
+		select cart_seq.nextval from dual
+	</select>
+	<select id="get_cart" parameterType="java.lang.String" resultType="cartDTO">
+		select cart_num from cart where mem_id=#{mem_id}
+	</select>
+	<insert id="add_cart" parameterType="cartDTO">
+		insert into cart values(#{cart_num}, #{cart_qty}, #{mem_id}, #{menu_num})
+	</insert>
+	
+	<!-- 오더 -->
+
 </mapper>

@@ -31,6 +31,8 @@
 	<resources location="/menu_img/" mapping="/menu_img/**"/>
 	
 	<context:component-scan base-package="menu"/>
+	<context:component-scan base-package="cart"/>
+	<context:component-scan base-package="order"/>
 
 	<beans:bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
 		<beans:property name="maxUploadSize" value="5000000"/>
