@@ -6,7 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>두솥</title>
-<link rel="stylesheet" type="text/css" href="../css/main.css">
+<link rel="stylesheet" type="text/css" href="../css/main.css?v=1">
 <link rel="stylesheet" type="text/css" href="../css/menuList.css">
 <script type="text/javascript" src="../script/jquery-3.6.0.min.js"></script>
 <script type="text/javascript">
@@ -134,7 +134,19 @@
 		</div>
 	</c:if>
 	<footer>
-	
+		<div id="footer_content">
+			<div id="footer_head">
+				<p>인재채용 | 협력업체등록 | 공지사항 | 고객 센터 | 개인정보처리방침 | 이용약관</p>
+			</div>
+			<br><br>
+			<hr style="border: 1px solid dimgray;">
+			<div id="footer_foot">
+				<p>대표이사 홍길동 | 사업자등록번호 123-12-12345 | 서울 서초구 서초대로 77길 55,에이프로 스퀘어 3층(서초동) | T.02-1234-1234 | F.02-9876-9876</p>
+				<p>E.doosot@naver.com | 두솥 도시락 고객센터 02-2345-2345 | 전국창업설명회 02-3456-3456 | 단체주문 4567-4567</p>
+				<br>
+				<p>COPYRIGHT (주)두솥.ALL RIGHT RESEVED</p>
+			</div>
+		</div>
 	</footer>
 </body>
 </html>

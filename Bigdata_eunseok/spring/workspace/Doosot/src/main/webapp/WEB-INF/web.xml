@@ -21,7 +21,7 @@
     <url-pattern>*.do</url-pattern>
   </servlet-mapping>
   
-  
+  <!-- 
   <filter>
     <filter-name>encodingFilter</filter-name>
     <filter-class>
@@ -50,4 +50,5 @@
     <servlet-name>memberController</servlet-name>
     <url-pattern>/memberController</url-pattern>
   </servlet-mapping>
+  -->
 </web-app>

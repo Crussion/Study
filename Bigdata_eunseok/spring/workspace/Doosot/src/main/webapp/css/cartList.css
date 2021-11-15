@@ -10,10 +10,11 @@
 .list{
 	width: 1000px;
 	height: 150px;
-	margin: 0 auto;
+	margin-left: 75px;
 	padding: 25px 25px;
 	border-top: 2px solid #ececec;
 	display: flex;
+	align-items: center;
 }
 
 .img{
@@ -54,8 +55,13 @@
 	width: 30px;
 	height: 30px;
 	text-align: center;
-	user-select: none;
-	cursor: pointer;
+}
+
+.list_con .qty{
+	width: 80px;
+	font-size: 20px;
+	text-align: right;
+	border: 2px solid #ececec;
 }
 
 .list_con .qty_plus{
@@ -65,11 +71,44 @@
 	width: 30px;
 	height: 30px;
 	text-align: center;
-	user-select: none;
-	cursor: pointer;
 }
 
 .list_con .menu_price{
 	font-size: 30px;
 	font-weight: 500;
+}
+
+.delete_btn{
+	font-size: 50px;
+	padding-bottom: 25px;
+	margin-left: 50px;
+	opacity: 0.15;
+	user-select: none;
+	cursor: pointer;
+}
+
+#order{
+	width: 1200px;
+	height: 100px;
+	display: flex;
+	justify-content: end;
+	align-content: center;
+}
+
+#order_btn{
+	font-size: 25px;
+	font-weight: 500;
+	text-align: center;
+	background-color: orange;
+	margin-riget: 200px;
+	padding-top: 10px;
+	width: 120px;
+	height: 50px;
+	margin-right: 50px;
+}
+
+#order_btn:hover, .list_con .qty_minus:hover, .list_con .qty_plus:hover{
+	user-select: none;
+	cursor: pointer;
+	background-color: #f0b400;
 }

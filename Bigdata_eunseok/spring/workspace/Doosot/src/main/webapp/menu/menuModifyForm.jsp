@@ -5,7 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>두솥</title>
-<link rel="stylesheet" type="text/css" href="../css/main.css">
+<link rel="stylesheet" type="text/css" href="../css/main.css?v=1">
 <link rel="stylesheet" type="text/css" href="../css/menuModifyForm.css">
 <script type="text/javascript" src="../script/jquery-3.6.0.min.js"></script>
 <script type="text/javascript">
@@ -27,6 +27,41 @@
 				}
 			}
 		})
+		
+		$("#frm").submit(function(){
+		if(!$("input[name='menu_num']").val()){
+			alert("상품 번호를 입력해 주세요.")
+			return false
+		}
+		if($("select[name='menu_category'] option:selected").index == 0){
+			alert("상품 카테고리를 선택해 주세요.")
+			return false
+		}
+		if(!$("input[name='menu_name']").val()){
+			alert("상품 이름을 입력해 주세요.")
+			return false
+		}
+		if(!$("input[name='menu_price']").val()){
+			alert("상품 가격을 입력해 주세요.")
+			return false
+		}
+		if(!$("input[name='menu_kcal']").val()){
+			alert("상품 열량을 입력해 주세요.")
+			return false
+		}
+		if(!$("input[name='menu_kcal']").val()){
+			alert("상품 열량을 입력해 주세요.")
+			return false
+		}
+		if(!$("input[name='menu_ingre']:checked").val()){
+			alert("알레르기 반응을 선택해 주세요.")
+			return false
+		}
+		if(!$("input[name='menu_img']").val()){
+			alert("상품 이미지를 삽입 해주세요.")
+			return false
+		}
+	})
 	})
 </script>
 </head>
@@ -61,7 +96,7 @@
 		</div>
 	</div>
 	<div class="content">
-		<form action="menuModify.do" id="frm" name="menu_frm" method="post" enctype="multipart/form-data">
+		<form action="menuModify.do" id="frm" name="modify_frm" method="post" enctype="multipart/form-data">
 			<table>
 				<tr>
 					<td width="120"><span class="need">*</span><span>상품 번호</span></td>
@@ -166,7 +201,19 @@
 		</form>
 	</div>
 	<footer>
-	
+		<div id="footer_content">
+			<div id="footer_head">
+				<p>인재채용 | 협력업체등록 | 공지사항 | 고객 센터 | 개인정보처리방침 | 이용약관</p>
+			</div>
+			<br><br>
+			<hr style="border: 1px solid dimgray;">
+			<div id="footer_foot">
+				<p>대표이사 홍길동 | 사업자등록번호 123-12-12345 | 서울 서초구 서초대로 77길 55,에이프로 스퀘어 3층(서초동) | T.02-1234-1234 | F.02-9876-9876</p>
+				<p>E.doosot@naver.com | 두솥 도시락 고객센터 02-2345-2345 | 전국창업설명회 02-3456-3456 | 단체주문 4567-4567</p>
+				<br>
+				<p>COPYRIGHT (주)두솥.ALL RIGHT RESEVED</p>
+			</div>
+		</div>
 	</footer>
 </body>
 </html>

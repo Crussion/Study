@@ -7,10 +7,12 @@
 <head>
 <meta charset="UTF-8">
 <title>두솥</title>
-<link rel="stylesheet" type="text/css" href="../css/main.css">
-<link rel="stylesheet" type="text/css" href="../css/menuDetail.css?v=2">
+<link rel="stylesheet" type="text/css" href="../css/main.css?v=1">
+<link rel="stylesheet" type="text/css" href="../css/menuDetail.css">
 <script type="text/javascript" src="../script/jquery-3.6.0.min.js"></script>
 <script type="text/javascript">
+	var cart_num = "${cart_num }"
+	
 	function qty_plus(price){
 		var qty = $("#food_qty").html()
 		if(qty < 1){
@@ -30,6 +32,7 @@
 		}
 	}
 	$(function(){
+		$("#hidden").html(cart_num)
 		$(".qty_btn").hover(function(){
 			$(this).css("background-color", "#f0b400")
 		},function(){
@@ -48,26 +51,46 @@
 			if("${login_id }" == ""){
 				alert("로그인이 필요합니다.")
 			}else{
-				$.post("add_cart.do", {
-					cart_qty: $("#food_qty").html(),
-					mem_id: "${login_id }",
-					menu_num: ${dto.menu_num }
-				},function(result){
-					if(result != null){
-						alert("장바구니에 추가 했습니다.")
-					}else{
-						alert("장바구니에 담지 못했습니다.")
-					}
-				}).fail(function(result){
-					alert("잠시 후 시도해 주세요.")
-				})
-				return false
+				if(confirm("장바구니에 추가 하시겠습니까?")){
+					$.post("add_cart.do", {
+						cart_qty: $("#food_qty").html(),
+						mem_id: "${login_id }",
+						menu_num: ${dto.menu_num }
+					},function(result){
+						if(result != null){
+							alert("장바구니에 추가 했습니다.")
+						}else{
+							alert("장바구니에 추가 못했습니다.")
+						}
+					}).fail(function(result){
+						alert("잠시 후 시도해 주세요.")
+					})
+					return false
+				}
+			}
+		})
+		$("#set_order").click(function(){
+			if(confirm("주문 하시겠습니까?")){
+				if("${login_id }" == ""){
+					alert("로그인이 필요합니다.")
+				}else{
+					$.post("add_cart.do", {
+						cart_qty: $("#food_qty").html(),
+						mem_id: "${login_id }",
+						menu_num: ${dto.menu_num }
+					},function(result){
+						location.href = "../order/order.do"
+					}).fail(function(result){
+						alert("잠시 후 시도해 주세요.")
+					})
+				}
 			}
 		})
 	})
 </script>
 </head>
 <body>
+	<div id="hidden" style="display: none;">${cart_num }</div>
 	<header>
 		<div class="flex">
 			<a href="member/member_login.jsp">로그인 </a>|
@@ -116,7 +139,7 @@
 					<div class="qty_btn" id="qty_plus" onclick="qty_plus(${dto.menu_price })">&gt;</div>
 				</div>
 				<div class="btn_list">
-					<div class="btn" id="put_cart">장바구니</div>
+					<div class="btn" id="put_cart">장바구니 추가</div>
 					<div class="btn" id="set_order">주문하기</div>
 				</div>
 			</div>
@@ -163,7 +186,19 @@
 		</div>
 	</c:if>
 	<footer>
-	
+		<div id="footer_content">
+			<div id="footer_head">
+				<p>인재채용 | 협력업체등록 | 공지사항 | 고객 센터 | 개인정보처리방침 | 이용약관</p>
+			</div>
+			<br><br>
+			<hr style="border: 1px solid dimgray;">
+			<div id="footer_foot">
+				<p>대표이사 홍길동 | 사업자등록번호 123-12-12345 | 서울 서초구 서초대로 77길 55,에이프로 스퀘어 3층(서초동) | T.02-1234-1234 | F.02-9876-9876</p>
+				<p>E.doosot@naver.com | 두솥 도시락 고객센터 02-2345-2345 | 전국창업설명회 02-3456-3456 | 단체주문 4567-4567</p>
+				<br>
+				<p>COPYRIGHT (주)두솥.ALL RIGHT RESEVED</p>
+			</div>
+		</div>
 	</footer>
 </body>
 </html>

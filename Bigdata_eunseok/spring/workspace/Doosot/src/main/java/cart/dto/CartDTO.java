@@ -5,6 +5,7 @@ public class CartDTO {
 	private int cart_qty;
 	private String mem_id;
 	private int menu_num;
+	private String cart_progress;
 	
 	public int getCart_num() {
 		return cart_num;
@@ -29,6 +30,12 @@ public class CartDTO {
 	}
 	public void setMenu_num(int menu_num) {
 		this.menu_num = menu_num;
+	}
+	public String getCart_progress() {
+		return cart_progress;
+	}
+	public void setCart_progress(String cart_progress) {
+		this.cart_progress = cart_progress;
 	}
 	
 }

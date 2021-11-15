@@ -6,8 +6,9 @@ public class OrderDTO {
 	private String order_addr;
 	private String order_comment;
 	private String order_date;
+	private int cart_num;
 	private String mem_id;
-	private String loca_num;
+	private int loca_num;
 	
 	public int getOrder_seq() {
 		return order_seq;
@@ -39,16 +40,23 @@ public class OrderDTO {
 	public void setOrder_date(String order_date) {
 		this.order_date = order_date;
 	}
+	
+	public int getCart_num() {
+		return cart_num;
+	}
+	public void setCart_num(int cart_num) {
+		this.cart_num = cart_num;
+	}
 	public String getMem_id() {
 		return mem_id;
 	}
 	public void setMem_id(String mem_id) {
 		this.mem_id = mem_id;
 	}
-	public String getLoca_num() {
+	public int getLoca_num() {
 		return loca_num;
 	}
-	public void setLoca_num(String loca_num) {
+	public void setLoca_num(int loca_num) {
 		this.loca_num = loca_num;
 	}
 	

@@ -8,6 +8,7 @@
 		<typeAlias type="menu.dto.MenuDTO" alias="menuDTO"/>
 		<typeAlias type="cart.dto.CartDTO" alias="cartDTO"/>
 		<typeAlias type="order.dto.OrderDTO" alias="orderDTO"/>
+		<typeAlias type="cartList.dto.CartListDTO" alias="cartListDTO"/>
 	</typeAliases>
 	
 	<!-- SQL Mapper 설정 -->
