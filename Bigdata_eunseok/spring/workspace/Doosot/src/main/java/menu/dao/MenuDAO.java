@@ -25,6 +25,10 @@ public class MenuDAO {
 		return sqlSession.selectList("mybatis.DooSotMapper.menuList", menu_category);
 	}
 	
+	public List<MenuDTO> menuListDisabled(){
+	    return sqlSession.selectList("mybatis.DooSotMapper.menuListDisabled");
+	}
+	
 	public MenuDTO menuDetail(int menu_num) {
 		return sqlSession.selectOne("mybatis.DooSotMapper.menuDetail", menu_num);
 	}
@@ -33,7 +37,10 @@ public class MenuDAO {
 		return sqlSession.update("mybatis.DooSotMapper.menuModify", dto);
 	}
 	
-	public int menuDelete(int menu_num) {
-		return sqlSession.delete("mybatis.DooSotMapper.menuDelete", menu_num);
+	public int menuDisable(int menu_num) {
+		return sqlSession.delete("mybatis.DooSotMapper.menuDisable", menu_num);
+	}
+	public int menuAble(int menu_num) {
+	    return sqlSession.update("mybatis.DooSotMapper.menuAble", menu_num);
 	}
 }

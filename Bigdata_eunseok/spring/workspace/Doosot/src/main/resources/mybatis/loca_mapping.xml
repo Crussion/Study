@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mybatis.LocaMapper">
+	<!-- loca -->
+	<!-- 리스트 불러오기 기능 -->
+	<select id="loca_List" parameterType="java.util.Map" resultType="locaDto">
+		<![CDATA[
+			select * from
+			(select rownum rn, tt.* from 
+			(select * from loca order by loca_num desc) tt)
+			where rn>=#{startNum} and rn<=#{endNum}
+		]]>
+	</select>
+	
+	<!-- 검색 후 리스트 불러오기 기능 -->
+	<select id="loca_SearchList" parameterType="java.util.Map" resultType="locaDto">
+		<![CDATA[
+			select cc.* from
+			(select rownum rn, tt.* from
+			(select * from loca order by loca_num desc) tt
+			where loca_addr like '%'||#{juso}||'%') cc 
+			where rn>=#{startNum} and rn <=#{endNum}
+			
+		]]>
+	</select>		
+	
+	<!-- 검색 후 게시물 수 구하기 -->
+	<select id="loca_TotalS" parameterType="String" resultType="int">
+		select count(*) as cnt from loca where loca_addr like '%'||#{juso}||'%'
+	</select>	
+	
+	<!-- 지점 생성 작성 -->
+	<insert id="loca_Write" parameterType="locaDto">
+		insert into loca values
+		(loca_num.nextval, #{loca_name}, #{loca_addr}, #{loca_phone}, #{loca_img}, sysdate)
+	</insert>
+	
+	<!-- 총 게시물 수 구하기 -->
+	<select id="loca_Total" resultType="int">
+		select count(*) as cnt from loca
+	</select>
+	
+	<!-- 지점 상세보기 -> 수정시 필요 -->
+	<select id="loca_View" parameterType="int" resultType="locaDto">
+		select * from loca where loca_num=#{loca_num}
+	</select>	
+	
+	<!-- 지점 삭제하기 -->
+	<select id="loca_Delete" parameterType="int">
+		delete loca where loca_num=#{loca_num}
+	</select>	
+
+	<!-- 지점 수정 -->
+	<insert id="loca_Corr" parameterType="eventDto">
+		update loca set loca_name =#{loca_name}, loca_addr=#{loca_addr}, loca_phone=#{loca_phone}, loca_img=#{loca_img}, loca_date=sysdate where loca_num=#{loca_num}
+	</insert>	
+	
+</mapper>

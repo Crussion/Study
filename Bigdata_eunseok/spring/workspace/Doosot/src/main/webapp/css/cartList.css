@@ -1,5 +1,6 @@
 @charset "UTF-8";
 .content{
+	min-height: 245px;
 	margin: 50px auto;
 }
 
@@ -100,7 +101,7 @@
 	font-weight: 500;
 	text-align: center;
 	background-color: orange;
-	margin-riget: 200px;
+	margin-right: 200px;
 	padding-top: 10px;
 	width: 120px;
 	height: 50px;

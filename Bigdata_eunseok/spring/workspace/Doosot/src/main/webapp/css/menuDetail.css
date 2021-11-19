@@ -105,12 +105,12 @@
 	margin: 0 15px;
 	width: 40px;
 	height: 40px;
-	line-height: 30px;
+	line-height: 40px;
 	cursor: pointer;
 	user-select: none;
 }
 
-#qty #qyt_minus:hover, #qty $qty_plus:hover{
+#qty #qyt_minus:hover, #qty #qty_plus:hover{
 	background-color: #f0b400;
 }
 

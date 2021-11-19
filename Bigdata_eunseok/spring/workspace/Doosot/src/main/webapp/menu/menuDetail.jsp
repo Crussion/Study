@@ -8,7 +8,7 @@
 <meta charset="UTF-8">
 <title>두솥</title>
 <link rel="stylesheet" type="text/css" href="../css/main.css?v=1">
-<link rel="stylesheet" type="text/css" href="../css/menuDetail.css">
+<link rel="stylesheet" type="text/css" href="../css/menuDetail.css?v=1">
 <script type="text/javascript" src="../script/jquery-3.6.0.min.js"></script>
 <script type="text/javascript">
 	var cart_num = "${cart_num }"
@@ -41,9 +41,16 @@
 		$("#menuModify").click(function(){
 			location.href = "menuModifyForm.do?menu_num=" + ${dto.menu_num } + "&menu_category=" + "${category }"
 		})
-		$("#menuDelete").click(function(){
-			location.href = "menuDelete.do?menu_num=" + ${dto.menu_num } + "&menu_category=" + "${category }"
-		})
+		$("#menuDisable").click(function(){
+			if(confirm("메뉴를 비활성화 하시겠습니까?")){
+	            location.href = "menuDisable.do?menu_num=" + ${dto.menu_num } + "&menu_category=" + "${category }"
+	         }
+		});
+		$("#menuAble").click(function(){
+         	if(confirm("메뉴를 활성화 하시겠습니까?")){
+           		location.href = "menuAble.do?menu_num=" + ${dto.menu_num } + "&menu_category=" + "${category }"
+        	}
+      	});
 		$(".title").click(function(){
 			location.href = "menuList.do?menu_category=" + "${category }"
 		})
@@ -93,27 +100,43 @@
 	<div id="hidden" style="display: none;">${cart_num }</div>
 	<header>
 		<div class="flex">
-			<a href="member/member_login.jsp">로그인 </a>|
-			<a href="member/member_join.jsp"> 회원가입 </a>|
-			<a href="#"> 인스타</a>
-			<a href="#">페이스북</a>
+			<c:if test="${empty login_id }">
+				<a href="../member/member_login.jsp">로그인 </a>|
+				<a href="../member/member_join.jsp"> 회원가입 </a>|
+			</c:if>
+			<c:if test="${not empty login_id }">
+				<a href="member_logout.do">로그아웃 </a>|
+				<c:if test="${admin_num == null }">
+					<a href="cartList.do">장바구니 </a>|
+					<a href="../member/member_mypage.jsp">예치금 : ${mem_deposit }원 </a>|
+					<a href="../member/member_mypage.jsp"> 마이페이지 </a>|
+					<!-- <a href="menu_order_page.do"> 주문하기 </a>| -->
+				</c:if>
+				<c:if test="${admin_num == '1' }">
+					<a href="member_manage.do"> 가입자관리 </a>|
+				</c:if>
+			</c:if>
+			<a href="https://www.instagram.com/hansot_official/">
+				<img src="../img/insta.png" width=14px height=14px style="max-width: 100%; height: auto;">
+			</a>
+			<a href="https://www.facebook.com/hansotOfficial/?ref=ts&fref=ts">
+				<img src="../img/face.png" width=18px height=18px style="max-width: 100%; height: auto;">
+			</a>
 		</div>
 		<div class="main_top_list">
 			<div class="logo">
-				<a href="main.jsp"><img src="img/DS2.png"></a>
+				<a href="../main/main.jsp"><img src="../img/DS2.png"></a>
 			</div>
 			<div class="top_list">
 				<ul>
-					<li class="mtl"><a href="*">BRAND</a></li>
-					<li class="mtl"><a href="../menu/menuList.do">MENU</a></li>
-					<li class="mtl"><a href="#">STORE</a></li>
-					<li class="mtl"><a href="#">EVENT</a></li>
-					<li class="mtl"><a href="#">FRANCHISE</a></li>
+					<li class="mtl"><a href="#">BRAND</a></li>
+					<li class="mtl"><a href="menuList.do">MENU</a></li>
+					<li class="mtl"><a href="loca_list.do?pg=1">STORE</a></li>
+					<li class="mtl"><a href="event_list.do?pg=1">EVENT</a></li>
 					<li class="mtl"><a href="#">QnA</a></li>
 				</ul>
 			</div>
 		</div>
-		<div class="main_photo"></div>
 	</header>
 	<div class="container">
 		<div class="subject" align="center">
@@ -132,16 +155,18 @@
 				<div id="price">
 					<span id="con_p4">${dto.menu_price }</span><span id="won">원</span><!-- 음식 가격 -->
 				</div>
-				<div id="qty">
-					<span>수량</span>
-					<div class="qty_btn" id="qty_minus" onclick="qty_minus(${dto.menu_price })">&lt;</div>
-					<span id="food_qty">1</span>
-					<div class="qty_btn" id="qty_plus" onclick="qty_plus(${dto.menu_price })">&gt;</div>
-				</div>
-				<div class="btn_list">
-					<div class="btn" id="put_cart">장바구니 추가</div>
-					<div class="btn" id="set_order">주문하기</div>
-				</div>
+				<c:if test="${dto.menu_enable == 1 && login_id != null}">
+               		<div id="qty">
+                 	 	<span>수량</span>
+                  		<div class="qty_btn" id="qty_minus" onclick="qty_minus(${dto.menu_price })">&lt;</div>
+                  		<span id="food_qty">1</span>
+                  		<div class="qty_btn" id="qty_plus" onclick="qty_plus(${dto.menu_price })">&gt;</div>
+               		</div>
+               		<div class="btn_list">
+                  		<div class="btn" id="put_cart">장바구니 추가</div>
+                  		<div class="btn" id="set_order">주문하기</div>
+               		</div>
+            	</c:if>
 			</div>
 		</div>
 	</div>
@@ -177,11 +202,16 @@
 			<p><span style="font-size: 2.4em; margin: 10px 10px;">×</span>해당 알레르기 성분이 포함되어 있지 않음</p>
 		</div>
 	</div>
-	<c:if test="True">
+	<c:if test="${admin_num == '1' }">
 		<div class="admin_bar">
 			<div class="admin_bar_list">
 				<div class="bar_btn" id="menuModify">음식 수정</div>
-				<div class="bar_btn" id="menuDelete">음식 삭제</div>
+				<c:if test="${dto.menu_enable == 1 }">
+               		<div class="bar_btn" id="menuDisable">음식 비활성화</div>
+            	</c:if>
+            	<c:if test="${dto.menu_enable == 0 }">
+               		<div class="bar_btn" id="menuAble">음식 활성화</div>
+            	</c:if>
 			</div>
 		</div>
 	</c:if>

@@ -8,11 +8,11 @@
 <script type="text/javascript">
 window.onload = function(){
 	if(${result} > 0){
-		alert("삭제 완료")
-		location.href = "menuList.do?menu_category=" + "${category }"
+		alert("비활성화 완료");
+		location.href = "menuList.do?menu_category=" + "${category }";
 	}else if(${result} == 0){
-		alert("삭제 실패")
-		history.back()
+		alert("비활성화 실패");
+		history.back();
 	}
 }
 </script>

@@ -23,7 +23,7 @@ public class CartController {
 	@Autowired
 	CartListDAO cartList_dao;
 	
-	@RequestMapping("/cart/cartList.do")
+	@RequestMapping("*/cartList.do")
 	ModelAndView cartList(HttpServletRequest request) {
 		HttpSession session = request.getSession();
 		String mem_id = session.getAttribute("login_id").toString();
@@ -40,12 +40,12 @@ public class CartController {
 		ModelAndView modelAndView = new ModelAndView();
 		modelAndView.addObject("list", list);
 		modelAndView.addObject("cart_num", cart_num);
-		modelAndView.setViewName("cartList.jsp");
+		modelAndView.setViewName("../cart/cartList.jsp");
 		
 		return modelAndView;
 	}
 	
-	@RequestMapping("/menu/add_cart.do")
+	@RequestMapping("*/add_cart.do")
 	ModelAndView add_cart(HttpServletRequest request) {
 		int cart_qty = Integer.parseInt(request.getParameter("cart_qty"));
 		String mem_id = request.getParameter("mem_id");
@@ -81,12 +81,12 @@ public class CartController {
 		ModelAndView modelAndView = new ModelAndView();
 		modelAndView.addObject("result", result);
 		modelAndView.addObject("cart_num", cart_num);
-		modelAndView.setViewName("menuDetail.jsp");
+		modelAndView.setViewName("../menu/menuDetail.jsp");
 		
 		return modelAndView;
 	}
 	
-	@RequestMapping("/cart/update_qty.do")
+	@RequestMapping("*/update_qty.do")
 	ModelAndView update_qty(HttpServletRequest request) {
 		String mem_id = request.getSession().getAttribute("login_id").toString();
 		String menu_n = request.getParameter("menu_name");
@@ -109,7 +109,7 @@ public class CartController {
 		}
 		
 		ModelAndView modelAndView = new ModelAndView();
-		modelAndView.setViewName("redirect:../order/order.do");
+		modelAndView.setViewName("order.do");
 		return modelAndView;
 	}
 	
@@ -129,7 +129,7 @@ public class CartController {
 		
 		ModelAndView modelAndView = new ModelAndView();
 		modelAndView.addObject("result", result);
-		modelAndView.setViewName("cartList.do");
+		modelAndView.setViewName("../cart/cartList.do");
 		
 		return modelAndView;
 	}

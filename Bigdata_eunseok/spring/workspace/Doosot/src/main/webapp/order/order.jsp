@@ -24,8 +24,8 @@
 		return decodeURI(returnValue);
 	};
 	$(function() {
-		var mem_name = getParameters("mem_name");
-		var mem_addr = getParameters("mem_addr");
+		var mem_name = "${login_name}";
+		var mem_addr = "${login_addr}";
 		
 		if(mem_name != null && mem_addr != null){
 			$("input[name='deli_name']").attr("value",mem_name);
@@ -68,12 +68,14 @@
 					$("input[name='deli_addr']").focus()
 					return false
 				}
+				/*
 				if($("input[name='deli_store_name']").val() == "지점선택" && 
 					$("input[name='deli_store_addr']").val() == "지점선택"){
 					alert("지점을 선택해 주세요.")
 					$("input[name='deli_store_addr']").focus()
 					return false
 				}
+				*/
 				
 				var deposit = parseInt($("#deposit").html())
 				var total_price = parseInt($("#total_price").html())
@@ -89,7 +91,9 @@
 						frm.submit()
 					}
 				}else{
-					alert("예치금이 부족합니다. 충전 후 다시 결제해 주세요.")
+					if(confirm("예치금이 부족합니다. 충전페이지로 가시겠습니까?")){
+						location.href="../member/member_mypage.jsp";
+					}
 				}
 			}
 		})
@@ -111,15 +115,14 @@
 				return false
 			}
 		})
-		
 	});
-	
 </script>
 </head>
 <body>
 	<header>
 		<div class="flex">
 			<a href="member_logout.do">로그아웃 </a>|
+			<a href="cartList.do">장바구니 </a>|
 			<a href="../member/member_mypage.jsp">예치금 : ${mem_deposit }원 </a>|
 			<a href="../member/member_mypage.jsp">마이페이지 </a>|
 			<a href="https://www.instagram.com/hansot_official/">
@@ -137,10 +140,9 @@
 				<div class="top_list">
 					<ul>
 						<li class="mtl"><a href="#">BRAND</a></li>
-						<li class="mtl"><a href="../menu/menuList.do">MENU</a></li>
-						<li class="mtl"><a href="#">STORE</a></li>
-						<li class="mtl"><a href="#">EVENT</a></li>
-						<li class="mtl"><a href="#">FRANCHISE</a></li>
+						<li class="mtl"><a href="menuList.do">MENU</a></li>
+						<li class="mtl"><a href="loca_list.do?pg=1">STORE</a></li>
+						<li class="mtl"><a href="event_list.do?pg=1">EVENT</a></li>
 						<li class="mtl"><a href="#">QnA</a></li>
 					</ul>
 				</div>
@@ -176,7 +178,7 @@
    						<tr>
    							<td class="label">수령자</td>
    							<td class="deli_content">
-   								<input type="text" name="deli_name" value="${mem_name }" class="short">
+   								<input type="text" name="deli_name" value="${login_name }" class="short">
    							</td>
    						</tr>
    						<tr>
@@ -184,9 +186,10 @@
    						</tr>
    						<tr>
 							<td colspan="2" class="deli_content">
-								<input type="text" name="deli_addr" value="${mem_addr }" class="long">
+								<input type="text" name="deli_addr" value="${login_addr }" class="long">
 							</td>
 						</tr>
+						<!-- 
    						<tr>
    							<td class="label">지점선택</td>
    							<td class="deli_content">
@@ -198,6 +201,7 @@
    								<input type="text" name="deli_store_addr" value="지점선택" class="long" readonly>
    							</td>
    						</tr>
+   						 -->
    						<tr>
    							<td class="label">요청사항</td>
    							<td class="deli_content">
@@ -221,7 +225,7 @@
    				</form>
    			</div>
    			<div id="calc">
-   				<p>예치금: <span id="deposit" class="calc_num">168000</span> 원</p>
+   				<p>예치금: <span id="deposit" class="calc_num">${mem_deposit }</span> 원</p>
    				<p>총 금액: <span id="total_price" class="calc_num"></span> 원</p>
    			</div>
    			<input id="order_btn" type="button" value="주문하기">

@@ -4,7 +4,7 @@
 	margin: 0;
 }
 header{
-	height:680px;
+	height:120px;
 }
 
 body {
@@ -22,6 +22,7 @@ body {
 	color: dimgray;
 	z-index: 2;
 }
+
 .flex a{text-decoration: none;}
 .flex a:link { color: dimgray; }
 .flex a:visited { color: dimgray; }
@@ -60,7 +61,7 @@ padding-right:66px;
 }
 .container {
 	width: 1200px;
-	height: 140px;
+	height: 1000px;
 	margin-top: 50px;
 	margin: 50px auto;
 	background-color: white;
@@ -113,4 +114,8 @@ footer {
 	margin: 0 auto;
 	margin-top: 30px;
 	background: orange;
+	padding-top: 50px;
 }
+footer p{text-align:center; color:#3D3D3D;}
+#footer_head{width:1200px; margin:0 auto; font-size:17px;}
+#footer_foot{margin:0 auto; padding-top:30px;}

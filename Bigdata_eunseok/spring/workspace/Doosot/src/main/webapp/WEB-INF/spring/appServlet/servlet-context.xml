@@ -21,23 +21,28 @@
 		<beans:property name="prefix" value="/WEB-INF/views/" />
 		<beans:property name="suffix" value=".jsp" />
 	</beans:bean>
-	-->
+	 -->
+	 
+	<context:component-scan base-package="com.Doosot.Doosot" />
 	
-	<context:component-scan base-package="com.doosot.doosot" />
+	<resources mapping="/script/**" location="/script/"/>
+	<resources mapping="/img/**" location="/img/" />
+	<resources mapping="/css/**" location="/css/" />
 	
-	<resources location="/script/" mapping="/script/**"/>
-	<resources location="/css/" mapping="/css/**"/>
-	<resources location="/image/" mapping="/image/**"/>
 	<resources location="/menu_img/" mapping="/menu_img/**"/>
+	<resources location="/loca_map/" mapping="/loca_map/**"/>
+	<resources location="/event_img/" mapping="/event_img/**"/>
 	
+	<context:component-scan base-package="member"/>
+	<context:component-scan base-package="event" />
+	<context:component-scan base-package="loca" />
 	<context:component-scan base-package="menu"/>
 	<context:component-scan base-package="cart"/>
 	<context:component-scan base-package="order"/>
 	<context:component-scan base-package="cartList"/>
-
+	
 	<beans:bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
 		<beans:property name="maxUploadSize" value="5000000"/>
 		<beans:property name="defaultEncoding" value="UTF-8"/>
 	</beans:bean>
-	
 </beans:beans>

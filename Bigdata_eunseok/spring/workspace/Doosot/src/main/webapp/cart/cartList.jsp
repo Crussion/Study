@@ -7,7 +7,7 @@
 <meta charset="UTF-8">
 <title>두솥</title>
 <link rel="stylesheet" type="text/css" href="../css/main.css?v=1">
-<link rel="stylesheet" type="text/css" href="../css/cartList.css">
+<link rel="stylesheet" type="text/css" href="../css/cartList.css?v=2">
 <script type="text/javascript" src="../script/jquery-3.6.0.min.js"></script>
 <script type="text/javascript">
 
@@ -99,27 +99,33 @@ $(function(){
 <body>
 	<header>
 		<div class="flex">
-			<a href="member/member_login.jsp">로그인 </a>|
-			<a href="member/member_join.jsp"> 회원가입 </a>|
-			<a href="#"> 인스타</a>
-			<a href="#">페이스북</a>
+			<a href="member_logout.do">로그아웃 </a>|
+			<a href="cartList.do">장바구니 </a>|
+			<a href="../member/member_mypage.jsp">예치금 : ${mem_deposit }원 </a>|
+			<a href="../member/member_mypage.jsp">마이페이지 </a>|
+			<a href="https://www.instagram.com/hansot_official/">
+				<img src="../img/insta.png" width=14px height=14px style="max-width: 100%; height: auto;">
+			</a>
+			<a href="https://www.facebook.com/hansotOfficial/?ref=ts&fref=ts">
+				<img src="../img/face.png" width=18px height=18px style="max-width: 100%; height: auto;">
+			</a>
 		</div>
-		<div class="main_top_list">
-			<div class="logo">
-				<a href="main.jsp"><img src="img/DS2.png"></a>
-			</div>
-			<div class="top_list">
-				<ul>
-					<li class="mtl"><a href="*">BRAND</a></li>
-					<li class="mtl"><a href="../menu/menuList.do">MENU</a></li>
-					<li class="mtl"><a href="#">STORE</a></li>
-					<li class="mtl"><a href="#">EVENT</a></li>
-					<li class="mtl"><a href="#">FRANCHISE</a></li>
-					<li class="mtl"><a href="#">QnA</a></li>
-				</ul>
+		<div class="top">
+			<div class="main_top_list">
+				<div class="logo">
+					<a href="../main/main.jsp"><img src="../img/DS2.png"></a>
+				</div>
+				<div class="top_list">
+					<ul>
+						<li class="mtl"><a href="#">BRAND</a></li>
+						<li class="mtl"><a href="menuList.do">MENU</a></li>
+						<li class="mtl"><a href="loca_list.do?pg=1">STORE</a></li>
+						<li class="mtl"><a href="event_list.do?pg=1">EVENT</a></li>
+						<li class="mtl"><a href="#">QnA</a></li>
+					</ul>
+				</div>
 			</div>
 		</div>
-		<div class="main_photo"></div>
 	</header>
 	<div class="container">
 		<div class="subject" align="center">

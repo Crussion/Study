@@ -1,6 +1,5 @@
 package menu.controller;
 
-
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -26,14 +25,14 @@ public class MenuController {
 	@Autowired
 	MenuDAO dao;
 	
-	@RequestMapping("/menu/menuWriteForm.do")
+	@RequestMapping("*/menuWriteForm.do")
 	ModelAndView menuWriteForm() {
 		ModelAndView modelAndView = new ModelAndView();
-		modelAndView.setViewName("menuWriteForm.jsp");
+		modelAndView.setViewName("../menu/menuWriteForm.jsp");
 		return modelAndView;
 	}
 	
-	@RequestMapping("/menu/menuWrite.do")
+	@RequestMapping("*/menuWrite.do")
 	ModelAndView menuWrite(HttpServletRequest request, MultipartFile menu_img) {
 		String filePath, fileName = null;
 		if(menu_img != null) {
@@ -73,37 +72,38 @@ public class MenuController {
 		
 		ModelAndView modelAndView = new ModelAndView();
 		modelAndView.addObject("result", result);
-		modelAndView.setViewName("menuWrite.jsp");
+		modelAndView.setViewName("../menu/menuWrite.jsp");
 		
 		return modelAndView;
 	}
 
-	@RequestMapping("/menu/menuList.do")
+	@RequestMapping("*/menuList.do")
 	ModelAndView menuList(HttpServletRequest request) {
 		String menu_category = null;
-		List<MenuDTO> list;
-		if(request.getParameter("menu_category") != null) {
-			menu_category = request.getParameter("menu_category");
-			if(menu_category.equals("total")) {
-				list = dao.menuList();
-			}else {
-				list = dao.menuList(menu_category);
-			}
-		}else {
-			list = dao.menuList();
-		}
-		
-		ModelAndView modelAndView = new ModelAndView();
-		modelAndView.addObject("list", list);
-		modelAndView.addObject("category", menu_category);
-		modelAndView.setViewName("menuList.jsp");
-		return modelAndView;
+	    List<MenuDTO> list;
+	    if(request.getParameter("menu_category") != null) {
+	    	menu_category = request.getParameter("menu_category");
+	        	if(menu_category.equals("total")) {
+	        		list = dao.menuList();
+	        	}else {
+	        		list = dao.menuList(menu_category);
+	        	}
+	    }else {
+	      	list = dao.menuList();
+	    }
+	      
+	    List<MenuDTO> disableList = dao.menuListDisabled();
+	      
+	    ModelAndView modelAndView = new ModelAndView();
+	    modelAndView.addObject("list", list);
+	    modelAndView.addObject("disableList", disableList);
+	    modelAndView.addObject("category", menu_category);
+	    modelAndView.setViewName("../menu/menuList.jsp");
+	    return modelAndView;
 	}
 	
-	@RequestMapping("/menu/menuDetail.do")
+	@RequestMapping("*/menuDetail.do")
 	ModelAndView menuDetail(HttpServletRequest request) {
-		HttpSession session = request.getSession();
-		session.setAttribute("login_id", "hong");
 		
 		int menu_num = Integer.parseInt(request.getParameter("menu_num"));
 		String category = request.getParameter("category");
@@ -118,11 +118,11 @@ public class MenuController {
 		modelAndView.addObject("dto", dto);
 		modelAndView.addObject("category", category);
 		modelAndView.addObject("ingre_list", ingre_list);
-		modelAndView.setViewName("menuDetail.jsp");
+		modelAndView.setViewName("../menu/menuDetail.jsp");
 		return modelAndView;
 	}
 	
-	@RequestMapping("/menu/menuModifyForm.do")
+	@RequestMapping("*/menuModifyForm.do")
 	ModelAndView menuModifyForm(HttpServletRequest request) {
 		int menu_num = Integer.parseInt(request.getParameter("menu_num"));
 		String category = request.getParameter("menu_category");
@@ -132,11 +132,11 @@ public class MenuController {
 		ModelAndView modelAndView = new ModelAndView();
 		modelAndView.addObject("category", category);
 		modelAndView.addObject("dto", dto);
-		modelAndView.setViewName("menuModifyForm.jsp");
+		modelAndView.setViewName("../menu/menuModifyForm.jsp");
 		return modelAndView;
 	}
 	
-	@RequestMapping("/menu/menuModify.do")
+	@RequestMapping("*/menuModify.do")
 	ModelAndView menuModify(HttpServletRequest request, MultipartFile menu_img) {
 		String filePath, fileName = null;
 		if(menu_img != null) {
@@ -180,23 +180,37 @@ public class MenuController {
 		modelAndView.addObject("result", result);
 		modelAndView.addObject("menu_num", dto.getMenu_num());
 		modelAndView.addObject("category", category);
-		modelAndView.setViewName("menuModify.jsp");
+		modelAndView.setViewName("../menu/menuModify.jsp");
 		
 		return modelAndView;
 	}
 	
-	@RequestMapping("/menu/menuDelete.do")
-	ModelAndView menuDelete(HttpServletRequest request) {
+	@RequestMapping("*/menuDisable.do")
+	ModelAndView menuDisable(HttpServletRequest request) {
 		int menu_num = Integer.parseInt(request.getParameter("menu_num"));
 		String category = request.getParameter("menu_category");
 		
-		int result = dao.menuDelete(menu_num);
+		int result = dao.menuDisable(menu_num);
 		
 		ModelAndView modelAndView = new ModelAndView();
 		modelAndView.addObject("result", result);
 		modelAndView.addObject("category", category);
-		modelAndView.setViewName("menuDelete.jsp");
+		modelAndView.setViewName("../menu/menuDisable.jsp");
 		
 		return modelAndView;
 	}
+	@RequestMapping("*/menuAble.do")
+	   ModelAndView menuAble(HttpServletRequest request) {
+	      int menu_num = Integer.parseInt(request.getParameter("menu_num"));
+	      String category = request.getParameter("menu_category");
+	      
+	      int result = dao.menuAble(menu_num);
+	      
+	      ModelAndView modelAndView = new ModelAndView();
+	      modelAndView.addObject("result", result);
+	      modelAndView.addObject("category", category);
+	      modelAndView.setViewName("../menu/menuAble.jsp");
+	      
+	      return modelAndView;
+	   }
 }
