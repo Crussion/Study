@@ -41,11 +41,11 @@
 			</div>
 			<div class="top_list">
 				<ul>
-					<li class="mtl"><a href="#">BRAND</a></li>
+					<li class="mtl"><a href="../brand/brand.jsp">BRAND</a></li>
 					<li class="mtl"><a href="menuList.do">MENU</a></li>
 					<li class="mtl"><a href="loca_list.do?pg=1">STORE</a></li>
 					<li class="mtl"><a href="event_list.do?pg=1">EVENT</a></li>
-					<li class="mtl"><a href="#">QnA</a></li>
+					<li class="mtl"><a href="FAQList.do?pg=1">QnA</a></li>
 				</ul>
 			</div>
 		</div>
@@ -56,7 +56,7 @@
 			<div id="con_1">
 	            <h3>브랜드 철학</h3>
 	            <span id="con_span_1">든든한 솥밥을 위해<br>지키고, 키워가는 것들</span>
-	            <span id="con_span_2">한솥은 ‘따끈한 도시락으로 지역사회에 공헌한다’ 라는 기업이념 아래, 고객이익을 
+	            <span id="con_span_2">두솥은 ‘따끈한 도시락으로 지역사회에 공헌한다’ 라는 기업이념 아래, 고객이익을 
 	            최우선으로 하며 엄선된 좋은 식재료만 사용하는 대한민국 외식종합기업 시장을 
 	            리드하는 글로벌 종합외식기업입니다.</span>
             </div>
@@ -96,12 +96,12 @@
 					<h1>정직한 솥밥</h1>
 					<div>
 						<p>
-							<span>한솥은 손해를 감수하고서라도 
+							<span>두솥은 손해를 감수하고서라도 
 							원칙과 신념을 지킵니다. 언제나</span>
 							<span>고객에게 드릴 수 있는 가치를 
 							최우선으로 삼기에 고객이 믿고</span>
 							<span>사랑하는 기업으로 성장할 수 있었지요.</span>
-							<span>그것이 한솥 도시락의 가격이 늘 착한 이유입니다.</span>
+							<span>그것이 두솥 도시락의 가격이 늘 착한 이유입니다.</span>
 						</p>
 						<p>
 							<span>또한 건전하고 투명한 기업 운영을 
@@ -123,18 +123,18 @@
 					<h1>건강한 솥밥</h1>
 					<div>
 						<p>
-							<span>한솥은 식재료 앞에서는 한없이 까탈스럽습니다.</span>
+							<span>두솥은 식재료 앞에서는 한없이 까탈스럽습니다.</span>
 							<span>신선하지 않아도, 합리적인 가격이 
 							아니어도 한솥이 될 수 없습니다.</span>
-							<span>건강하지 않으면 결코 한솥이 될 수 없습니다.</span>
+							<span>건강하지 않으면 결코 두솥이 될 수 없습니다.</span>
 						</p>
 						<p>
 							<span>외식기업은 그 어떤 기업보다도 
 							더 고객님을 소중하게 생각해야 한다는</span>
-							<span>것이 한솥의 신념입니다.</span>
-							<span>한솥의 도시락이 건강해야, 
+							<span>것이 두솥의 신념입니다.</span>
+							<span>두솥의 도시락이 건강해야, 
 							고객 또한 건강해질 수 있다는 믿음,</span>
-							<span>그것이 한결 같은 한솥의 초심입니다.</span>
+							<span>그것이 한결 같은 두솥의 초심입니다.</span>
 						</p>
 					</div>
 				</div>

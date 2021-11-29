@@ -1,11 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>두솥 주문상세내역</title>
-<link rel="stylesheet" type="text/css" href="../css/member_orderDetailList_css.css?v=1">
+<link rel="stylesheet" type="text/css" href="../css/member_orderDetailList_css.css?v=2">
 </head>
 <body>
 	<header>
@@ -26,11 +27,11 @@
 			</div>
 			<div class="top_list">
 				<ul>
-					<li class="mtl"><a href="#">BRAND</a></li>
+					<li class="mtl"><a href="../brand/brand.jsp">BRAND</a></li>
 					<li class="mtl"><a href="menuList.do">MENU</a></li>
 					<li class="mtl"><a href="loca_list.do?pg=1">STORE</a></li>
 					<li class="mtl"><a href="event_list.do?pg=1">EVENT</a></li>
-					<li class="mtl"><a href="#">QnA</a></li>
+					<li class="mtl"><a href="FAQList.do?pg=1">QnA</a></li>
 				</ul>
 			</div>
 		</div>
@@ -47,29 +48,25 @@
 				<th width="400">상품정보</th>
 				<th width="100">주문갯수</th>
 				<th width="100">가격</th>
-				<th width="80"></th>
 			</tr>
 		</table>
    		<fieldset>
-			<form>
+			<form id="listfrm">
 				<table>
-					<tr>
-						<td width="180" height="60">xxx</td>
-						<td width="400">상품사진, 상품정보</td>
-						<td width="100">갯수</td>
-						<td width="100">총가격</td>
-						<td width="80"><div id="order_cancel"><a href="">주문취소</a></div></td>
-					</tr>
-					<!-- 5개씩 보여주고 상품정보란에 마우스 올리면 상세정보 나오게설정
-						상세정보가 보여지면서 .content의 세로 길이가 길어져서 footer에 침입하게되므로
-						jquery로 세로길이 조정 -->
+					<c:forEach var="getdto" items="${get_orderList }">
+						<tr>
+							<td width="180" height="60">${getdto.menu_name }</td>
+							<td width="400">
+								<a href="http://localhost:8080/Doosot/member/menuDetail.do?menu_num=${getdto.menu_num }&category=total">
+								<img src="../menu_image/${getdto.menu_img }"></a>
+							</td>
+							<td width="100">${getdto.cart_qty } 개</td>
+							<td width="100">${getdto.menu_price * getdto.cart_qty } 원</td>
+						</tr>
+					</c:forEach>
 				</table>
-				<!-- <p>현재 주문된 상품이 없습니다.</p> -->
 			</form>
 		</fieldset>
-		<div><!-- 페이징 -->
-			<p><< 1 2 3 4 5>></p>
-		</div>
 	</div>
 	<footer>
 		<div id="footer_head">

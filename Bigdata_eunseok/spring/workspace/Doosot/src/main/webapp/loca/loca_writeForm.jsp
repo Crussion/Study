@@ -8,7 +8,37 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link rel="stylesheet" type="text/css" href="../css/main_page.css?new">
-<link rel="stylesheet" type="text/css" href="../css/loca.css?new">
+<link rel="stylesheet" type="text/css" href="../css/loca.css?v=5">
+<script type="text/javascript">
+	function checkName() {
+		var sId = loca_frm.loca_name.value;
+		
+		if(sId == "") {
+			alert("매장 이름을 입력하세요.");
+		} else {
+			window.open("../loca/checkName.do?loca_name=" + sId, "", "width=450 height=160 left=500 top=200")
+		}
+	}
+	
+	function checkWrite() {
+		if(!loca_frm.loca_name.value) {
+			alert("매장 이름을 입력하세요");
+			loca_frm.loca_name.focus();
+		} else if(!loca_frm.loca_addr.value) {
+			alert("매장 주소를 입력하세요");
+			loca_frm.loca_addr.focus();
+		} else if(!loca_frm.loca_phone.value) {
+			alert("매장 전화번호를 입력하세요");
+			loca_frm.loca_phone.focus();
+		} else if(!loca_frm.loca_img.value) {
+			alert("매장 지도이미지를 입력하세요");
+			loca_frm.loca_img.focus();
+		}else {
+			loca_frm.submit();
+		}
+	}
+</script>
+
 
 </head>
 <body>
@@ -20,7 +50,6 @@
 				<a href="../member/member_join.jsp"> 회원가입 </a>|
 			</c:if>
 			<c:if test="${not empty login_id }">
-				<a href="cartList.do">장바구니 </a>|
 				<a href="member_logout.do">로그아웃 </a>|
 				<a href="member_manage.do"> 가입자관리 </a>|
 			</c:if>
@@ -37,11 +66,11 @@
 			</div>
 			<div class="top_list">
 				<ul>
-					<li class="mtl"><a href="#">BRAND</a></li>
+					<li class="mtl"><a href="../brand/brand.jsp">BRAND</a></li>
 					<li class="mtl"><a href="menuList.do">MENU</a></li>
 					<li class="mtl"><a href="loca_list.do?pg=1">STORE</a></li>
 					<li class="mtl"><a href="event_list.do?pg=1">EVENT</a></li>
-					<li class="mtl"><a href="#">QnA</a></li>
+					<li class="mtl"><a href="FAQList.do?pg=1">QnA</a></li>
 				</ul>
 			</div>
 		</div>
@@ -57,7 +86,9 @@
 	         <table class="loca_wirte_form">
 	            <tr>
 	               <td width="120"><span>매장 이름</span></td>
-	               <td><input type="text" name="loca_name" class="input"></td>
+	               <td><input type="text" name="loca_name" class="input_write">
+	               		<input type="button" value="이름 중복확인" name="loca_name_check" class="input_check" onclick="checkName()">
+	               </td>
 	            </tr>
 	            <tr>
 	               <td><span>매장 주소</span></td>
@@ -68,12 +99,12 @@
 	               <td><input type="text" name="loca_phone" class="input"></td>
 	            </tr>
 	            <tr>
-	               <td><span>매장 주소   1  이미지</span></td>
+	               <td><span>이미지</span></td>
 	               <td><input type="file" class="input" name="loca_img" id="file"></td>
 	            </tr>
 	            <tr>
 	               <td colspan="2">
-	                  <input type="submit" value="매장 등록" class="btn">
+	                  <input type="button" value="매장 등록" class="btn" onclick="checkWrite()">
 	               </td>
 	            </tr>
 	            <tr>

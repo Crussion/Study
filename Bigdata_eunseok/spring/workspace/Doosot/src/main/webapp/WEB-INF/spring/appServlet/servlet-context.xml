@@ -40,6 +40,9 @@
 	<context:component-scan base-package="cart"/>
 	<context:component-scan base-package="order"/>
 	<context:component-scan base-package="cartList"/>
+	<context:component-scan base-package="faq"/>
+	<context:component-scan base-package="qna"/>
+	<context:component-scan base-package="re"/>
 	
 	<beans:bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
 		<beans:property name="maxUploadSize" value="5000000"/>

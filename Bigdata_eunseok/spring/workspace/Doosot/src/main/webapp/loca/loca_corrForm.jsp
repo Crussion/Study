@@ -8,8 +8,9 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link rel="stylesheet" type="text/css" href="../css/main_page.css?new">
-<link rel="stylesheet" type="text/css" href="../css/loca.css?new">
-<script type="text/javascript" src="../script/locaScript.js?new"></script>
+<link rel="stylesheet" type="text/css" href="../css/loca.css?v=5">
+<script type="text/javascript" src="../script/locaScript.js?v=5"></script>
+
 
 </head>
 <body>
@@ -21,15 +22,16 @@
 				<a href="../member/member_join.jsp"> 회원가입 </a>|
 			</c:if>
 			<c:if test="${not empty login_id }">
-				<a href="cartList.do">장바구니 </a>|
 				<a href="member_logout.do">로그아웃 </a>|
 				<a href="member_manage.do"> 가입자관리 </a>|
+
 			</c:if>
-			<a href="https://www.instagram.com/hansot_official/">
-				<img src="../img/insta.png" width=14px height=14px style="max-width: 100%; height: auto;">
-			</a>
-			<a href="https://www.facebook.com/hansotOfficial/?ref=ts&fref=ts">
-				<img src="../img/face.png" width=18px height=18px style="max-width: 100%; height: auto;">
+			<a href="https://www.instagram.com/hansot_official/"> <img
+				src="../img/insta.png" width=14px height=14px
+				style="max-width: 100%; height: auto;">
+			</a> <a href="https://www.facebook.com/hansotOfficial/?ref=ts&fref=ts">
+				<img src="../img/face.png" width=18px height=18px
+				style="max-width: 100%; height: auto;">
 			</a>
 		</div>
 		<div class="main_top_list">
@@ -38,11 +40,11 @@
 			</div>
 			<div class="top_list">
 				<ul>
-					<li class="mtl"><a href="#">BRAND</a></li>
+					<li class="mtl"><a href="../brand/brand.jsp">BRAND</a></li>
 					<li class="mtl"><a href="menuList.do">MENU</a></li>
 					<li class="mtl"><a href="loca_list.do?pg=1">STORE</a></li>
 					<li class="mtl"><a href="event_list.do?pg=1">EVENT</a></li>
-					<li class="mtl"><a href="#">QnA</a></li>
+					<li class="mtl"><a href="FAQList.do?pg=1">QnA</a></li>
 				</ul>
 			</div>
 		</div>
@@ -71,8 +73,18 @@
 	               <td><input type="text" name="loca_num" id="loca_num" class="input" readonly></td>
 	            </tr>
 	            <tr>
+	               <td width="120"><span>사용여부</span></td>
+	               <td>
+	               		<label><input type="radio" id="valid_true" name="loca_valid" value="true" class="radio">사용</label>
+	               	    <label class="right_rd"><input type="radio" id="valid_false" name="loca_valid" value="false" class="radio" class="right_rd">사용 안함</label>
+	               </td>
+	            </tr>	            
+	            
+	            <tr>
 	               <td width="120"><span>매장 이름</span></td>
-	               <td><input type="text" name="loca_name" id="loca_name" class="input"></td>
+	               <td><input type="text" name="loca_name" id="loca_name" class="input_write">
+	               		<input type="button" value="이름 중복확인" name="loca_name_check" class="input_check" onclick="checkName()">
+	               </td>
 	            </tr>
 	            <tr>
 	               <td><span>매장 주소</span></td>
@@ -88,7 +100,7 @@
 	            </tr>
 	            <tr>
 	               <td colspan="2">
-	                  <input type="submit" value="수정 완료" class="btn">
+	                  <input type="button" value="매장 수정" class="btn" onclick="checkWrite()">
 	               </td>
 	            </tr>	            
 	            <tr>

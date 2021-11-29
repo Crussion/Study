@@ -10,7 +10,6 @@
 <link rel="stylesheet" type="text/css" href="../css/cartList.css?v=2">
 <script type="text/javascript" src="../script/jquery-3.6.0.min.js"></script>
 <script type="text/javascript">
-
 $(function(){
 	$(".list").first().css("border-top", "none")
 	$(".qty_minus").click(function(){
@@ -99,10 +98,22 @@ $(function(){
 <body>
 	<header>
 		<div class="flex">
-			<a href="member_logout.do">로그아웃 </a>|
-			<a href="cartList.do">장바구니 </a>|
-			<a href="../member/member_mypage.jsp">예치금 : ${mem_deposit }원 </a>|
-			<a href="../member/member_mypage.jsp">마이페이지 </a>|
+			<c:if test="${empty login_id }">
+				<a href="../member/member_login.jsp">로그인 </a>|
+				<a href="../member/member_join.jsp"> 회원가입 </a>|
+			</c:if>
+			<c:if test="${not empty login_id }">
+				<a href="member_logout.do">로그아웃 </a>|
+				<c:if test="${admin_num == null }">
+					<a href="cartList.do">장바구니 </a>|
+					<a href="../member/member_mypage.jsp">예치금 : ${mem_deposit }원 </a>|
+					<a href="../member/member_mypage.jsp"> 마이페이지 </a>|
+					<!-- <a href="menu_order_page.do"> 주문하기 </a>| -->
+				</c:if>
+				<c:if test="${admin_num == '1' }">
+					<a href="member_manage.do"> 가입자관리 </a>|
+				</c:if>
+			</c:if>
 			<a href="https://www.instagram.com/hansot_official/">
 				<img src="../img/insta.png" width=14px height=14px style="max-width: 100%; height: auto;">
 			</a>
@@ -110,20 +121,18 @@ $(function(){
 				<img src="../img/face.png" width=18px height=18px style="max-width: 100%; height: auto;">
 			</a>
 		</div>
-		<div class="top">
-			<div class="main_top_list">
-				<div class="logo">
-					<a href="../main/main.jsp"><img src="../img/DS2.png"></a>
-				</div>
-				<div class="top_list">
-					<ul>
-						<li class="mtl"><a href="#">BRAND</a></li>
-						<li class="mtl"><a href="menuList.do">MENU</a></li>
-						<li class="mtl"><a href="loca_list.do?pg=1">STORE</a></li>
-						<li class="mtl"><a href="event_list.do?pg=1">EVENT</a></li>
-						<li class="mtl"><a href="#">QnA</a></li>
-					</ul>
-				</div>
+		<div class="main_top_list">
+			<div class="logo">
+				<a href="../main/main.jsp"><img src="../img/DS2.png"></a>
+			</div>
+			<div class="top_list">
+				<ul>
+					<li class="mtl"><a href="../brand/brand.jsp">BRAND</a></li>
+					<li class="mtl"><a href="menuList.do">MENU</a></li>
+					<li class="mtl"><a href="loca_list.do?pg=1">STORE</a></li>
+					<li class="mtl"><a href="event_list.do?pg=1">EVENT</a></li>
+					<li class="mtl"><a href="FAQList.do?pg=1">QnA</a></li>
+				</ul>
 			</div>
 		</div>
 	</header>

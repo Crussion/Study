@@ -44,7 +44,9 @@
 		$("#total_price").html(price)
 		
 		$("input[value='지점선택']").click(function() {
-			alert("test");
+			window.open("loca_cus_select.do?pg=1",'newWindow' ,"width=1300 height=1000 left=250 top=20");
+			//location.href="loca_cus_select.do?pg=1";
+			//alert("test");
 		});
 		$("#comment").change(function(){
 			if($("#comment option:selected").val() == "write"){
@@ -139,11 +141,11 @@
 				</div>
 				<div class="top_list">
 					<ul>
-						<li class="mtl"><a href="#">BRAND</a></li>
+						<li class="mtl"><a href="../brand/brand.jsp">BRAND</a></li>
 						<li class="mtl"><a href="menuList.do">MENU</a></li>
 						<li class="mtl"><a href="loca_list.do?pg=1">STORE</a></li>
 						<li class="mtl"><a href="event_list.do?pg=1">EVENT</a></li>
-						<li class="mtl"><a href="#">QnA</a></li>
+						<li class="mtl"><a href="FAQList.do?pg=1">QnA</a></li>
 					</ul>
 				</div>
 			</div>
@@ -189,19 +191,20 @@
 								<input type="text" name="deli_addr" value="${login_addr }" class="long">
 							</td>
 						</tr>
-						<!-- 
+						
    						<tr>
    							<td class="label">지점선택</td>
    							<td class="deli_content">
-   								<input type="text" name="deli_store_name" value="지점선택" class="short" readonly>
+   								<input type="hidden" name="loca_num" id="loca_num">
+   								<input type="text" name="deli_store_name" id="deli_store_name" value="지점선택" class="short" readonly>
    							</td>
    						</tr>
    						<tr>
    							<td colspan="2" class="deli_content">
-   								<input type="text" name="deli_store_addr" value="지점선택" class="long" readonly>
+   								<input type="text" name="deli_store_addr" id="deli_store_addr" value="지점선택" class="long" readonly>
    							</td>
    						</tr>
-   						 -->
+   						
    						<tr>
    							<td class="label">요청사항</td>
    							<td class="deli_content">

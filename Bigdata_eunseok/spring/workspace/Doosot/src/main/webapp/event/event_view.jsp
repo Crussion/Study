@@ -24,6 +24,7 @@
 					<a href="cartList.do">장바구니 </a>|
 					<a href="../member/member_mypage.jsp">예치금 : ${mem_deposit }원 </a>|
 					<a href="../member/member_mypage.jsp"> 마이페이지 </a>|
+					<!-- <a href="menu_order_page.do"> 주문하기 </a>| -->
 				</c:if>
 				<c:if test="${admin_num == '1' }">
 					<a href="member_manage.do"> 가입자관리 </a>|
@@ -43,11 +44,11 @@
 			</div>
 			<div class="top_list">
 				<ul>
-					<li class="mtl"><a href="#">BRAND</a></li>
+					<li class="mtl"><a href="../brand/brand.jsp">BRAND</a></li>
 					<li class="mtl"><a href="menuList.do">MENU</a></li>
 					<li class="mtl"><a href="loca_list.do?pg=1">STORE</a></li>
 					<li class="mtl"><a href="event_list.do?pg=1">EVENT</a></li>
-					<li class="mtl"><a href="#">QnA</a></li>
+					<li class="mtl"><a href="FAQList.do?pg=1">QnA</a></li>
 				</ul>
 			</div>
 		</div>

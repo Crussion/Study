@@ -57,7 +57,8 @@
 		});
 		// 이름 입력 후 작동
 		$("input[name='mem_name']").blur(function() {
-			var korean = only_korean($("input[name='mem_name']").val());
+			var korean = only_korean($("input[name='mem_name']").val()); // 검사함수
+			
 			if(korean == 1){ // 한글이 아닌 문자일 시
 				$("input[name='mem_name']").focus();
 				$("#nm_alert").html("한글로만 작성").css("color","red");
@@ -76,10 +77,14 @@
 		});
 		// 전화번호2 입력 후 작동
 		$("input[name='mem_phone2']").blur(function() {
-			var phone2 = only_number($("input[name='mem_phone2']").val());
+			var phone2 = only_number($("input[name='mem_phone2']").val()); // 검사함수
+			
 			if(phone2 == 1){ // 숫자 이외의 문자일시
 				$("input[name='mem_phone2']").focus();
 				$("#ph_alert").html("숫자만 입력").css("color","red");
+			}else if($("input[name='mem_phone2']").val().length < 3){
+				$("input[name='mem_phone2']").focus();
+				$("#ph_alert").html("최소 3자리 번호").css("color","red");
 			}else if($("input[name='mem_phone2']").val().length > 4){
 				$("input[name='mem_phone2']").focus();
 				$("#ph_alert").html("최대 4자리 번호").css("color","red");
@@ -92,10 +97,14 @@
 		});
 		// 전화번호3 입력 후 작동
 		$("input[name='mem_phone3']").blur(function() {
-			var phone3 = only_number($("input[name='mem_phone2']").val());
+			var phone3 = only_number($("input[name='mem_phone2']").val()); // 검사 함수
+			
 			if(phone3 == 1){ // 숫자 이외의 문자일시
 				$("input[name='mem_phone3']").focus();
 				$("#ph_alert").html("숫자만 입력").css("color","red");
+			}else if($("input[name='mem_phone3']").val().length < 4){
+				$("input[name='mem_phone2']").focus();
+				$("#ph_alert").html("최소 4자리 번호").css("color","red");
 			}else if($("input[name='mem_phone3']").val().length > 4){ // 4자리보다 크면
 				$("input[name='mem_phone2']").focus();
 				$("#ph_alert").html("최대 4자리 번호").css("color","red");
@@ -136,6 +145,37 @@
 				$("#join").attr("type","submit").css("background","orange").css("color","white");
 			}
 		});
+		
+		$.join_check = function() { // 하나라도 입력값이 없어진다면 작동
+			var phone1IDX = document.getElementById("mem_phone1").selectedIndex; // 선택된 옵션 값
+			var email2IDX = document.getElementById("mem_email2").selectedIndex;
+			var phone1 = document.getElementById("mem_phone1").options; // 옵션 리스트
+			var email2 = document.getElementById("mem_email2").options;
+			var phone_idx_num = phone1[phone1IDX].index;
+			var email_idx_num = email2[email2IDX].index;
+			if($("input[name='mem_id']").val().length > 0 && $("input[name='mem_pw']").val().length > 0 && 
+					$("input[id='check_pw']").val().length > 0 && $("input[name='mem_name']").val().length > 0 &&
+					phone_idx_num != 0 && $("input[name='mem_phone2']").val().length > 0 &&
+					$("input[name='mem_phone3']").val().length > 0 && $("input[name='mem_addr']").val().length > 0 &&
+					$("input[name='mem_email1']").val().length > 0 && email_idx_num != 0){
+				
+				$("#join").attr("type","submit").css("background","orange").css("color","white");
+			}else{
+				$("#join").attr("type","button").css("background","#ececec").css("color","dimgray");
+			}
+		};
+		
+		$("input[name='mem_id']").blur(function() { $.join_check() });
+		$("input[name='mem_pw']").blur(function() { $.join_check() });
+		$("input[id='check_pw']").blur(function() { $.join_check() });
+		$("input[name='mem_name']").blur(function() { $.join_check() });
+		$("input[name='mem_phone1']").blur(function() { $.join_check() });
+		$("input[name='mem_phone2']").blur(function() { $.join_check() });
+		$("input[name='mem_phone3']").blur(function() { $.join_check() });
+		$("input[name='mem_addr']").blur(function() { $.join_check() });
+		$("input[name='mem_email1']").blur(function() { $.join_check() });
+		$("input[name='mem_email2']").blur(function() { $.join_check() });
+		
 	});
 </script>
 </head>
@@ -157,11 +197,11 @@
 			</div>
 			<div class="top_list">
 				<ul>
-					<li class="mtl"><a href="#">BRAND</a></li>
+					<li class="mtl"><a href="../brand/brand.jsp">BRAND</a></li>
 					<li class="mtl"><a href="menuList.do">MENU</a></li>
 					<li class="mtl"><a href="loca_list.do?pg=1">STORE</a></li>
 					<li class="mtl"><a href="event_list.do?pg=1">EVENT</a></li>
-					<li class="mtl"><a href="#">QnA</a></li>
+					<li class="mtl"><a href="FAQList.do?pg=1">QnA</a></li>
 				</ul>
 			</div>
 		</div>
@@ -201,7 +241,7 @@
 				<tr>
 					<td width="120"><span>전화번호</span></td>
 					<td>
-						<select class="tel" class="input" name="mem_phone1" disabled="disabled" style="text-align:center;">
+						<select class="tel" class="input" name="mem_phone1" id="mem_phone1" disabled="disabled" style="text-align:center;">
 							<option>--- 선택 ---</option>
 							<option>010</option>
 							<option>011</option>
@@ -224,7 +264,7 @@
 					<td width="120"><span>이메일</span></td>
 					<td>
 						<input type="text" class="email" class="input" name="mem_email1" readonly> @
-						<select class="email" class="input" name="mem_email2" disabled="disabled" style="text-align:center;">
+						<select class="email" class="input" name="mem_email2" id="mem_email2" disabled="disabled" style="text-align:center;">
 							<option>----- 선택 -----</option>
 							<option>naver.com</option>
 							<option>daum.net</option>

@@ -6,9 +6,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import member.bean.MemberDTO;
+import member.bean.MemberQnADTO;
 import member.dao.MemberDAO;
-import order.bean.OrderDTO;
+import orderList.dto.GetOrderListDTO;
 import orderList.dto.OrderListDTO;
+import qna.bean.QnADTO;
 
 @Service
 public class MemberServiceImpl implements MemberService{
@@ -45,6 +47,26 @@ public class MemberServiceImpl implements MemberService{
 		return memberDAO.memberList(startNum, endNum);
 	}
 	@Override
+	public int delete_cart(String login_id) {
+		return memberDAO.delete_cart(login_id);
+	}
+	@Override
+	public int delete_order(String login_id) {
+		return memberDAO.delete_order(login_id);
+	}
+	@Override
+	public List<QnADTO> get_qnaseqList(String login_id) {
+		return memberDAO.get_qnaseqList(login_id);
+	}
+	@Override
+	public int delete_re(int qna_seq) {
+		return memberDAO.delete_re(qna_seq);
+	}
+	@Override
+	public int delete_qna(int qna_seq) {
+		return  memberDAO.delete_qna(qna_seq);
+	}
+	@Override
 	public int member_out(String login_id) {
 		return memberDAO.member_out(login_id);
 	}
@@ -60,17 +82,29 @@ public class MemberServiceImpl implements MemberService{
 	public List<OrderListDTO> orderList(int seq_num) {
 		return memberDAO.orderList(seq_num);
 	}
-	/*
 	@Override
-	public OrderListDTO orderList(int startNum, int endNum) {
-		return memberDAO.orderList(startNum, endNum).get(0);
+	public List<Integer> order_seq(String login_id, String startNum, String endNum) {
+		return memberDAO.order_seq(login_id, startNum, endNum);
 	}
-	*/
 	@Override
-	public List<Integer> order_seq(int startNum, int endNum) {
-		return memberDAO.order_seq(startNum, endNum);
+	public List<GetOrderListDTO> get_order(int seq) {
+		return memberDAO.get_order(seq);
 	}
-
-
+	@Override
+	public int total_qna(String login_id) {
+		return memberDAO.total_qna(login_id);
+	}
+	@Override
+	public List<MemberQnADTO> member_qnaList(String login_id,String startNum, String endNum) {
+		return memberDAO.member_qnaList(login_id,startNum,endNum);
+	}
+	@Override
+	public MemberQnADTO member_qnaView(String login_id, String qna_seq) {
+		return memberDAO.member_qnaView(login_id, qna_seq);
+	}
+	@Override
+	public String member_findId(MemberDTO dto) {
+		return memberDAO.member_findId(dto);
+	}
 
 }

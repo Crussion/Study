@@ -10,6 +10,27 @@
 <link rel="stylesheet" type="text/css" href="../css/main_page.css?new">
 <link rel="stylesheet" type="text/css" href="../css/event.css?new">
 
+<script type="text/javascript">
+	function checkEventWrite() {
+		if(!event_frm.eve_name.value) {
+			alert("이벤트 이름을 입력하세요");
+			event_frm.eve_name.focus();
+		} else if(!event_frm.eve_start.value) {
+			alert("이벤트 시작일을 입력하세요");
+			event_frm.eve_start.focus();
+		} else if(!event_frm.eve_end.value) {
+			alert("이벤트 종료일을 입력하세요");
+			event_frm.eve_end.focus();
+		} else if(!event_frm.eve_img.value) {
+			alert("이벤트 이미지를 입력하세요");
+			event_frm.eve_img.focus();
+		} else {
+			event_frm.submit();
+		}
+	}
+
+</script>
+
 </head>
 <body>
 	<!-- 고정 -->
@@ -21,7 +42,6 @@
 			</c:if>
 			<c:if test="${not empty login_id }">
 				<a href="member_logout.do">로그아웃 </a>|
-				<a href="cartList.do">장바구니 </a>|
 				<a href="member_manage.do"> 가입자관리 </a>|
 			</c:if>
 			<a href="https://www.instagram.com/hansot_official/"> <img
@@ -38,11 +58,11 @@
 			</div>
 			<div class="top_list">
 				<ul>
-					<li class="mtl"><a href="#">BRAND</a></li>
+					<li class="mtl"><a href="../brand/brand.jsp">BRAND</a></li>
 					<li class="mtl"><a href="menuList.do">MENU</a></li>
 					<li class="mtl"><a href="loca_list.do?pg=1">STORE</a></li>
 					<li class="mtl"><a href="event_list.do?pg=1">EVENT</a></li>
-					<li class="mtl"><a href="#">QnA</a></li>
+					<li class="mtl"><a href="FAQList.do?pg=1">QnA</a></li>
 				</ul>
 			</div>
 		</div>
@@ -74,7 +94,7 @@
 	            </tr>
 	            <tr>
 	               <td colspan="2">
-	                  <input type="submit" value="이벤트 등록" class="event_btn">
+	                  <input type="button" value="이벤트 수정" class="event_btn" onclick="checkEventWrite()">
 	               </td>
 	            </tr>
 	            <tr>

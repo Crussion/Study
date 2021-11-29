@@ -7,7 +7,7 @@
 <meta charset="UTF-8">
 <title>두솥</title>
 <link rel="stylesheet" type="text/css" href="../css/main.css?v=1">
-<link rel="stylesheet" type="text/css" href="../css/menuList.css?v=1">
+<link rel="stylesheet" type="text/css" href="../css/menuList.css?v=2">
 <script type="text/javascript" src="../script/jquery-3.6.0.min.js"></script>
 <script type="text/javascript">
 	function goDetail(num){
@@ -107,11 +107,11 @@
 			</div>
 			<div class="top_list">
 				<ul>
-					<li class="mtl"><a href="#">BRAND</a></li>
+					<li class="mtl"><a href="../brand/brand.jsp">BRAND</a></li>
 					<li class="mtl"><a href="menuList.do">MENU</a></li>
 					<li class="mtl"><a href="loca_list.do?pg=1">STORE</a></li>
 					<li class="mtl"><a href="event_list.do?pg=1">EVENT</a></li>
-					<li class="mtl"><a href="#">QnA</a></li>
+					<li class="mtl"><a href="FAQList.do?pg=1">QnA</a></li>
 				</ul>
 			</div>
 		</div>

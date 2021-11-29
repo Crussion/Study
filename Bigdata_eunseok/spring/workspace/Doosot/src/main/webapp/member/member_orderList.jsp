@@ -28,11 +28,11 @@
 			</div>
 			<div class="top_list">
 				<ul>
-					<li class="mtl"><a href="#">BRAND</a></li>
+					<li class="mtl"><a href="../brand/brand.jsp">BRAND</a></li>
 					<li class="mtl"><a href="menuList.do">MENU</a></li>
 					<li class="mtl"><a href="loca_list.do?pg=1">STORE</a></li>
 					<li class="mtl"><a href="event_list.do?pg=1">EVENT</a></li>
-					<li class="mtl"><a href="#">QnA</a></li>
+					<li class="mtl"><a href="FAQList.do?pg=1">QnA</a></li>
 				</ul>
 			</div>
 		</div>
@@ -58,11 +58,11 @@
 							<tr>
 								<td width="180" height="60">${orderListDto.order_seq }</td>
 								<c:if test="${cnt[i.index]-1 > 0}">
-									<td width="500"><a href="../member/member_orderDetailList.jsp">
+									<td width="500"><a href="member_orderDetailList.do?seq=${orderListDto.order_seq }">
 									${orderListDto.menu_name } 외 ${cnt[i.index]-1 }개</a></td>
 								</c:if>
 								<c:if test="${cnt[i.index]-1 == 0}">
-									<td width="500"><a href="../member/member_orderDetailList.jsp">
+									<td width="500"><a href="member_orderDetailList.do?seq=${orderListDto.order_seq }">
 									${orderListDto.menu_name }</a></td>
 								</c:if>
 								<td width="180">${orderListDto.order_date }</td>

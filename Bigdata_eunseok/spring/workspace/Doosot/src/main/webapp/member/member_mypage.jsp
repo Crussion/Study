@@ -23,7 +23,7 @@
 		});
 		
 		// 비밀번호 변경 관련 부분
-		$("input[name='new_pw']").blur(function() {
+		$.change_pw = function() {
 			var button = $("input[value='변경하기']");
 			if($("input[name='old_pw']").val().length > 0 && $("input[name='new_pw']").val().length > 0 ){
 				button.removeAttr("type","button").attr("type","submit");
@@ -32,7 +32,10 @@
 				button.removeAttr("type","submit").attr("type","button");
 				button.css("background","#ececec").css("color","dimgray");
 			}
-		});
+		};
+		$("input[name='old_pw']").blur(function() { $.change_pw()});
+		$("input[name='new_pw']").blur(function() { $.change_pw()});
+		
 		// 예치금 관련 부분
 		$("input[name='reload_deposit']").blur(function() { // 예치금 입력란에서 포커스아웃 될때
 			var button = $("input[value='충전하기']");
@@ -91,14 +94,16 @@
 	<header>
 		<div class="flex">
 			<a href="member_logout.do">로그아웃 </a>|
-			<a href="cartList.do">장바구니 </a>|
+			<a href="cartList.do">장바구니</a> |
 			<a href="../member/member_mypage.jsp">예치금 : ${mem_deposit }원 </a>|
-			<a href="../member/member_mypage.jsp">마이페이지 </a>|
-			<a href="https://www.instagram.com/hansot_official/">
-				<img src="../img/insta.png" width=14px height=14px style="max-width: 100%; height: auto;">
-			</a>
-			<a href="https://www.facebook.com/hansotOfficial/?ref=ts&fref=ts">
-				<img src="../img/face.png" width=18px height=18px style="max-width: 100%; height: auto;">
+			<a href="../member/member_mypage.jsp"> 마이페이지 </a>|
+
+			<a href="https://www.instagram.com/hansot_official/"> <img
+				src="../img/insta.png" width=14px height=14px
+				style="max-width: 100%; height: auto;">
+			</a> <a href="https://www.facebook.com/hansotOfficial/?ref=ts&fref=ts">
+				<img src="../img/face.png" width=18px height=18px
+				style="max-width: 100%; height: auto;">
 			</a>
 		</div>
 		<div class="main_top_list">
@@ -107,11 +112,11 @@
 			</div>
 			<div class="top_list">
 				<ul>
-					<li class="mtl"><a href="#">BRAND</a></li>
+					<li class="mtl"><a href="../brand/brand.jsp">BRAND</a></li>
 					<li class="mtl"><a href="menuList.do">MENU</a></li>
 					<li class="mtl"><a href="loca_list.do?pg=1">STORE</a></li>
 					<li class="mtl"><a href="event_list.do?pg=1">EVENT</a></li>
-					<li class="mtl"><a href="#">QnA</a></li>
+					<li class="mtl"><a href="FAQList.do?pg=1">QnA</a></li>
 				</ul>
 			</div>
 		</div>
@@ -125,7 +130,7 @@
 						<a href="member_orderList.do">주문내역</a>
 					</div>
 					<div class="buttons" id="qna_hist">
-						<a href="member_qnaList.jsp">문의내역</a>
+						<a href="member_qnaList.do">문의내역</a>
 					</div>
 				</div>
 			</div>
